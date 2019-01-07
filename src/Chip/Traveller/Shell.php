@@ -8,10 +8,10 @@
 
 namespace Chip\Traveller;
 
+use Chip\Visitor;
 use PhpParser\Node;
-use PhpParser\NodeVisitorAbstract;
 
-class Shell extends NodeVisitorAbstract
+class Shell extends Visitor
 {
 
 }

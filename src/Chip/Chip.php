@@ -8,11 +8,24 @@
 
 namespace Chip;
 
-use \PhpParser\ParserFactory;
 
+use \PhpParser\ParserFactory;
+use \PhpParser\NodeTraverser;
 
 class Chip
 {
+    /**
+     * @var \PhpParser\Parser;
+     */
+    protected $parser = null;
+
+    /**
+     * @var NodeTraverser $traverser
+     */
+    protected $traverser = null;
+
+    protected $travellers = [];
+
     function __construct()
     {
 
@@ -23,6 +36,7 @@ class Chip
     protected function bootstrapParser()
     {
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        $this->traverser = new NodeTraverser();
     }
 
     public function traveller($travellers)
@@ -37,6 +51,12 @@ class Chip
 
     public function detect($code)
     {
+        foreach ($this->travellers as $traveller_name) {
+            $class = new $traveller_name;
+            $this->traverser->addVisitor($class);
+        }
 
+        $stmts = $this->parser->parse($code);
+        $this->traverser->traverse($stmts);
     }
 }

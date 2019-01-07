@@ -8,11 +8,12 @@
 
 namespace Chip\Traveller;
 
+use Chip\Code;
 use PhpParser\Node;
-use PhpParser\NodeVisitorAbstract;
-use \PhpParser\Node\Expr\Eval_ as EvalNode;
+use PhpParser\Node\Expr\Eval_ as EvalNode;
+use Chip\Visitor;
 
-class Eval_ extends NodeVisitorAbstract
+class Eval_ extends Visitor
 {
     public function enterNode(Node $node)
     {
@@ -20,6 +21,8 @@ class Eval_ extends NodeVisitorAbstract
             return;
         }
 
-
+        if (Code::hasVariable($node)) {
+            echo "[danger]";
+        }
     }
 }
