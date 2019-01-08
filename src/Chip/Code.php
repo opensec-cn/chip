@@ -48,7 +48,7 @@ class Code
     static public function hasVariable(Node $node)
     {
         $hasVariable = static::traverseNode($node, function ($cur_node) {
-            if ($cur_node instanceof Node\Expr\Variable) {
+            if ($cur_node instanceof Node\Expr\Variable || $cur_node instanceof Node\Identifier || $cur_node instanceof Node\Expr\ConstFetch || $cur_node instanceof Node\Expr\ClassConstFetch) {
                 return true;
             }
 
@@ -56,5 +56,18 @@ class Code
         });
 
         return boolval($hasVariable);
+    }
+
+    static public function hasFunctionCall(Node $node)
+    {
+        $hasFunctionCall = static::traverseNode($node, function ($cur_node) {
+            if ($cur_node instanceof Node\Expr\MethodCall || $cur_node instanceof Node\Expr\FuncCall || $cur_node instanceof Node\Expr\New_ || $cur_node instanceof Node\Expr\StaticCall) {
+                return true;
+            }
+
+            return null;
+        });
+
+        return boolval($hasFunctionCall);
     }
 }

@@ -21,7 +21,7 @@ class Eval_ extends Visitor
             return;
         }
 
-        if (Code::hasVariable($node)) {
+        if (Code::hasVariable($node) || Code::hasFunctionCall($node)) {
             echo "[danger]";
         }
     }
