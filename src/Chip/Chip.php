@@ -15,7 +15,7 @@ use \PhpParser\NodeTraverser;
 class Chip
 {
     /**
-     * @var \PhpParser\Parser;
+     * @var \PhpParser\Parser $parser;
      */
     protected $parser = null;
 
@@ -58,5 +58,10 @@ class Chip
 
         $stmts = $this->parser->parse($code);
         $this->traverser->traverse($stmts);
+    }
+
+    public function getAlerts()
+    {
+        return Visitor::getAlerts();
     }
 }

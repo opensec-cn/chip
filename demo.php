@@ -5,7 +5,7 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-eval(A[1]);
+`$aaa`;
 CODE;
 
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);

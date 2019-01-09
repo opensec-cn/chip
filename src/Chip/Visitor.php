@@ -12,10 +12,13 @@ use PhpParser\NodeVisitorAbstract;
 
 class Visitor extends NodeVisitorAbstract
 {
-    function __construct()
+    /**
+     * @type array $alerts;
+     */
+    protected static $alerts = [];
+
+    public static function getAlerts()
     {
-
+        return self::$alerts;
     }
-
-
 }

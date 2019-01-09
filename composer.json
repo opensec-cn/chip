@@ -1,6 +1,7 @@
 {
     "require": {
-        "nikic/php-parser": "^4.1"
+        "nikic/php-parser": "^4.1",
+        "myclabs/php-enum": "^1.6"
     },
     "autoload": {
         "psr-4": {"Chip\\": "src/Chip"}
