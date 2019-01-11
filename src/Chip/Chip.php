@@ -24,12 +24,12 @@ class Chip
      */
     protected $traverser = null;
 
-    protected $travellers = [];
+    protected $visitors = [];
 
     function __construct()
     {
 
-        $this->travellers = [];
+        $this->visitors = [];
         $this->bootstrapParser();
     }
 
@@ -39,20 +39,20 @@ class Chip
         $this->traverser = new NodeTraverser();
     }
 
-    public function traveller($travellers)
+    public function visitor($visitors)
     {
-        if(!is_array($travellers)) {
-            $travellers = [$travellers];
+        if(!is_array($visitors)) {
+            $visitors = [$visitors];
         }
 
-        $this->travellers = array_unique(array_merge($this->travellers, $travellers));
+        $this->visitors = array_unique(array_merge($this->visitors, $visitors));
         return $this;
     }
 
     public function detect($code)
     {
-        foreach ($this->travellers as $traveller_name) {
-            $class = new $traveller_name;
+        foreach ($this->visitors as $visitor_name) {
+            $class = new $visitor_name;
             $this->traverser->addVisitor($class);
         }
 
@@ -62,6 +62,6 @@ class Chip
 
     public function getAlerts()
     {
-        return Visitor::getAlerts();
+        return BaseVisitor::getAlerts();
     }
 }

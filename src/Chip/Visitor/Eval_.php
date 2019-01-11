@@ -6,15 +6,15 @@
  * Time: 3:57
  */
 
-namespace Chip\Traveller;
+namespace Chip\Visitor;
 
 use Chip\Alert;
 use Chip\Code;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Eval_ as EvalNode;
-use Chip\Visitor;
+use Chip\BaseVisitor;
 
-class Eval_ extends Visitor
+class Eval_ extends BaseVisitor
 {
     public function enterNode(Node $node)
     {

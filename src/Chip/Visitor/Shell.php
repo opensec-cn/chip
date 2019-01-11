@@ -6,14 +6,14 @@
  * Time: 3:53
  */
 
-namespace Chip\Traveller;
+namespace Chip\Visitor;
 
-use Chip\Visitor;
+use Chip\BaseVisitor;
 use PhpParser\Node;
 use Chip\Code;
 use Chip\Alert;
 
-class Shell extends Visitor
+class Shell extends BaseVisitor
 {
     public function enterNode(Node $node)
     {

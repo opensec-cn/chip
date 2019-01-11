@@ -10,7 +10,7 @@ namespace Chip;
 
 use PhpParser\NodeVisitorAbstract;
 
-class Visitor extends NodeVisitorAbstract
+class BaseVisitor extends NodeVisitorAbstract
 {
     /**
      * @type array $alerts;

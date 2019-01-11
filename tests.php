@@ -1,8 +1,6 @@
 <?php
 require 'vendor/autoload.php';
 
-use \PhpParser\NodeTraverser;
-
 $code = <<<'CODE'
 <?php
 eval($b);
@@ -12,9 +10,9 @@ CODE;
 
 
 $chip = new \Chip\Chip();
-$chip->traveller([
-    \Chip\Traveller\Eval_::class,
-    \Chip\Traveller\Shell::class
+$chip->visitor([
+    \Chip\Visitor\Eval_::class,
+    \Chip\Visitor\Shell::class
 ])->detect($code);
 
 print_r($chip->getAlerts());
