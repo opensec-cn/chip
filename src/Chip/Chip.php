@@ -60,8 +60,8 @@ class Chip
         $this->traverser->traverse($stmts);
     }
 
-    public function getAlerts()
+    public function getAlarms()
     {
-        return BaseVisitor::getAlerts();
+        return Message::$alarm;
     }
 }

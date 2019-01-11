@@ -8,17 +8,32 @@
 
 namespace Chip;
 
+use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 
 class BaseVisitor extends NodeVisitorAbstract
 {
     /**
-     * @type array $alerts;
+     * @type array $check_node_class
      */
-    protected static $alerts = [];
+    protected $check_node_class = [];
 
-    public static function getAlerts()
+    protected function checkNode(Node $node)
     {
-        return self::$alerts;
+        foreach ($this->check_node_class as $node_class) {
+            if (is_a($node, $node_class)) {
+                return true;
+            }
+        }
+        return false;
     }
+
+    public function enterNode(Node $node)
+    {
+        if($this->checkNode($node)) {
+            $this->process($node);
+        }
+    }
+
+    public function process(Node $node) {}
 }

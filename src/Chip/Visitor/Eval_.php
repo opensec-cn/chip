@@ -8,24 +8,24 @@
 
 namespace Chip\Visitor;
 
-use Chip\Alert;
 use Chip\Code;
+use Chip\Message;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Eval_ as EvalNode;
 use Chip\BaseVisitor;
 
 class Eval_ extends BaseVisitor
 {
-    public function enterNode(Node $node)
-    {
-        if (!($node instanceof EvalNode)) {
-            return;
-        }
+    protected $check_node_class = [
+        EvalNode::class
+    ];
 
+    public function process(Node $node)
+    {
         if (Code::hasVariable($node) || Code::hasFunctionCall($node)) {
-            self::$alerts[] = Alert::critical('任意代码执行漏洞');
+            Message::critical('任意代码执行漏洞');
         } else {
-            self::$alerts[] = Alert::warning('使用eval执行PHP代码，可能存在安全风险');
+            Message::warning('使用eval执行PHP代码，可能存在安全风险');
         }
     }
 }
