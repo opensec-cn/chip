@@ -31,6 +31,7 @@ class Chip
 
         $this->visitors = [];
         $this->bootstrapParser();
+        $this->bootstrapStreamWrapper();
     }
 
     protected function bootstrapParser()
@@ -43,6 +44,11 @@ class Chip
 
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, $lexer);
         $this->traverser = new NodeTraverser();
+    }
+
+    protected function bootstrapStreamWrapper()
+    {
+        stream_wrapper_register(MemoryStreamWrapper::WRAPPER_NAME, MemoryStreamWrapper::class);
     }
 
     public function visitor($visitors)

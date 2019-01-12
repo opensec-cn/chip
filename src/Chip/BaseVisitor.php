@@ -18,7 +18,7 @@ class BaseVisitor extends NodeVisitorAbstract
      */
     protected $check_node_class = [];
 
-    protected function checkNode(Node $node)
+    public function checkNode(Node $node)
     {
         foreach ($this->check_node_class as $node_class) {
             if (is_a($node, $node_class)) {

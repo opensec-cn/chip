@@ -10,6 +10,9 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
+use Chip\Code;
+use Chip\Exception\ArgumentsFormatException;
+use Chip\Exception\RegexFormatException;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -23,22 +26,20 @@ class PregExec extends BaseVisitor
      * @param FuncCall $node
      * @return bool
      */
-    public function checkNode($node)
+    public function checkNode(Node $node)
     {
-        return parent::checkNode($node) && in_array($node->name, $this->preg_functions);
+        return parent::checkNode($node) && in_array(strtolower($node->name), $this->preg_functions);
     }
 
     /**
      * @param FuncCall $node
+     * @throws ArgumentsFormatException
      */
-    public function process($node)
+    public function process(Node $node)
     {
-
-    }
-
-    protected function simpleParseRegex($regex)
-    {
-        $delimiter = $regex[0];
+        if (empty($node->args)) {
+            throw ArgumentsFormatException::create(Code::print_node($node));
+        }
 
 
     }

@@ -10,9 +10,12 @@ namespace Chip;
 
 
 use PhpParser\Node;
+use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 
 class Code
 {
+    protected static $prettyPrinter = null;
+
     static public function traverseNode(Node $node, Callable $callback)
     {
         $queue = new \SplQueue();
@@ -69,5 +72,14 @@ class Code
         });
 
         return boolval($hasFunctionCall);
+    }
+
+    public static function print_node(Node $node)
+    {
+        if (is_null(self::$prettyPrinter)) {
+            self::$prettyPrinter = new PrettyPrinter();
+        }
+        $code = self::$prettyPrinter->prettyPrint([$node]);
+        return strip_whitespace($code);
     }
 }

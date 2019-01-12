@@ -4,6 +4,9 @@
         "myclabs/php-enum": "^1.6"
     },
     "autoload": {
-        "psr-4": {"Chip\\": "src/Chip"}
+        "psr-4": {"Chip\\": "src/Chip"},
+        "files": [
+            "src/Chip/functions.php"
+        ]
     }
 }
