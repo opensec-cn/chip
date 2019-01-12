@@ -3,7 +3,8 @@ require 'vendor/autoload.php';
 
 $code = <<<'CODE'
 <?php
-assert(1);
+eval('echo ' . $name);
+assert($name, true);
 CODE;
 
 
