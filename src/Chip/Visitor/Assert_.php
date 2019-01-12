@@ -30,11 +30,11 @@ class Assert_ extends BaseVisitor
             return;
         }
 
-        $node = $node->args[0];
-        if (Code::hasVariable($node) || Code::hasFunctionCall($node)) {
-            Message::critical('任意代码执行漏洞');
+        $arg = $node->args[0];
+        if (Code::hasVariable($arg) || Code::hasFunctionCall($arg)) {
+            Message::critical($node,'assert第一个参数包含动态变量或函数，可能有远程代码执行的隐患');
         } else {
-            Message::warning('请勿在生产环境下使用assert，可能导致任意代码执行漏洞');
+            Message::warning($node,'请勿在生产环境下使用assert，可能导致任意代码执行漏洞');
         }
     }
 }

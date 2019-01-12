@@ -35,7 +35,13 @@ class Chip
 
     protected function bootstrapParser()
     {
-        $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        $lexer = new \PhpParser\Lexer(array(
+            'usedAttributes' => array(
+                'startLine', 'endLine', 'startFilePos', 'endFilePos'
+            )
+        ));
+
+        $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, $lexer);
         $this->traverser = new NodeTraverser();
     }
 

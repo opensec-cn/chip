@@ -8,6 +8,8 @@
 
 namespace Chip;
 
+use PhpParser\Node;
+
 class Message
 {
     /**
@@ -15,23 +17,44 @@ class Message
      */
     public static $alarm = [];
 
-    public static function warning(string $message)
+    protected static function getPositions(Node $node)
     {
-        self::$alarm[] = new Alarm(AlarmLevel::WARNING(), $message);
+        return [
+            $node->getStartLine(),
+            $node->getEndLine(),
+            $node->getStartFilePos(),
+            $node->getEndFilePos()
+        ];
     }
 
-    public static function danger(string $message)
+    protected static function putMessage($node, $level, $message)
     {
-        self::$alarm[] = new Alarm(AlarmLevel::DANGER(), $message);
+        $positions = self::getPositions($node);
+        self::$alarm[] = new Alarm($level, $message, ...$positions);
     }
 
-    public static function critical(string $message)
+    public static function info(Node $node, string $message)
     {
-        self::$alarm[] = new Alarm(AlarmLevel::CRITICAL(), $message);
+        self::putMessage($node, AlarmLevel::INFO(), $message);
     }
 
-    public static function safe(string $message)
+    public static function warning(Node $node, string $message)
     {
-        self::$alarm[] = new Alarm(AlarmLevel::SAFE(), $message);
+        self::putMessage($node, AlarmLevel::WARNING(), $message);
+    }
+
+    public static function danger(Node $node, string $message)
+    {
+        self::putMessage($node, AlarmLevel::DANGER(), $message);
+    }
+
+    public static function critical(Node $node, string $message)
+    {
+        self::putMessage($node, AlarmLevel::CRITICAL(), $message);
+    }
+
+    public static function safe(Node $node, string $message)
+    {
+        self::putMessage($node, AlarmLevel::SAFE(), $message);
     }
 }
