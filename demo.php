@@ -5,7 +5,7 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-preg_replace('/.*/e', $m);
+preg_replace('/aaa/e', a());
 CODE;
 
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);

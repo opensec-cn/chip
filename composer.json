@@ -1,7 +1,8 @@
 {
     "require": {
         "nikic/php-parser": "^4.1",
-        "myclabs/php-enum": "^1.6"
+        "myclabs/php-enum": "^1.6",
+        "symfony/finder": "^4.2"
     },
     "autoload": {
         "psr-4": {"Chip\\": "src/Chip"},
