@@ -55,3 +55,9 @@ $f($arg);
 ## 一个未完工的截图
 
 ![](screenshot/1.png)
+
+## 应该参考的项目
+
+- https://github.com/nbs-system/php-malware-finder
+- https://github.com/OneSourceCat/phpvulhunter
+- 
