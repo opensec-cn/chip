@@ -15,9 +15,14 @@ class Message
     /**
      * @type array $alarm
      */
-    public static $alarm = [];
+    public $alarm;
 
-    protected static function getPositions(Node $node)
+    function __construct()
+    {
+        $this->alarm = [];
+    }
+
+    protected function getPositions(Node $node)
     {
         return [
             $node->getStartLine(),
@@ -27,34 +32,34 @@ class Message
         ];
     }
 
-    protected static function putMessage($node, $level, $message)
+    protected function putMessage($node, $level, $message)
     {
-        $positions = self::getPositions($node);
-        self::$alarm[] = new Alarm($level, $message, ...$positions);
+        $positions = $this->getPositions($node);
+        $this->alarm[] = new Alarm($level, $message, ...$positions);
     }
 
-    public static function info(Node $node, string $message)
+    public function info(Node $node, string $message)
     {
-        self::putMessage($node, AlarmLevel::INFO(), $message);
+        $this->putMessage($node, AlarmLevel::INFO(), $message);
     }
 
-    public static function warning(Node $node, string $message)
+    public function warning(Node $node, string $message)
     {
-        self::putMessage($node, AlarmLevel::WARNING(), $message);
+        $this->putMessage($node, AlarmLevel::WARNING(), $message);
     }
 
-    public static function danger(Node $node, string $message)
+    public function danger(Node $node, string $message)
     {
-        self::putMessage($node, AlarmLevel::DANGER(), $message);
+        $this->putMessage($node, AlarmLevel::DANGER(), $message);
     }
 
-    public static function critical(Node $node, string $message)
+    public function critical(Node $node, string $message)
     {
-        self::putMessage($node, AlarmLevel::CRITICAL(), $message);
+        $this->putMessage($node, AlarmLevel::CRITICAL(), $message);
     }
 
-    public static function safe(Node $node, string $message)
+    public function safe(Node $node, string $message)
     {
-        self::putMessage($node, AlarmLevel::SAFE(), $message);
+        $this->putMessage($node, AlarmLevel::SAFE(), $message);
     }
 }

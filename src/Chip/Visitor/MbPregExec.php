@@ -48,12 +48,12 @@ class MbPregExec extends BaseVisitor
         }
 
         if (!($option instanceof Node\Scalar\String_)) {
-            Message::danger($node, "{$fname}使用动态正则模式，可能存在远程代码执行的隐患");
+            $this->message->danger($node, "{$fname}使用动态正则模式，可能存在远程代码执行的隐患");
             return;
         }
 
         if (strpos($option->value, 'e') !== false) {
-            Message::danger($node, "{$fname}使用正则模式“e”，可能存在远程代码执行的隐患");
+            $this->message->danger($node, "{$fname}使用正则模式“e”，可能存在远程代码执行的隐患");
             return;
         }
     }
