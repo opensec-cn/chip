@@ -24,9 +24,9 @@ class Shell extends BaseVisitor
     public function process(Node $node)
     {
         if (Code::hasVariable($node) || Code::hasFunctionCall($node)) {
-            Message::critical($node, '执行的命令中包含动态变量或函数，可能有远程命令执行风险');
+            $this->message->critical($node, '执行的命令中包含动态变量或函数，可能有远程命令执行风险');
         } else {
-            Message::info($node, '执行命令');
+            $this->message->info($node, '执行命令');
         }
     }
 }

@@ -9,6 +9,7 @@
 namespace Chip;
 
 
+use DI\Container;
 use \PhpParser\ParserFactory;
 use \PhpParser\NodeTraverser;
 
@@ -20,9 +21,9 @@ class Chip
     protected $parser = null;
 
     /**
-     * @var NodeTraverser $traverser
+     * @var Container $container
      */
-    protected $traverser = null;
+    protected $container;
 
     protected $visitors = [];
 
@@ -30,6 +31,7 @@ class Chip
     {
 
         $this->visitors = [];
+        $this->bootstrapContainer();
         $this->bootstrapParser();
         $this->bootstrapStreamWrapper();
     }
@@ -43,12 +45,16 @@ class Chip
         ));
 
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, $lexer);
-        $this->traverser = new NodeTraverser();
     }
 
     protected function bootstrapStreamWrapper()
     {
         stream_wrapper_register(MemoryStreamWrapper::WRAPPER_NAME, MemoryStreamWrapper::class);
+    }
+
+    protected function bootstrapContainer()
+    {
+        $this->container = new Container();
     }
 
     public function visitor($visitors)
@@ -61,19 +67,30 @@ class Chip
         return $this;
     }
 
+    /**
+     * @param string $code
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     */
     public function detect($code)
     {
+        $traverser = new NodeTraverser();
         foreach ($this->visitors as $visitor_name) {
-            $class = new $visitor_name;
-            $this->traverser->addVisitor($class);
+            $class = $this->container->get($visitor_name);
+            $traverser->addVisitor($class);
         }
 
         $stmts = $this->parser->parse($code);
-        $this->traverser->traverse($stmts);
+        $traverser->traverse($stmts);
     }
 
+    /**
+     * @return mixed
+     * @throws \DI\DependencyException
+     * @throws \DI\NotFoundException
+     */
     public function getAlarms()
     {
-        return Message::$alarm;
+        return $this->container->get('Chip\Message')->alarm;
     }
 }

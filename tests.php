@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 
 $code = <<<'CODE'
 <?php
-\preg_replace('/./a/e', $a, $b);
+preg_replace('/.a/e', $a, $b);
 CODE;
 
 

@@ -18,6 +18,16 @@ class BaseVisitor extends NodeVisitorAbstract
      */
     protected $check_node_class = [];
 
+    /**
+     * @var Message $message
+     */
+    protected $message;
+
+    function __construct(Message $message)
+    {
+        $this->message = $message;
+    }
+
     public function checkNode(Node $node)
     {
         foreach ($this->check_node_class as $node_class) {
