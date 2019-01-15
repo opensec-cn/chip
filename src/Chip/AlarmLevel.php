@@ -22,13 +22,13 @@ use MyCLabs\Enum\Enum;
  */
 class AlarmLevel extends Enum
 {
-    private const SAFE = 0;
+    const SAFE = 0;
 
-    private const INFO = 1;
+    const INFO = 1;
 
-    private const WARNING = 2;
+    const WARNING = 2;
 
-    private const DANGER = 3;
+    const DANGER = 3;
 
-    private const CRITICAL = PHP_INT_MAX;
+    const CRITICAL = PHP_INT_MAX;
 }

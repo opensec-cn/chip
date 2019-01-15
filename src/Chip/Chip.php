@@ -25,15 +25,19 @@ class Chip
      */
     protected $container;
 
-    protected $visitors = [];
+    /**
+     * @var NodeTraverser $traverser
+     */
+    protected $traverser;
 
-    function __construct()
+    function __construct(array $visitors)
     {
 
         $this->visitors = [];
         $this->bootstrapContainer();
         $this->bootstrapParser();
         $this->bootstrapStreamWrapper();
+        $this->bootstrapVisitor($visitors);
     }
 
     protected function bootstrapParser()
@@ -45,6 +49,7 @@ class Chip
         ));
 
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, $lexer);
+        $this->traverser = new NodeTraverser();
     }
 
     protected function bootstrapStreamWrapper()
@@ -57,40 +62,49 @@ class Chip
         $this->container = new Container();
     }
 
-    public function visitor($visitors)
+    /**
+     * @param array $visitors
+     */
+    protected function bootstrapVisitor(array $visitors)
     {
-        if(!is_array($visitors)) {
-            $visitors = [$visitors];
+        try {
+            foreach ($visitors as $visitor_name) {
+                $class = $this->container->get($visitor_name);
+                $this->traverser->addVisitor($class);
+            }
+        } catch (\DI\DependencyException | \DI\NotFoundException $e) {
+            // some thing wrong?
         }
 
-        $this->visitors = array_unique(array_merge($this->visitors, $visitors));
+    }
+
+    /**
+     * 对代码进行扫描测试
+     *
+     * @param $code
+     * @return $this
+     * @throws Exception\FormatException
+     */
+    public function feed($code)
+    {
+        $stmts = $this->parser->parse($code);
+        $this->traverser->traverse($stmts);
+
         return $this;
     }
 
     /**
-     * @param string $code
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
+     * 获取所有告警结果
+     *
+     * @return array
      */
-    public function detect($code)
+    public function alarm()
     {
-        $traverser = new NodeTraverser();
-        foreach ($this->visitors as $visitor_name) {
-            $class = $this->container->get($visitor_name);
-            $traverser->addVisitor($class);
+        try {
+            $message = $this->container->get('Chip\Message');
+            return $message;
+        } catch (\DI\DependencyException | \DI\NotFoundException $e) {
+            return [];
         }
-
-        $stmts = $this->parser->parse($code);
-        $traverser->traverse($stmts);
-    }
-
-    /**
-     * @return mixed
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
-     */
-    public function getAlarms()
-    {
-        return $this->container->get('Chip\Message')->alarm;
     }
 }

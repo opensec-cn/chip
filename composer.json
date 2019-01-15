@@ -3,7 +3,8 @@
         "nikic/php-parser": "^4.1",
         "myclabs/php-enum": "^1.6",
         "symfony/finder": "^4.2",
-        "php-di/php-di": "^6.0"
+        "php-di/php-di": "^6.0",
+        "monolog/monolog": "^1.24"
     },
     "autoload": {
         "psr-4": {"Chip\\": "src/Chip"},

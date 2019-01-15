@@ -1,18 +1,20 @@
 <?php
 require 'vendor/autoload.php';
 
+use Chip\Exception\FormatException;
+use Chip\ChipFactory;
+
 $code = <<<'CODE'
 <?php
 preg_replace('/.a/e', $a, $b);
 CODE;
 
 
-$chip = new \Chip\Chip();
-$chip->visitor([
-    \Chip\Visitor\Eval_::class,
-    \Chip\Visitor\Shell::class,
-    \Chip\Visitor\Assert_::class,
-    \Chip\Visitor\PregExec::class
-])->detect($code);
+try {
+    $chipManager = (new ChipFactory)->create();
+    $alarm = $chipManager->detect($code);
 
-print_r($chip->getAlarms());
+    print_r($alarm);
+} catch (FormatException $e) {
+    echo $e->getMessage();
+}

@@ -10,16 +10,11 @@ namespace Chip;
 
 use PhpParser\Node;
 
-class Message
+class Message extends \ArrayObject
 {
-    /**
-     * @type array $alarm
-     */
-    public $alarm;
-
     function __construct()
     {
-        $this->alarm = [];
+        parent::__construct([]);
     }
 
     protected function getPositions(Node $node)
@@ -35,7 +30,7 @@ class Message
     protected function putMessage($node, $level, $message)
     {
         $positions = $this->getPositions($node);
-        $this->alarm[] = new Alarm($level, $message, ...$positions);
+        $this[] = new Alarm($level, $message, ...$positions);
     }
 
     public function info(Node $node, string $message)
