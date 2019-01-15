@@ -73,7 +73,7 @@ class Chip
                 $this->traverser->addVisitor($class);
             }
         } catch (\DI\DependencyException | \DI\NotFoundException $e) {
-            // some thing wrong?
+            // something wrong?
         }
 
     }

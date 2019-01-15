@@ -11,7 +11,7 @@ namespace Chip;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 
-class BaseVisitor extends NodeVisitorAbstract
+abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterface
 {
     /**
      * @type array $check_node_class
@@ -45,5 +45,5 @@ class BaseVisitor extends NodeVisitorAbstract
         }
     }
 
-    public function process(Node $node) {}
+    abstract public function process(Node $node);
 }

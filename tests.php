@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-preg_replace('/.a/e', $a, $b);
+include 'dir/' . ($upload . ('.php' . $n)) . '.php'; 
 CODE;
 
 
@@ -14,7 +14,7 @@ try {
     $chipManager = (new ChipFactory)->create();
     $alarm = $chipManager->detect($code);
 
-    print_r($alarm);
+    print_r((array)$alarm);
 } catch (FormatException $e) {
     echo $e->getMessage();
 }
