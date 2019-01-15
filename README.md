@@ -60,4 +60,3 @@ $f($arg);
 
 - https://github.com/nbs-system/php-malware-finder
 - https://github.com/OneSourceCat/phpvulhunter
-- 

@@ -30,5 +30,5 @@ class AlarmLevel extends Enum
 
     const DANGER = 3;
 
-    const CRITICAL = PHP_INT_MAX;
+    const CRITICAL = 4;
 }

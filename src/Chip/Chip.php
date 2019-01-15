@@ -13,6 +13,9 @@ use DI\Container;
 use \PhpParser\ParserFactory;
 use \PhpParser\NodeTraverser;
 
+
+stream_wrapper_register(MemoryStreamWrapper::WRAPPER_NAME, MemoryStreamWrapper::class);
+
 class Chip
 {
     /**
@@ -36,7 +39,6 @@ class Chip
         $this->visitors = [];
         $this->bootstrapContainer();
         $this->bootstrapParser();
-        $this->bootstrapStreamWrapper();
         $this->bootstrapVisitor($visitors);
     }
 
@@ -50,11 +52,6 @@ class Chip
 
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, $lexer);
         $this->traverser = new NodeTraverser();
-    }
-
-    protected function bootstrapStreamWrapper()
-    {
-        stream_wrapper_register(MemoryStreamWrapper::WRAPPER_NAME, MemoryStreamWrapper::class);
     }
 
     protected function bootstrapContainer()
@@ -98,7 +95,7 @@ class Chip
      *
      * @return array
      */
-    public function alarm()
+    public function alarms()
     {
         try {
             $message = $this->container->get('Chip\Message');

@@ -5,7 +5,7 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-include 'dir/' . ($upload . ('.php' . $n)) . '.php';
+'phpinfo'();
 CODE;
 
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);

@@ -32,6 +32,6 @@ class ChipManager
     public function detect(string $code)
     {
         $chip = new Chip($this->visitor_classes);
-        return $chip->feed($code)->alarm();
+        return $chip->feed($code)->alarms();
     }
 }

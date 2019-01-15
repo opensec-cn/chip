@@ -46,12 +46,12 @@ class PregExec extends BaseVisitor
         $fname = strval($node->name);
 
         if (!($node->args[0]->value instanceof Node\Scalar\String_)) {
-            $this->message->danger($node, "{$fname}第一个参数不是静态字符串，可能存在远程代码执行的隐患");
+            $this->message->danger($node, __CLASS__, "{$fname}第一个参数不是静态字符串，可能存在远程代码执行的隐患");
             return;
         }
         $regex = Regex::create($node->args[0]->value->value);
         if (strpos($regex->flags, 'e') !== false) {
-            $this->message->danger($node, "{$fname}中正则表达式包含e模式，可能存在远程代码执行的隐患");
+            $this->message->danger($node, __CLASS__, "{$fname}中正则表达式包含e模式，可能存在远程代码执行的隐患");
             return;
         }
     }

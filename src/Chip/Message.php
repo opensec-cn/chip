@@ -27,34 +27,34 @@ class Message extends \ArrayObject
         ];
     }
 
-    protected function putMessage($node, $level, $message)
+    protected function putMessage($node, $level, $type, $message)
     {
         $positions = $this->getPositions($node);
-        $this[] = new Alarm($level, $message, ...$positions);
+        $this[] = new Alarm($level, $type, $message, ...$positions);
     }
 
-    public function info(Node $node, string $message)
+    public function info(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::INFO(), $message);
+        $this->putMessage($node, AlarmLevel::INFO(), $type, $message);
     }
 
-    public function warning(Node $node, string $message)
+    public function warning(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::WARNING(), $message);
+        $this->putMessage($node, AlarmLevel::WARNING(), $type, $message);
     }
 
-    public function danger(Node $node, string $message)
+    public function danger(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::DANGER(), $message);
+        $this->putMessage($node, AlarmLevel::DANGER(), $type, $message);
     }
 
-    public function critical(Node $node, string $message)
+    public function critical(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::CRITICAL(), $message);
+        $this->putMessage($node, AlarmLevel::CRITICAL(), $type, $message);
     }
 
-    public function safe(Node $node, string $message)
+    public function safe(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::SAFE(), $message);
+        $this->putMessage($node, AlarmLevel::SAFE(), $type, $message);
     }
 }

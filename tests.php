@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-include 'dir/' . ($upload . ('.php' . $n)) . '.php'; 
+'preg_replace'('/.*/e', $a, $b);
 CODE;
 
 

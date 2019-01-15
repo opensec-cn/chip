@@ -12,10 +12,15 @@ namespace Chip;
 class Alarm
 {
     /**
+     * @var string $type
+     */
+    protected $type;
+
+    /**
      * @type AlarmLevel $level
      * enum
      */
-    protected $lavel;
+    protected $level;
 
     /**
      * @type string $message
@@ -30,13 +35,45 @@ class Alarm
 
     protected $endPos;
 
-    function __construct(AlarmLevel $level, string $message, $startLine, $endLine, $startPos, $endPos)
+    function __construct(AlarmLevel $level, string $type, string $message, $startLine, $endLine, $startPos, $endPos)
     {
-        $this->lavel = $level;
+        $this->level = $level;
         $this->message = $message;
         $this->startLine = $startLine;
         $this->endLine = $endLine;
         $this->startPos = $startPos;
         $this->endPos = $endPos;
+
+        $type = explode('\\', $type);
+        $this->type = end($type);
+    }
+
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function __toString()
+    {
+        return "{$this->type}:{$this->level->getKey()}:{$this->message}";
+    }
+
+    public function __debugInfo()
+    {
+        return [
+            'type' => $this->type,
+            'level' => $this->level->getKey(),
+            'message' => $this->message
+        ];
     }
 }
