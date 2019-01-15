@@ -30,7 +30,7 @@ class PregExec extends BaseVisitor
      */
     public function checkNode(Node $node)
     {
-        return parent::checkNode($node) && in_array(strtolower($node->name), $this->preg_functions);
+        return parent::checkNode($node) && is_string($fname = Code::getFunctionName($node)) && in_array($fname, $this->preg_functions);
     }
 
     /**
@@ -43,7 +43,7 @@ class PregExec extends BaseVisitor
         if (empty($node->args)) {
             throw ArgumentsFormatException::create(Code::print_node($node));
         }
-        $fname = strval($node->name);
+        $fname = Code::getFunctionName($node);
 
         if (!($node->args[0]->value instanceof Node\Scalar\String_)) {
             $this->message->danger($node, __CLASS__, "{$fname}第一个参数不是静态字符串，可能存在远程代码执行的隐患");

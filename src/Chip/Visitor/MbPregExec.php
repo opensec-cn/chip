@@ -28,7 +28,7 @@ class MbPregExec extends BaseVisitor
      */
     public function checkNode(Node $node)
     {
-        return parent::checkNode($node) && in_array(strtolower($node->name), $this->preg_functions);
+        return parent::checkNode($node) && is_string($fname = Code::getFunctionName($node)) && in_array($fname, $this->preg_functions);
     }
 
     /**
@@ -37,7 +37,7 @@ class MbPregExec extends BaseVisitor
      */
     public function process(Node $node)
     {
-        $fname = strtolower($node->name);
+        $fname = Code::getFunctionName($node);
         $args_count = count($node->args);
         if (($fname == 'mb_ereg_replace' || $fname == 'mb_eregi_replace') && $args_count >= 4) {
             $option = $node->args[3]->value;

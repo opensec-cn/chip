@@ -6,7 +6,8 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-'preg_replace'('/.*/e', $a, $b);
+//('preg_re' . 'place')('/.*/e', $a, $b);
+('a' . $f)();
 CODE;
 
 

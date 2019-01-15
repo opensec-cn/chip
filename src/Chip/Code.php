@@ -82,4 +82,15 @@ class Code
         $code = self::$prettyPrinter->prettyPrint([$node]);
         return strip_whitespace($code);
     }
+
+    public static function getFunctionName(Node\Expr\FuncCall $node)
+    {
+        if ($node->name instanceof Node\Name) {
+            return $node->name->toLowerString();
+        } elseif ($node->name instanceof Node\Scalar\String_) {
+            return strtolower($node->name->value);
+        } else {
+            return $node;
+        }
+    }
 }

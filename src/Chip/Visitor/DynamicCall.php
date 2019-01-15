@@ -10,6 +10,7 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
+use Chip\Code;
 use PhpParser\Node;
 
 class DynamicCall extends BaseVisitor
@@ -23,11 +24,14 @@ class DynamicCall extends BaseVisitor
      */
     public function process(Node $node)
     {
-        if ($node->name instanceof Node\Expr\Variable) {
+        if (Code::hasVariable($node->name) || Code::hasFunctionCall($node->name)) {
             $this->message->danger($node, __CLASS__, '动态调用函数，可能存在远程代码执行的隐患');
             return;
         }
 
-
+        if (!($node->name instanceof Node\Name)) {
+            $this->message->warning($node, __CLASS__, '不规则的函数调用方式，可能存在安全风险');
+            return;
+        }
     }
 }

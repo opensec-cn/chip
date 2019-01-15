@@ -13,12 +13,21 @@ use Chip\BaseVisitor;
 use Chip\Message;
 use PhpParser\Node;
 use Chip\Code;
+use PhpParser\Node\Expr\FuncCall;
 
 class Assert_ extends BaseVisitor
 {
+    protected $check_node_class = [
+        FuncCall::class
+    ];
+
+    /**
+     * @param FuncCall $node
+     * @return bool
+     */
     public function checkNode(Node $node)
     {
-        return $node instanceof Node\Expr\FuncCall && strtolower($node->name) == 'assert';
+        return parent::checkNode($node) && is_string($fname = Code::getFunctionName($node)) && $fname === 'assert';
     }
 
     /**
