@@ -1,10 +1,19 @@
 {
+    "name": "phith0n/chip",
+    "description": "a simple tool to detect potential security threat in php code",
+    "type": "library",
+    "homepage": "https://github.com/phith0n/chip",
+    "keywords": [
+        "chip",
+        "php",
+        "webshell"
+    ],
     "require": {
+        "php": ">=7.1.4",
         "nikic/php-parser": "^4.1",
         "myclabs/php-enum": "^1.6",
         "symfony/finder": "^4.2",
-        "php-di/php-di": "^6.0",
-        "monolog/monolog": "^1.24"
+        "php-di/php-di": "^6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "7"
@@ -19,5 +28,11 @@
         "psr-4": {
             "Chip\\Tests\\": "tests/"
         }
-    }
+    },
+    "authors": [
+        {
+            "name": "phith0n",
+            "email": "root@leavesongs.com"
+        }
+    ]
 }
