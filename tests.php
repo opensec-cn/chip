@@ -15,7 +15,7 @@ try {
     $chipManager = (new ChipFactory)->create();
     $alarm = $chipManager->detect($code);
 
-    print_r((array)$alarm);
+    echo json_encode($alarm);
 } catch (FormatException $e) {
     echo $e->getMessage();
 }

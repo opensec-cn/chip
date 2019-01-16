@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": ">=7.1.4",
+        "ext-json": "*",
         "nikic/php-parser": "^4.1",
         "myclabs/php-enum": "^1.6",
         "symfony/finder": "^4.2",

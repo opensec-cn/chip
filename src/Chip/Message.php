@@ -10,7 +10,7 @@ namespace Chip;
 
 use PhpParser\Node;
 
-class Message extends \ArrayObject
+class Message extends \ArrayObject implements \JsonSerializable
 {
     function __construct()
     {
@@ -56,5 +56,10 @@ class Message extends \ArrayObject
     public function safe(Node $node, string $type, string $message)
     {
         $this->putMessage($node, AlarmLevel::SAFE(), $type, $message);
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->getArrayCopy();
     }
 }

@@ -9,7 +9,7 @@
 namespace Chip;
 
 
-class Alarm
+class Alarm implements \JsonSerializable
 {
     /**
      * @var string $type
@@ -75,5 +75,10 @@ class Alarm
             'level' => $this->level->getKey(),
             'message' => $this->message
         ];
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->__debugInfo();
     }
 }
