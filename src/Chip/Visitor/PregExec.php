@@ -30,7 +30,7 @@ class PregExec extends BaseVisitor
      */
     public function checkNode(Node $node)
     {
-        return parent::checkNode($node) && is_string($fname = Code::getFunctionName($node)) && in_array($fname, $this->preg_functions);
+        return parent::checkNode($node) && $this->isMethod($node, $this->preg_functions);
     }
 
     /**
@@ -41,7 +41,7 @@ class PregExec extends BaseVisitor
     public function process(Node $node)
     {
         if (empty($node->args)) {
-            throw ArgumentsFormatException::create(Code::print_node($node));
+            throw ArgumentsFormatException::create(Code::printNode($node));
         }
         $fname = Code::getFunctionName($node);
 

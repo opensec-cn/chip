@@ -27,7 +27,7 @@ class Assert_ extends BaseVisitor
      */
     public function checkNode(Node $node)
     {
-        return parent::checkNode($node) && is_string($fname = Code::getFunctionName($node)) && $fname === 'assert';
+        return parent::checkNode($node) && $this->isMethod($node, ['assert']);
     }
 
     /**

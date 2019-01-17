@@ -28,7 +28,7 @@ class MbPregExec extends BaseVisitor
      */
     public function checkNode(Node $node)
     {
-        return parent::checkNode($node) && is_string($fname = Code::getFunctionName($node)) && in_array($fname, $this->preg_functions);
+        return parent::checkNode($node) && $this->isMethod($node, $this->preg_functions);
     }
 
     /**

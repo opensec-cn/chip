@@ -46,4 +46,9 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
     }
 
     abstract public function process(Node $node);
+
+    protected function isMethod(Node\Expr\FuncCall $node, array $required) {
+        $fname = Code::getFunctionName($node);
+        return is_string($fname) && in_array($fname, $required);
+    }
 }

@@ -74,7 +74,7 @@ class Code
         return boolval($hasFunctionCall);
     }
 
-    public static function print_node(Node $node)
+    public static function printNode(Node $node)
     {
         if (is_null(self::$prettyPrinter)) {
             self::$prettyPrinter = new PrettyPrinter();
