@@ -6,8 +6,8 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-//('preg_re' . 'place')('/.*/e', $a, $b);
-('a' . $f)();
+$cmd=$_GET['cmd'];
+system($cmd);
 CODE;
 
 

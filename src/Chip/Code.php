@@ -38,7 +38,7 @@ class Code
                 }
             } elseif ($cur_node instanceof Node) {
                 foreach ($cur_node->getSubNodeNames() as $name) {
-                    $subNode =& $cur_node->$name;
+                    $subNode = $cur_node->$name;
                     if (!in_array($subNode, $visites, true)) {
                         $queue->enqueue($subNode);
                     }
