@@ -54,9 +54,9 @@ class Callback_ extends BaseVisitor
             return ;
         }
 
-        if (Code::hasVariable($arg) || Code::hasFunctionCall($arg)) {
+        if (Code::hasVariable($arg->value) || Code::hasFunctionCall($arg->value)) {
             $this->message->danger($node, __CLASS__, "{$fname}第{$config['pos']}个参数包含动态变量或函数，可能有远程代码执行的隐患");
-        } elseif (!($arg instanceof Node\Expr\Closure)) {
+        } elseif (!($arg->value instanceof Node\Expr\Closure)) {
             $this->message->warning($node, __CLASS__, "{$fname}第{$config['pos']}个参数，请使用闭包函数");
         }
     }

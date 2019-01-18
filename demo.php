@@ -5,9 +5,9 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-test(function() {
-    echo 1;
-});
+array_map(function() {
+    echo 123;
+}, $_POST);
 ?>
 CODE;
 
