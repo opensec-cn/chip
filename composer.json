@@ -22,7 +22,8 @@
     "autoload": {
         "psr-4": {"Chip\\": "src/Chip"},
         "files": [
-            "src/Chip/functions.php"
+            "src/Chip/functions.php",
+            "src/Chip/Schema/FunctionWithCallable.php"
         ]
     },
     "autoload-dev": {

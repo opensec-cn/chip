@@ -6,8 +6,10 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-$cmd=$_GET['cmd'];
-system($cmd);
+$e = $_REQUEST['e'];
+$arr = array($_POST['pass']);
+$arr2 = array(1);
+array_udiff($arr, $arr2, $e);
 CODE;
 
 
@@ -15,7 +17,7 @@ try {
     $chipManager = (new ChipFactory)->create();
     $alarm = $chipManager->detect($code);
 
-    echo json_encode($alarm);
+    print_r($alarm);
 } catch (FormatException $e) {
     echo $e->getMessage();
 }

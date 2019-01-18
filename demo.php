@@ -5,8 +5,9 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-$cmd=$_GET['cmd'];
-system($cmd);
+test(function() {
+    echo 1;
+});
 ?>
 CODE;
 
