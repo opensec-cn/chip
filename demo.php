@@ -5,10 +5,7 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-array_map(function() {
-    echo 123;
-}, $_POST);
-?>
+create_function($a, $b);
 CODE;
 
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);

@@ -6,8 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-array_map($a, $_POST);
-?>
+create_function('$a', 'return $a');
 CODE;
 
 
