@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-create_function('$a', 'return $a');
+session_set_save_handler($a, $b, $c, $d);
 CODE;
 
 

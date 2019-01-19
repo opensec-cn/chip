@@ -26,7 +26,15 @@ class Callback_ extends BaseVisitor
     function __construct(Message $message)
     {
         parent::__construct($message);
-        $this->function_with_callback = FUNCTION_WITH_CALLABLE;
+        $this->function_with_callback = array_reduce(FUNCTION_WITH_CALLABLE, function ($carry, $item) {
+            if (array_key_exists($item['function'], $carry)) {
+                $carry[$item['function']][] = $item['pos'];
+            } else {
+                $carry[$item['function']] = [$item['pos']];
+            }
+
+            return $carry;
+        }, []);
     }
 
     /**
@@ -45,19 +53,20 @@ class Callback_ extends BaseVisitor
     {
         $fname = Code::getFunctionName($node);
 
-        $config = $this->function_with_callback[$fname];
-        if ($config['pos'] >= 0 && array_key_exists($config['pos'], $node->args)) {
-            $arg = $node->args[$config['pos']];
-        } elseif ($config['pos'] < 0 && array_key_exists(count($node->args) + $config['pos'], $node->args)) {
-            $arg = $node->args[ count($node->args) + $config['pos'] ];
-        } else {
-            return ;
-        }
+        foreach($this->function_with_callback[$fname] as $pos) {
+            if ($pos >= 0 && array_key_exists($pos, $node->args)) {
+                $arg = $node->args[$pos];
+            } elseif ($pos < 0 && array_key_exists(count($node->args) + $pos, $node->args)) {
+                $arg = $node->args[ count($node->args) + $pos ];
+            } else {
+                continue ;
+            }
 
-        if (Code::hasVariable($arg->value) || Code::hasFunctionCall($arg->value)) {
-            $this->message->danger($node, __CLASS__, "{$fname}第{$config['pos']}个参数包含动态变量或函数，可能有远程代码执行的隐患");
-        } elseif (!($arg->value instanceof Node\Expr\Closure)) {
-            $this->message->warning($node, __CLASS__, "{$fname}第{$config['pos']}个参数，请使用闭包函数");
+            if (Code::hasVariable($arg->value) || Code::hasFunctionCall($arg->value)) {
+                $this->message->danger($node, __CLASS__, "{$fname}第{$pos}个参数包含动态变量或函数，可能有远程代码执行的隐患");
+            } elseif (!($arg->value instanceof Node\Expr\Closure)) {
+                $this->message->warning($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
+            }
         }
     }
 }
