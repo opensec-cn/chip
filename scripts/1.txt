@@ -1,0 +1,279 @@
+arrayiterator.uasort.html :  public ArrayIterator::uasort ( callable $cmp_function ) : void
+arrayiterator.uksort.html :  public ArrayIterator::uksort ( callable $cmp_function ) : void
+arrayobject.uasort.html :  public ArrayObject::uasort ( callable $cmp_function ) : void
+arrayobject.uksort.html :  public ArrayObject::uksort ( callable $cmp_function ) : void
+class.commonmark-cql.html :  public __invoke ( \CommonMark\Node $root , callable $handler )
+class.evcheck.html :  public __construct ( callable $callback [, mixed $data [, int $priority ]] )
+class.evchild.html :  public __construct ( int $pid , bool $trace , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+class.evembed.html :  public __construct ( object $other [, callable $callback [, mixed $data [, int $priority ]]] )
+class.eventlistener.html :  public __construct ( EventBase $base , callable $cb , mixed $data , int $flags , int $backlog , mixed $target )
+class.evfork.html :  public __construct ( callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+class.evidle.html :  public __construct ( callable $callback [, mixed $data [, int $priority ]] )
+class.evio.html :  public __construct ( mixed $fd , int $events , callable $callback [, mixed $data [, int $priority ]] )
+class.evsignal.html :  public __construct ( int $signum , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+class.gearmanworker.html :  public addFunction ( string $function_name , callable $function [, mixed &$context [, int $timeout ]] ) : bool
+class.mongolog.html :  public static getCallback ( void ) : callable
+class.swoole-async.html :  public static dnsLookup ( string $hostname , callable $callback ) : void
+class.swoole-coroutine.html :  public static call_user_func_array ( callable $callback , array $param_array ) : mixed
+class.swoole-event.html :  public static add ( int $fd , callable $read_callback [, callable $write_callback [, string $events ]] ) : boolean
+class.swoole-http-server.html :  public on ( string $event_name , callable $callback ) : void
+class.swoole-timer.html :  public static after ( int $after_time_ms , callable $callback ) : void
+class.yar-concurrent-client.html :  public static call ( string $uri , string $method [, array $parameters [, callable $callback [, callable $error_callback [, array $options ]]]] ) : int
+class.zookeeper.html :  public addAuth ( string $scheme , string $cert [, callable $completion_cb = NULL ] ) : bool
+closure.fromcallable.html :  public static Closure::fromCallable ( callable $callable ) : Closure
+commonmark-cql.invoke.html :  public CommonMark\CQL::__invoke ( \CommonMark\Node $root , callable $handler )
+ds-deque.apply.html :  public Ds\Deque::apply ( callable $callback ) : void
+ds-deque.filter.html :  public Ds\Deque::filter ([ callable $callback ] ) : Ds\Deque
+ds-deque.map.html :  public Ds\Deque::map ( callable $callback ) : Ds\Deque
+ds-deque.reduce.html :  public Ds\Deque::reduce ( callable $callback [, mixed $initial ] ) : mixed
+ds-deque.sort.html :  public Ds\Deque::sort ([ callable $comparator ] ) : void
+ds-deque.sorted.html :  public Ds\Deque::sorted ([ callable $comparator ] ) : Ds\Deque
+ds-map.apply.html :  public Ds\Map::apply ( callable $callback ) : void
+ds-map.filter.html :  public Ds\Map::filter ([ callable $callback ] ) : Ds\Map
+ds-map.ksort.html :  public Ds\Map::ksort ([ callable $comparator ] ) : void
+ds-map.ksorted.html :  public Ds\Map::ksorted ([ callable $comparator ] ) : Ds\Map
+ds-map.map.html :  public Ds\Map::map ( callable $callback ) : Ds\Map
+ds-map.reduce.html :  public Ds\Map::reduce ( callable $callback [, mixed $initial ] ) : mixed
+ds-map.sort.html :  public Ds\Map::sort ([ callable $comparator ] ) : void
+ds-map.sorted.html :  public Ds\Map::sorted ([ callable $comparator ] ) : Ds\Map
+ds-sequence.apply.html :  abstract public Ds\Sequence::apply ( callable $callback ) : void
+ds-sequence.filter.html :  abstract public Ds\Sequence::filter ([ callable $callback ] ) : Ds\Sequence
+ds-sequence.map.html :  abstract public Ds\Sequence::map ( callable $callback ) : Ds\Sequence
+ds-sequence.reduce.html :  abstract public Ds\Sequence::reduce ( callable $callback [, mixed $initial ] ) : mixed
+ds-sequence.sort.html :  abstract public Ds\Sequence::sort ([ callable $comparator ] ) : void
+ds-sequence.sorted.html :  abstract public Ds\Sequence::sorted ([ callable $comparator ] ) : Ds\Sequence
+ds-set.filter.html :  public Ds\Set::filter ([ callable $callback ] ) : Ds\Set
+ds-set.reduce.html :  public Ds\Set::reduce ( callable $callback [, mixed $initial ] ) : mixed
+ds-set.sort.html :  public Ds\Set::sort ([ callable $comparator ] ) : void
+ds-set.sorted.html :  public Ds\Set::sorted ([ callable $comparator ] ) : Ds\Set
+ds-vector.apply.html :  public Ds\Vector::apply ( callable $callback ) : void
+ds-vector.filter.html :  public Ds\Vector::filter ([ callable $callback ] ) : Ds\Vector
+ds-vector.map.html :  public Ds\Vector::map ( callable $callback ) : Ds\Vector
+ds-vector.reduce.html :  public Ds\Vector::reduce ( callable $callback [, mixed $initial ] ) : mixed
+ds-vector.sort.html :  public Ds\Vector::sort ([ callable $comparator ] ) : void
+ds-vector.sorted.html :  public Ds\Vector::sorted ([ callable $comparator ] ) : Ds\Vector
+evcheck.construct.html :  public EvCheck::__construct ( callable $callback [, mixed $data [, int $priority ]] )
+evchild.construct.html :  public EvChild::__construct ( int $pid , bool $trace , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+evchild.createstopped.html :  final public static EvChild::createStopped ( int $pid , bool $trace , callable $callback [, mixed $data [, int $priority ]] ) : object
+evembed.construct.html :  public EvEmbed::__construct ( object $other [, callable $callback [, mixed $data [, int $priority ]]] )
+evembed.createstopped.html :  final public static EvEmbed::createStopped ( object $other [, callable $callback [, mixed $data [, int $priority ]]] ) : void
+event.construct.html :  public Event::__construct ( EventBase $base , mixed $fd , int $what , callable $cb [, mixed $arg = NULL ] )
+event.set.html :  public Event::set ( EventBase $base , mixed $fd [, int $what [, callable $cb [, mixed $arg ]]] ) : bool
+event.settimer.html :  public Event::setTimer ( EventBase $base , callable $cb [, mixed $arg ] ) : bool
+event.signal.html :  public static Event::signal ( EventBase $base , int $signum , callable $cb [, mixed $arg ] ) : Event
+event.timer.html :  public static Event::timer ( EventBase $base , callable $cb [, mixed $arg ] ) : Event
+eventbufferevent.construct.html :  public EventBufferEvent::__construct ( EventBase $base [, mixed $socket = NULL [, int $options = 0 [, callable $readcb = NULL [, callable $writecb = NULL [, callable $eventcb = NULL ]]]]] )
+eventbufferevent.setcallbacks.html :  public EventBufferEvent::setCallbacks ( callable $readcb , callable $writecb , callable $eventcb [, string $arg ] ) : void
+eventhttpconnection.setclosecallback.html :  public EventHttpConnection::setCloseCallback ( callable $callback [, mixed $data ] ) : void
+eventhttprequest.construct.html :  public EventHttpRequest::__construct ( callable $callback [, mixed $data = NULL ] )
+eventlistener.construct.html :  public EventListener::__construct ( EventBase $base , callable $cb , mixed $data , int $flags , int $backlog , mixed $target )
+eventlistener.setcallback.html :  public EventListener::setCallback ( callable $cb [, mixed $arg = NULL ] ) : void
+evfork.construct.html :  public EvFork::__construct ( callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+evidle.construct.html :  public EvIdle::__construct ( callable $callback [, mixed $data [, int $priority ]] )
+evio.construct.html :  public EvIo::__construct ( mixed $fd , int $events , callable $callback [, mixed $data [, int $priority ]] )
+evio.createstopped.html :  final public static EvIo::createStopped ( mixed $fd , int $events , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvIo
+evloop.fork.html :  final public EvLoop::fork ( callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvFork
+evloop.idle.html :  final public EvLoop::idle ( callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvIdle
+evloop.io.html :  final public EvLoop::io ( mixed $fd , int $events , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvIo
+evloop.periodic.html :  final public EvLoop::periodic ( float $offset , float $interval , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvPeriodic
+evloop.prepare.html :  final public EvLoop::prepare ( callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvPrepare
+evloop.signal.html :  final public EvLoop::signal ( int $signum , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvSignal
+evloop.stat.html :  final public EvLoop::stat ( string $path , float $interval , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvStat
+evloop.timer.html :  final public EvLoop::timer ( float $after , float $repeat , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvTimer
+evperiodic.construct.html :  public EvPeriodic::__construct ( float $offset , string $interval , callable $reschedule_cb , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+evperiodic.createstopped.html :  final public static EvPeriodic::createStopped ( float $offset , float $interval , callable $reschedule_cb , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvPeriodic
+evprepare.createstopped.html :  final public static EvPrepare::createStopped ( callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvPrepare
+evsignal.construct.html :  public EvSignal::__construct ( int $signum , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+evsignal.createstopped.html :  final public static EvSignal::createStopped ( int $signum , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvSignal
+evstat.construct.html :  public EvStat::__construct ( string $path , float $interval , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+evstat.createstopped.html :  final public static EvStat::createStopped ( string $path , float $interval , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : void
+evtimer.construct.html :  public EvTimer::__construct ( float $after , float $repeat , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] )
+evtimer.createstopped.html :  final public static EvTimer::createStopped ( float $after , float $repeat , callable $callback [, mixed $data = NULL [, int $priority = 0 ]] ) : EvTimer
+evwatcher.setcallback.html :  public EvWatcher::setCallback ( callable $callback ) : void
+function.apcu-entry.html :  apcu_entry ( string $key , callable $generator [, int $ttl = 0 ] ) : mixed
+function.array-diff-uassoc.html :  array_diff_uassoc ( array $array1 , array $array2 [, array $... ], callable $key_compare_func ) : array
+function.array-diff-ukey.html :  array_diff_ukey ( array $array1 , array $array2 [, array $... ], callable $key_compare_func ) : array
+function.array-filter.html :  array_filter ( array $array [, callable $callback [, int $flag = 0 ]] ) : array
+function.array-intersect-uassoc.html :  array_intersect_uassoc ( array $array1 , array $array2 [, array $... ], callable $key_compare_func ) : array
+function.array-intersect-ukey.html :  array_intersect_ukey ( array $array1 , array $array2 [, array $... ], callable $key_compare_func ) : array
+function.array-map.html :  array_map ( callable $callback , array $array1 [, array $... ] ) : array
+function.array-reduce.html :  array_reduce ( array $array , callable $callback [, mixed $initial = NULL ] ) : mixed
+function.array-udiff-assoc.html :  array_udiff_assoc ( array $array1 , array $array2 [, array $... ], callable $value_compare_func ) : array
+function.array-udiff-uassoc.html :  array_udiff_uassoc ( array $array1 , array $array2 [, array $... ], callable $value_compare_func , callable $key_compare_func ) : array
+function.array-udiff.html :  array_udiff ( array $array1 , array $array2 [, array $... ], callable $value_compare_func ) : array
+function.array-uintersect-assoc.html :  array_uintersect_assoc ( array $array1 , array $array2 [, array $... ], callable $value_compare_func ) : array
+function.array-uintersect-uassoc.html :  array_uintersect_uassoc ( array $array1 , array $array2 [, array $... ], callable $value_compare_func , callable $key_compare_func ) : array
+function.array-uintersect.html :  array_uintersect ( array $array1 , array $array2 [, array $... ], callable $value_compare_func ) : array
+function.array-walk-recursive.html :  array_walk_recursive ( array &$array , callable $callback [, mixed $userdata = NULL ] ) : bool
+function.array-walk.html :  array_walk ( array &$array , callable $callback [, mixed $userdata = NULL ] ) : bool
+function.call-user-func-array.html :  call_user_func_array ( callable $callback , array $param_arr ) : mixed
+function.call-user-func.html :  call_user_func ( callable $callback [, mixed $... ] ) : mixed
+function.eio-busy.html :  eio_busy ( int $delay [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-chmod.html :  eio_chmod ( string $path , int $mode [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-chown.html :  eio_chown ( string $path , int $uid [, int $gid = -1 [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]]] ) : resource
+function.eio-close.html :  eio_close ( mixed $fd [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-custom.html :  eio_custom ( callable $execute , int $pri , callable $callback [, mixed $data = NULL ] ) : resource
+function.eio-dup2.html :  eio_dup2 ( mixed $fd , mixed $fd2 [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-fallocate.html :  eio_fallocate ( mixed $fd , int $mode , int $offset , int $length [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-fchmod.html :  eio_fchmod ( mixed $fd , int $mode [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-fchown.html :  eio_fchown ( mixed $fd , int $uid [, int $gid = -1 [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]]] ) : resource
+function.eio-fdatasync.html :  eio_fdatasync ( mixed $fd [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-fstat.html :  eio_fstat ( mixed $fd , int $pri , callable $callback [, mixed $data ] ) : resource
+function.eio-fstatvfs.html :  eio_fstatvfs ( mixed $fd , int $pri , callable $callback [, mixed $data ] ) : resource
+function.eio-fsync.html :  eio_fsync ( mixed $fd [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-ftruncate.html :  eio_ftruncate ( mixed $fd [, int $offset = 0 [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]]] ) : resource
+function.eio-futime.html :  eio_futime ( mixed $fd , float $atime , float $mtime [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-grp.html :  eio_grp ( callable $callback [, string $data = NULL ] ) : resource
+function.eio-link.html :  eio_link ( string $path , string $new_path [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-lstat.html :  eio_lstat ( string $path , int $pri , callable $callback [, mixed $data = NULL ] ) : resource
+function.eio-mkdir.html :  eio_mkdir ( string $path , int $mode [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-mknod.html :  eio_mknod ( string $path , int $mode , int $dev [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-nop.html :  eio_nop ([ int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-open.html :  eio_open ( string $path , int $flags , int $mode , int $pri , callable $callback [, mixed $data = NULL ] ) : resource
+function.eio-read.html :  eio_read ( mixed $fd , int $length , int $offset , int $pri , callable $callback [, mixed $data = NULL ] ) : resource
+function.eio-readahead.html :  eio_readahead ( mixed $fd , int $offset , int $length [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-readdir.html :  eio_readdir ( string $path , int $flags , int $pri , callable $callback [, string $data = NULL ] ) : resource
+function.eio-readlink.html :  eio_readlink ( string $path , int $pri , callable $callback [, string $data = NULL ] ) : resource
+function.eio-realpath.html :  eio_realpath ( string $path , int $pri , callable $callback [, string $data = NULL ] ) : resource
+function.eio-rename.html :  eio_rename ( string $path , string $new_path [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-rmdir.html :  eio_rmdir ( string $path [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-seek.html :  eio_seek ( mixed $fd , int $offset , int $whence [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-sendfile.html :  eio_sendfile ( mixed $out_fd , mixed $in_fd , int $offset , int $length [, int $pri [, callable $callback [, string $data ]]] ) : resource
+function.eio-stat.html :  eio_stat ( string $path , int $pri , callable $callback [, mixed $data = NULL ] ) : resource
+function.eio-statvfs.html :  eio_statvfs ( string $path , int $pri , callable $callback [, mixed $data ] ) : resource
+function.eio-symlink.html :  eio_symlink ( string $path , string $new_path [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-sync-file-range.html :  eio_sync_file_range ( mixed $fd , int $offset , int $nbytes , int $flags [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-sync.html :  eio_sync ([ int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-syncfs.html :  eio_syncfs ( mixed $fd [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-truncate.html :  eio_truncate ( string $path [, int $offset = 0 [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]]] ) : resource
+function.eio-unlink.html :  eio_unlink ( string $path [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-utime.html :  eio_utime ( string $path , float $atime , float $mtime [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]] ) : resource
+function.eio-write.html :  eio_write ( mixed $fd , string $str [, int $length = 0 [, int $offset = 0 [, int $pri = EIO_PRI_DEFAULT [, callable $callback = NULL [, mixed $data = NULL ]]]]] ) : resource
+function.event-timer-set.html :  event_timer_set ( resource $event , callable $callback [, mixed $arg ] ) : bool
+function.fann-create-train-from-callback.html :  fann_create_train_from_callback ( int $num_data , int $num_input , int $num_output , callable $user_function ) : resource
+function.fdf-enum-values.html :  fdf_enum_values ( resource $fdf_document , callable $function [, mixed $userdata ] ) : bool
+function.forward-static-call-array.html :  forward_static_call_array ( callable $function , array $parameters ) : mixed
+function.forward-static-call.html :  forward_static_call ( callable $function [, mixed $... ] ) : mixed
+function.header-register-callback.html :  header_register_callback ( callable $callback ) : bool
+function.ibase-set-event-handler.html :  ibase_set_event_handler ( callable $event_handler , string $event_name1 [, string $... ] ) : resource
+function.is-callable.html :  is_callable ( mixed $var [, bool $syntax_only = FALSE [, string &$callable_name ]] ) : bool
+function.iterator-apply.html :  iterator_apply ( Traversable $iterator , callable $function [, array $args = NULL ] ) : int
+function.ldap-set-rebind-proc.html :  ldap_set_rebind_proc ( resource $link , callable $callback ) : bool
+function.libxml-set-external-entity-loader.html :  libxml_set_external_entity_loader ( callable $resolver_function ) : bool
+function.mailparse-msg-extract-part-file.html :  mailparse_msg_extract_part_file ( resource $mimemail , mixed $filename [, callable $callbackfunc ] ) : string
+function.mailparse-msg-extract-part.html :  mailparse_msg_extract_part ( resource $mimemail , string $msgbody [, callable $callbackfunc ] ) : void
+function.mailparse-msg-extract-whole-part-file.html :  mailparse_msg_extract_whole_part_file ( resource $mimemail , string $filename [, callable $callbackfunc ] ) : string
+function.mb-ereg-replace-callback.html :  mb_ereg_replace_callback ( string $pattern , callable $callback , string $string [, string $option = &quot;msr&quot; ] ) : string
+function.newt-entry-set-filter.html :  newt_entry_set_filter ( resource $entry , callable $filter , mixed $data ) : void
+function.newt-set-suspend-callback.html :  newt_set_suspend_callback ( callable $function , mixed $data ) : void
+function.ob-start.html :  ob_start ([ callable $output_callback = NULL [, int $chunk_size = 0 [, int $flags = PHP_OUTPUT_HANDLER_STDFLAGS ]]] ) : bool
+function.pcntl-signal.html :  pcntl_signal ( int $signo , callable|int $handler [, bool $restart_syscalls = TRUE ] ) : bool
+function.preg-replace-callback.html :  preg_replace_callback ( mixed $pattern , callable $callback , mixed $subject [, int $limit = -1 [, int &$count ]] ) : mixed
+function.readline-callback-handler-install.html :  readline_callback_handler_install ( string $prompt , callable $callback ) : bool
+function.readline-completion-function.html :  readline_completion_function ( callable $function ) : bool
+function.register-shutdown-function.html :  register_shutdown_function ( callable $callback [, mixed $... ] ) : void
+function.register-tick-function.html :  register_tick_function ( callable $function [, mixed $... ] ) : bool
+function.session-set-save-handler.html :  session_set_save_handler ( callable $open , callable $close , callable $read , callable $write , callable $destroy , callable $gc [, callable $create_sid [, callable $validate_sid [, callable $update_timestamp ]]] ) : bool
+function.set-error-handler.html :  set_error_handler ( callable $error_handler [, int $error_types = E_ALL | E_STRICT ] ) : mixed
+function.set-exception-handler.html :  set_exception_handler ( callable $exception_handler ) : callable
+function.spl-autoload-register.html :  spl_autoload_register ([ callable $autoload_function [, bool $throw = TRUE [, bool $prepend = FALSE ]]] ) : bool
+function.sqlite-create-aggregate.html :  sqlite_create_aggregate ( resource $dbhandle , string $function_name , callable $step_func , callable $finalize_func [, int $num_args = -1 ] ) : void
+function.sqlite-create-function.html :  sqlite_create_function ( resource $dbhandle , string $function_name , callable $callback [, int $num_args = -1 ] ) : void
+function.swoole-async-dns-lookup.html :  swoole_async_dns_lookup ( string $hostname , callable $callback ) : bool
+function.swoole-async-read.html :  swoole_async_read ( string $filename , callable $callback [, int $chunk_size = 65536 [, int $offset = 0 ]] ) : bool
+function.swoole-async-readfile.html :  swoole_async_readfile ( string $filename , callable $callback ) : bool
+function.swoole-async-write.html :  swoole_async_write ( string $filename , string $content [, integer $offset [, callable $callback ]] ) : bool
+function.swoole-async-writefile.html :  swoole_async_writefile ( string $filename , string $content [, callable $callback [, int $flags = 0 ]] ) : bool
+function.swoole-event-add.html :  swoole_event_add ( int $fd [, callable $read_callback [, callable $write_callback [, int $events = 0 ]]] ) : int
+function.swoole-event-defer.html :  swoole_event_defer ( callable $callback ) : bool
+function.swoole-event-set.html :  swoole_event_set ( int $fd [, callable $read_callback [, callable $write_callback [, int $events = 0 ]]] ) : bool
+function.swoole-timer-after.html :  swoole_timer_after ( int $ms , callable $callback [, mixed $param ] ) : int
+function.swoole-timer-tick.html :  swoole_timer_tick ( int $ms , callable $callback [, mixed $param ] ) : int
+function.sybase-set-message-handler.html :  sybase_set_message_handler ( callable $handler [, resource $link_identifier ] ) : bool
+function.uasort.html :  uasort ( array &$array , callable $value_compare_func ) : bool
+function.uksort.html :  uksort ( array &$array , callable $key_compare_func ) : bool
+function.uopz-overload.html :  uopz_overload ( int $opcode , Callable $callable ) : void
+function.usort.html :  usort ( array &$array , callable $value_compare_func ) : bool
+function.xml-set-character-data-handler.html :  xml_set_character_data_handler ( resource $parser , callable $handler ) : bool
+function.xml-set-default-handler.html :  xml_set_default_handler ( resource $parser , callable $handler ) : bool
+function.xml-set-element-handler.html :  xml_set_element_handler ( resource $parser , callable $start_element_handler , callable $end_element_handler ) : bool
+function.xml-set-end-namespace-decl-handler.html :  xml_set_end_namespace_decl_handler ( resource $parser , callable $handler ) : bool
+function.xml-set-external-entity-ref-handler.html :  xml_set_external_entity_ref_handler ( resource $parser , callable $handler ) : bool
+function.xml-set-notation-decl-handler.html :  xml_set_notation_decl_handler ( resource $parser , callable $handler ) : bool
+function.xml-set-processing-instruction-handler.html :  xml_set_processing_instruction_handler ( resource $parser , callable $handler ) : bool
+function.xml-set-start-namespace-decl-handler.html :  xml_set_start_namespace_decl_handler ( resource $parser , callable $handler ) : bool
+function.xml-set-unparsed-entity-decl-handler.html :  xml_set_unparsed_entity_decl_handler ( resource $parser , callable $handler ) : bool
+gearmanclient.setclientcallback.html :  public GearmanClient::setClientCallback ( callable $callback ) : void
+gearmanclient.setcompletecallback.html :  public GearmanClient::setCompleteCallback ( callable $callback ) : bool
+gearmanclient.setdatacallback.html :  public GearmanClient::setDataCallback ( callable $callback ) : bool
+gearmanclient.setexceptioncallback.html :  public GearmanClient::setExceptionCallback ( callable $callback ) : bool
+gearmanclient.setfailcallback.html :  public GearmanClient::setFailCallback ( callable $callback ) : bool
+gearmanclient.setstatuscallback.html :  public GearmanClient::setStatusCallback ( callable $callback ) : bool
+gearmanclient.setwarningcallback.html :  public GearmanClient::setWarningCallback ( callable $callback ) : bool
+gearmanclient.setworkloadcallback.html :  public GearmanClient::setWorkloadCallback ( callable $callback ) : bool
+gearmanworker.addfunction.html :  public GearmanWorker::addFunction ( string $function_name , callable $function [, mixed &$context [, int $timeout ]] ) : bool
+imagick.setprogressmonitor.html :  public Imagick::setProgressMonitor ( callable $callback ) : bool
+intlchar.enumcharnames.html :  public static IntlChar::enumCharNames ( mixed $start , mixed $limit , callable $callback [, int $nameChoice = IntlChar::UNICODE_CHAR_NAME ] ) : void
+intlchar.enumchartypes.html :  public static IntlChar::enumCharTypes ( callable $callback ) : void
+lua.call.html :  public Lua::call ( callable $lua_func [, array $args [, int $use_self = 0 ]] ) : mixed
+lua.registercallback.html :  public Lua::registerCallback ( string $name , callable $function ) : mixed
+memcache.addserver.html :  Memcache::addServer ( string $host [, int $port = 11211 [, bool $persistent [, int $weight [, int $timeout [, int $retry_interval [, bool $status [, callable $failure_callback [, int $timeoutms ]]]]]]]] ) : bool
+memcache.setserverparams.html :  Memcache::setServerParams ( string $host [, int $port = 11211 [, int $timeout [, int $retry_interval = FALSE [, bool $status [, callable $failure_callback ]]]]] ) : bool
+memcached.get.html :  public Memcached::get ( string $key [, callable $cache_cb [, int $$flags ]] ) : mixed
+memcached.getbykey.html :  public Memcached::getByKey ( string $server_key , string $key [, callable $cache_cb [, int $flags ]] ) : mixed
+memcached.getdelayed.html :  public Memcached::getDelayed ( array $keys [, bool $with_cas [, callable $value_cb ]] ) : bool
+memcached.getdelayedbykey.html :  public Memcached::getDelayedByKey ( string $server_key , array $keys [, bool $with_cas [, callable $value_cb ]] ) : bool
+mongolog.getcallback.html :  public static MongoLog::getCallback ( void ) : callable
+mongolog.setcallback.html :  public static MongoLog::setCallback ( callable $log_function ) : void
+mysqli.set-local-infile-handler.html :  mysqli::set_local_infile_handler ( mysqli $link , callable $read_func ) : bool
+oauthprovider.consumerhandler.html :  public OAuthProvider::consumerHandler ( callable $callback_function ) : void
+oauthprovider.timestampnoncehandler.html :  public OAuthProvider::timestampNonceHandler ( callable $callback_function ) : void
+oauthprovider.tokenhandler.html :  public OAuthProvider::tokenHandler ( callable $callback_function ) : void
+parle-lexer.callout.html :  public Parle\Lexer::callout ( int $id , callable $callback ) : void
+parle-rlexer.callout.html :  public Parle\RLexer::callout ( int $id , callable $callback ) : void
+pdo.sqlitecreateaggregate.html :  public PDO::sqliteCreateAggregate ( string $function_name , callable $step_func , callable $finalize_func [, int $num_args ] ) : bool
+pdo.sqlitecreatecollation.html :  public PDO::sqliteCreateCollation ( string $name , callable $callback ) : bool
+pdo.sqlitecreatefunction.html :  public PDO::sqliteCreateFunction ( string $function_name , callable $callback [, int $num_args = -1 [, int $flags = 0 ]] ) : bool
+phar.webphar.html :  final public static Phar::webPhar ([ string $alias [, string $index = &quot;index.php&quot; [, string $f404 [, array $mimetypes [, callable $rewrites ]]]]] ) : void
+pht-thread.addFunctionTask.html :  public pht\Thread::addFunctionTask ( callable $func [, mixed $...funcArgs ] ) : void
+rararchive.open.html :  public static RarArchive::open ( string $filename [, string $password = NULL [, callable $volume_callback = NULL ]] ) : RarArchive
+sqlite3.createcollation.html :  public SQLite3::createCollation ( string $name , callable $callback ) : bool
+swoole-async.dnslookup.html :  public static Swoole\Async::dnsLookup ( string $hostname , callable $callback ) : void
+swoole-async.read.html :  public static Swoole\Async::read ( string $filename , callable $callback [, integer $chunk_size [, integer $offset ]] ) : bool
+swoole-async.readfile.html :  public static Swoole\Async::readFile ( string $filename , callable $callback ) : void
+swoole-async.write.html :  public static Swoole\Async::write ( string $filename , string $content [, integer $offset [, callable $callback ]] ) : void
+swoole-async.writefile.html :  public static Swoole\Async::writeFile ( string $filename , string $content [, callable $callback [, string $flags ]] ) : void
+swoole-client.on.html :  public Swoole\Client::on ( string $event , callable $callback ) : void
+swoole-coroutine.call-user-func-array.html :  public static Swoole\Coroutine::call_user_func_array ( callable $callback , array $param_array ) : mixed
+swoole-coroutine.call-user-func.html :  public static Swoole\Coroutine::call_user_func ( callable $callback [, mixed $... ] ) : mixed
+swoole-event.add.html :  public static Swoole\Event::add ( int $fd , callable $read_callback [, callable $write_callback [, string $events ]] ) : boolean
+swoole-http-client.download.html :  public Swoole\Http\Client::download ( string $path , string $file , callable $callback [, integer $offset ] ) : void
+swoole-http-client.get.html :  public Swoole\Http\Client::get ( string $path , callable $callback ) : void
+swoole-http-client.on.html :  public Swoole\Http\Client::on ( string $event_name , callable $callback ) : void
+swoole-http-client.post.html :  public Swoole\Http\Client::post ( string $path , string $data , callable $callback ) : void
+swoole-http-server.on.html :  public Swoole\Http\Server::on ( string $event_name , callable $callback ) : void
+swoole-mysql.connect.html :  public Swoole\MySQL::connect ( array $server_config , callable $callback ) : void
+swoole-mysql.on.html :  public Swoole\MySQL::on ( string $event_name , callable $callback ) : void
+swoole-mysql.query.html :  public Swoole\MySQL::query ( string $sql , callable $callback ) : ReturnType
+swoole-process.signal.html :  public static Swoole\Process::signal ( string $signal_no , callable $callback ) : void
+swoole-server-port.on.html :  public Swoole\Server\Port::on ( string $event_name , callable $callback ) : ReturnType
+swoole-server.after.html :  public Swoole\Server::after ( integer $after_time_ms , callable $callback [, string $param ] ) : ReturnType
+swoole-server.defer.html :  public Swoole\Server::defer ( callable $callback ) : void
+swoole-server.on.html :  public Swoole\Server::on ( string $event_name , callable $callback ) : void
+swoole-server.task.html :  public Swoole\Server::task ( string $data [, integer $dst_worker_id [, callable $callback ]] ) : mixed
+swoole-server.tick.html :  public Swoole\Server::tick ( integer $interval_ms , callable $callback ) : void
+swoole-timer.after.html :  public static Swoole\Timer::after ( int $after_time_ms , callable $callback ) : void
+swoole-timer.tick.html :  public static Swoole\Timer::tick ( integer $interval_ms , callable $callback [, string $param ] ) : void
+swoole-websocket-server.on.html :  public Swoole\WebSocket\Server::on ( string $event_name , callable $callback ) : ReturnType
+yaf-application.execute.html :  public Yaf_Application::execute ( callable $entry , string $... ) : void
+yar-concurrent-client.call.html :  public static Yar_Concurrent_Client::call ( string $uri , string $method [, array $parameters [, callable $callback [, callable $error_callback [, array $options ]]]] ) : int
+yar-concurrent-client.loop.html :  public static Yar_Concurrent_Client::loop ([ callable $callback [, callable $error_callback ]] ) : bool
+zmqdevice.setidlecallback.html :  public ZMQDevice::setIdleCallback ( callable $cb_func , int $timeout [, mixed $user_data ] ) : ZMQDevice
+zmqdevice.settimercallback.html :  public ZMQDevice::setTimerCallback ( callable $cb_func , int $timeout [, mixed $user_data ] ) : ZMQDevice
+zookeeper.addauth.html :  public Zookeeper::addAuth ( string $scheme , string $cert [, callable $completion_cb = NULL ] ) : bool
+zookeeper.connect.html :  public Zookeeper::connect ( string $host [, callable $watcher_cb = NULL [, int $recv_timeout = 10000 ]] ) : void
+zookeeper.exists.html :  public Zookeeper::exists ( string $path [, callable $watcher_cb = NULL ] ) : bool
+zookeeper.get.html :  public Zookeeper::get ( string $path [, callable $watcher_cb = NULL [, array &$stat = NULL [, int $max_size = 0 ]]] ) : string
+zookeeper.getchildren.html :  public Zookeeper::getChildren ( string $path [, callable $watcher_cb = NULL ] ) : array
+zookeeper.setwatcher.html :  public Zookeeper::setWatcher ( callable $watcher_cb ) : bool
+zookeeperconfig.get.html :  public ZookeeperConfig::get ([ callable $watcher_cb = NULL [, array &$stat = NULL ]] ) : string
