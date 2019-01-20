@@ -15,7 +15,7 @@ use PhpParser\Node;
 
 class DynamicCall extends BaseVisitor
 {
-    protected $check_node_class = [
+    protected $checkNodeClass = [
         Node\Expr\FuncCall::class
     ];
 

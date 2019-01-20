@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-session_set_save_handler($a, $b, $c, $d);
+$db->fetchAll(PDO::FETCH_Caaa, 'assert');
 CODE;
 
 

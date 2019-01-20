@@ -14,9 +14,9 @@ use PhpParser\NodeVisitorAbstract;
 abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterface
 {
     /**
-     * @type array $check_node_class
+     * @type array $checkNodeClass
      */
-    protected $check_node_class = [];
+    protected $checkNodeClass = [];
 
     /**
      * @var Message $message
@@ -30,7 +30,7 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
 
     public function checkNode(Node $node)
     {
-        foreach ($this->check_node_class as $node_class) {
+        foreach ($this->checkNodeClass as $node_class) {
             if (is_a($node, $node_class)) {
                 return true;
             }
@@ -47,8 +47,20 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
 
     abstract public function process(Node $node);
 
-    protected function isMethod(Node\Expr\FuncCall $node, array $required) {
-        $fname = Code::getFunctionName($node);
+    /**
+     * @param Node $node
+     * @param array $required
+     * @return bool
+     */
+    protected function isMethod(Node $node, array $required) {
+        if ($node instanceof Node\Expr\FuncCall) {
+            $fname = Code::getFunctionName($node);
+        } elseif ($node instanceof Node\Expr\MethodCall) {
+            $fname = Code::getMethodName($node);
+        } else {
+            return false;
+        }
+
         return is_string($fname) && in_array($fname, $required);
     }
 }

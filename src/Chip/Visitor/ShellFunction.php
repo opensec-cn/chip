@@ -18,7 +18,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 class ShellFunction extends BaseVisitor
 {
-    protected $check_node_class = [
+    protected $checkNodeClass = [
         FuncCall::class
     ];
 

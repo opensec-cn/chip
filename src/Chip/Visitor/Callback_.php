@@ -17,7 +17,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 class Callback_ extends BaseVisitor
 {
-    protected $check_node_class = [
+    protected $checkNodeClass = [
         FuncCall::class
     ];
 

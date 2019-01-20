@@ -6,6 +6,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'uasort',
             'pos' => 0,
             'arg' => 'callable $cmp_function',
+            'static' => false,
         ),
     1 =>
         array (
@@ -13,6 +14,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'uksort',
             'pos' => 0,
             'arg' => 'callable $cmp_function',
+            'static' => false,
         ),
     2 =>
         array (
@@ -20,6 +22,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'uasort',
             'pos' => 0,
             'arg' => 'callable $cmp_function',
+            'static' => false,
         ),
     3 =>
         array (
@@ -27,13 +30,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'uksort',
             'pos' => 0,
             'arg' => 'callable $cmp_function',
+            'static' => false,
         ),
     4 =>
         array (
-            'class' => 'static Closure',
+            'class' => 'Closure',
             'method' => 'fromCallable',
             'pos' => 0,
             'arg' => 'callable $callable',
+            'static' => true,
         ),
     5 =>
         array (
@@ -41,6 +46,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'apply',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     6 =>
         array (
@@ -48,6 +54,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'filter',
             'pos' => 0,
             'arg' => 'callable $callback ]',
+            'static' => false,
         ),
     7 =>
         array (
@@ -55,6 +62,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'map',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     8 =>
         array (
@@ -62,6 +70,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'reduce',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     9 =>
         array (
@@ -69,6 +78,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sort',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     10 =>
         array (
@@ -76,6 +86,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sorted',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     11 =>
         array (
@@ -83,6 +94,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'apply',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     12 =>
         array (
@@ -90,6 +102,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'filter',
             'pos' => 0,
             'arg' => 'callable $callback ]',
+            'static' => false,
         ),
     13 =>
         array (
@@ -97,6 +110,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'ksort',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     14 =>
         array (
@@ -104,6 +118,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'ksorted',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     15 =>
         array (
@@ -111,6 +126,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'map',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     16 =>
         array (
@@ -118,6 +134,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'reduce',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     17 =>
         array (
@@ -125,6 +142,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sort',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     18 =>
         array (
@@ -132,48 +150,55 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sorted',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     19 =>
         array (
-            'class' => 'abstract public Ds\\Sequence',
+            'class' => 'Ds\\Sequence',
             'method' => 'apply',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     20 =>
         array (
-            'class' => 'abstract public Ds\\Sequence',
+            'class' => 'Ds\\Sequence',
             'method' => 'filter',
             'pos' => 0,
             'arg' => 'callable $callback ]',
+            'static' => false,
         ),
     21 =>
         array (
-            'class' => 'abstract public Ds\\Sequence',
+            'class' => 'Ds\\Sequence',
             'method' => 'map',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     22 =>
         array (
-            'class' => 'abstract public Ds\\Sequence',
+            'class' => 'Ds\\Sequence',
             'method' => 'reduce',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     23 =>
         array (
-            'class' => 'abstract public Ds\\Sequence',
+            'class' => 'Ds\\Sequence',
             'method' => 'sort',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     24 =>
         array (
-            'class' => 'abstract public Ds\\Sequence',
+            'class' => 'Ds\\Sequence',
             'method' => 'sorted',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     25 =>
         array (
@@ -181,6 +206,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'filter',
             'pos' => 0,
             'arg' => 'callable $callback ]',
+            'static' => false,
         ),
     26 =>
         array (
@@ -188,6 +214,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'reduce',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     27 =>
         array (
@@ -195,6 +222,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sort',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     28 =>
         array (
@@ -202,6 +230,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sorted',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     29 =>
         array (
@@ -209,6 +238,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'apply',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     30 =>
         array (
@@ -216,6 +246,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'filter',
             'pos' => 0,
             'arg' => 'callable $callback ]',
+            'static' => false,
         ),
     31 =>
         array (
@@ -223,6 +254,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'map',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     32 =>
         array (
@@ -230,6 +262,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'reduce',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     33 =>
         array (
@@ -237,6 +270,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sort',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     34 =>
         array (
@@ -244,6 +278,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sorted',
             'pos' => 0,
             'arg' => 'callable $comparator ]',
+            'static' => false,
         ),
     35 =>
         array (
@@ -251,6 +286,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     36 =>
         array (
@@ -258,13 +294,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     37 =>
         array (
-            'class' => 'final public static EvChild',
+            'class' => 'EvChild',
             'method' => 'createStopped',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     38 =>
         array (
@@ -272,13 +310,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     39 =>
         array (
-            'class' => 'final public static EvEmbed',
+            'class' => 'EvEmbed',
             'method' => 'createStopped',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     40 =>
         array (
@@ -286,6 +326,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 3,
             'arg' => 'callable $cb',
+            'static' => false,
         ),
     41 =>
         array (
@@ -293,6 +334,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'set',
             'pos' => 3,
             'arg' => 'callable $cb',
+            'static' => false,
         ),
     42 =>
         array (
@@ -300,20 +342,23 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setTimer',
             'pos' => 1,
             'arg' => 'callable $cb',
+            'static' => false,
         ),
     43 =>
         array (
-            'class' => 'static Event',
+            'class' => 'Event',
             'method' => 'signal',
             'pos' => 2,
             'arg' => 'callable $cb',
+            'static' => true,
         ),
     44 =>
         array (
-            'class' => 'static Event',
+            'class' => 'Event',
             'method' => 'timer',
             'pos' => 1,
             'arg' => 'callable $cb',
+            'static' => true,
         ),
     45 =>
         array (
@@ -321,6 +366,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setCallbacks',
             'pos' => 0,
             'arg' => 'callable $readcb',
+            'static' => false,
         ),
     46 =>
         array (
@@ -328,6 +374,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setCallbacks',
             'pos' => 1,
             'arg' => 'callable $writecb',
+            'static' => false,
         ),
     47 =>
         array (
@@ -335,6 +382,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setCallbacks',
             'pos' => 2,
             'arg' => 'callable $eventcb',
+            'static' => false,
         ),
     48 =>
         array (
@@ -342,6 +390,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setCloseCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     49 =>
         array (
@@ -349,6 +398,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     50 =>
         array (
@@ -356,6 +406,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 1,
             'arg' => 'callable $cb',
+            'static' => false,
         ),
     51 =>
         array (
@@ -363,6 +414,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setCallback',
             'pos' => 0,
             'arg' => 'callable $cb',
+            'static' => false,
         ),
     52 =>
         array (
@@ -370,6 +422,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     53 =>
         array (
@@ -377,6 +430,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     54 =>
         array (
@@ -384,69 +438,79 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     55 =>
         array (
-            'class' => 'final public static EvIo',
+            'class' => 'EvIo',
             'method' => 'createStopped',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     56 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'fork',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     57 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'idle',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     58 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'io',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     59 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'periodic',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     60 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'prepare',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     61 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'signal',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     62 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'stat',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     63 =>
         array (
-            'class' => 'final public EvLoop',
+            'class' => 'EvLoop',
             'method' => 'timer',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     64 =>
         array (
@@ -454,6 +518,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 2,
             'arg' => 'callable $reschedule_cb',
+            'static' => false,
         ),
     65 =>
         array (
@@ -461,27 +526,31 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 3,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     66 =>
         array (
-            'class' => 'final public static EvPeriodic',
+            'class' => 'EvPeriodic',
             'method' => 'createStopped',
             'pos' => 2,
             'arg' => 'callable $reschedule_cb',
+            'static' => true,
         ),
     67 =>
         array (
-            'class' => 'final public static EvPeriodic',
+            'class' => 'EvPeriodic',
             'method' => 'createStopped',
             'pos' => 3,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     68 =>
         array (
-            'class' => 'final public static EvPrepare',
+            'class' => 'EvPrepare',
             'method' => 'createStopped',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     69 =>
         array (
@@ -489,13 +558,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     70 =>
         array (
-            'class' => 'final public static EvSignal',
+            'class' => 'EvSignal',
             'method' => 'createStopped',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     71 =>
         array (
@@ -503,13 +574,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     72 =>
         array (
-            'class' => 'final public static EvStat',
+            'class' => 'EvStat',
             'method' => 'createStopped',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     73 =>
         array (
@@ -517,13 +590,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => '__construct',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     74 =>
         array (
-            'class' => 'final public static EvTimer',
+            'class' => 'EvTimer',
             'method' => 'createStopped',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     75 =>
         array (
@@ -531,6 +606,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     76 =>
         array (
@@ -538,6 +614,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setClientCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     77 =>
         array (
@@ -545,6 +622,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setCompleteCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     78 =>
         array (
@@ -552,6 +630,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setDataCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     79 =>
         array (
@@ -559,6 +638,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setExceptionCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     80 =>
         array (
@@ -566,6 +646,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setFailCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     81 =>
         array (
@@ -573,6 +654,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setStatusCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     82 =>
         array (
@@ -580,6 +662,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setWarningCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     83 =>
         array (
@@ -587,6 +670,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setWorkloadCallback',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     84 =>
         array (
@@ -594,6 +678,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'addFunction',
             'pos' => 1,
             'arg' => 'callable $function',
+            'static' => false,
         ),
     85 =>
         array (
@@ -601,20 +686,23 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setProgressMonitor',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     86 =>
         array (
-            'class' => 'static IntlChar',
+            'class' => 'IntlChar',
             'method' => 'enumCharNames',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     87 =>
         array (
-            'class' => 'static IntlChar',
+            'class' => 'IntlChar',
             'method' => 'enumCharTypes',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     88 =>
         array (
@@ -622,6 +710,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'call',
             'pos' => 0,
             'arg' => 'callable $lua_func',
+            'static' => false,
         ),
     89 =>
         array (
@@ -629,6 +718,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'registerCallback',
             'pos' => 1,
             'arg' => 'callable $function',
+            'static' => false,
         ),
     90 =>
         array (
@@ -636,6 +726,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'addServer',
             'pos' => 7,
             'arg' => 'callable $failure_callback',
+            'static' => false,
         ),
     91 =>
         array (
@@ -643,6 +734,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setServerParams',
             'pos' => 5,
             'arg' => 'callable $failure_callback ]]]]]',
+            'static' => false,
         ),
     92 =>
         array (
@@ -650,6 +742,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'get',
             'pos' => 1,
             'arg' => 'callable $cache_cb',
+            'static' => false,
         ),
     93 =>
         array (
@@ -657,6 +750,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'getByKey',
             'pos' => 2,
             'arg' => 'callable $cache_cb',
+            'static' => false,
         ),
     94 =>
         array (
@@ -664,6 +758,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'getDelayed',
             'pos' => 2,
             'arg' => 'callable $value_cb ]]',
+            'static' => false,
         ),
     95 =>
         array (
@@ -671,13 +766,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'getDelayedByKey',
             'pos' => 3,
             'arg' => 'callable $value_cb ]]',
+            'static' => false,
         ),
     96 =>
         array (
-            'class' => 'static MongoLog',
+            'class' => 'MongoLog',
             'method' => 'setCallback',
             'pos' => 0,
             'arg' => 'callable $log_function',
+            'static' => true,
         ),
     97 =>
         array (
@@ -685,6 +782,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'set_local_infile_handler',
             'pos' => 1,
             'arg' => 'callable $read_func',
+            'static' => false,
         ),
     98 =>
         array (
@@ -692,6 +790,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'consumerHandler',
             'pos' => 0,
             'arg' => 'callable $callback_function',
+            'static' => false,
         ),
     99 =>
         array (
@@ -699,6 +798,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'timestampNonceHandler',
             'pos' => 0,
             'arg' => 'callable $callback_function',
+            'static' => false,
         ),
     100 =>
         array (
@@ -706,6 +806,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'tokenHandler',
             'pos' => 0,
             'arg' => 'callable $callback_function',
+            'static' => false,
         ),
     101 =>
         array (
@@ -713,6 +814,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'callout',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     102 =>
         array (
@@ -720,6 +822,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'callout',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     103 =>
         array (
@@ -727,6 +830,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sqliteCreateAggregate',
             'pos' => 1,
             'arg' => 'callable $step_func',
+            'static' => false,
         ),
     104 =>
         array (
@@ -734,6 +838,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sqliteCreateAggregate',
             'pos' => 2,
             'arg' => 'callable $finalize_func',
+            'static' => false,
         ),
     105 =>
         array (
@@ -741,6 +846,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sqliteCreateCollation',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     106 =>
         array (
@@ -748,13 +854,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'sqliteCreateFunction',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     107 =>
         array (
-            'class' => 'final public static Phar',
+            'class' => 'Phar',
             'method' => 'webPhar',
             'pos' => 4,
             'arg' => 'callable $rewrites ]]]]]',
+            'static' => true,
         ),
     108 =>
         array (
@@ -762,13 +870,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'addFunctionTask',
             'pos' => 0,
             'arg' => 'callable $func',
+            'static' => false,
         ),
     109 =>
         array (
-            'class' => 'static RarArchive',
+            'class' => 'RarArchive',
             'method' => 'open',
             'pos' => 2,
             'arg' => 'callable $volume_callback = NULL ]]',
+            'static' => true,
         ),
     110 =>
         array (
@@ -776,41 +886,47 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'createCollation',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     111 =>
         array (
-            'class' => 'static Swoole\\Async',
+            'class' => 'Swoole\\Async',
             'method' => 'dnsLookup',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     112 =>
         array (
-            'class' => 'static Swoole\\Async',
+            'class' => 'Swoole\\Async',
             'method' => 'read',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     113 =>
         array (
-            'class' => 'static Swoole\\Async',
+            'class' => 'Swoole\\Async',
             'method' => 'readFile',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     114 =>
         array (
-            'class' => 'static Swoole\\Async',
+            'class' => 'Swoole\\Async',
             'method' => 'write',
             'pos' => 3,
             'arg' => 'callable $callback ]]',
+            'static' => true,
         ),
     115 =>
         array (
-            'class' => 'static Swoole\\Async',
+            'class' => 'Swoole\\Async',
             'method' => 'writeFile',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     116 =>
         array (
@@ -818,34 +934,39 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'on',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     117 =>
         array (
-            'class' => 'static Swoole\\Coroutine',
+            'class' => 'Swoole\\Coroutine',
             'method' => 'call_user_func_array',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     118 =>
         array (
-            'class' => 'static Swoole\\Coroutine',
+            'class' => 'Swoole\\Coroutine',
             'method' => 'call_user_func',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     119 =>
         array (
-            'class' => 'static Swoole\\Event',
+            'class' => 'Swoole\\Event',
             'method' => 'add',
             'pos' => 1,
             'arg' => 'callable $read_callback',
+            'static' => true,
         ),
     120 =>
         array (
-            'class' => 'static Swoole\\Event',
+            'class' => 'Swoole\\Event',
             'method' => 'add',
             'pos' => 2,
             'arg' => 'callable $write_callback',
+            'static' => true,
         ),
     121 =>
         array (
@@ -853,6 +974,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'download',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     122 =>
         array (
@@ -860,6 +982,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'get',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     123 =>
         array (
@@ -867,6 +990,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'on',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     124 =>
         array (
@@ -874,6 +998,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'post',
             'pos' => 2,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     125 =>
         array (
@@ -881,6 +1006,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'on',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     126 =>
         array (
@@ -888,6 +1014,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'connect',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     127 =>
         array (
@@ -895,6 +1022,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'on',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     128 =>
         array (
@@ -902,13 +1030,15 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'query',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     129 =>
         array (
-            'class' => 'static Swoole\\Process',
+            'class' => 'Swoole\\Process',
             'method' => 'signal',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     130 =>
         array (
@@ -916,6 +1046,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'on',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     131 =>
         array (
@@ -923,6 +1054,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'after',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     132 =>
         array (
@@ -930,6 +1062,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'defer',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     133 =>
         array (
@@ -937,6 +1070,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'on',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     134 =>
         array (
@@ -944,6 +1078,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'task',
             'pos' => 2,
             'arg' => 'callable $callback ]]',
+            'static' => false,
         ),
     135 =>
         array (
@@ -951,20 +1086,23 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'tick',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     136 =>
         array (
-            'class' => 'static Swoole\\Timer',
+            'class' => 'Swoole\\Timer',
             'method' => 'after',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     137 =>
         array (
-            'class' => 'static Swoole\\Timer',
+            'class' => 'Swoole\\Timer',
             'method' => 'tick',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     138 =>
         array (
@@ -972,6 +1110,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'on',
             'pos' => 1,
             'arg' => 'callable $callback',
+            'static' => false,
         ),
     139 =>
         array (
@@ -979,34 +1118,39 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'execute',
             'pos' => 0,
             'arg' => 'callable $entry',
+            'static' => false,
         ),
     140 =>
         array (
-            'class' => 'static Yar_Concurrent_Client',
+            'class' => 'Yar_Concurrent_Client',
             'method' => 'call',
             'pos' => 3,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     141 =>
         array (
-            'class' => 'static Yar_Concurrent_Client',
+            'class' => 'Yar_Concurrent_Client',
             'method' => 'call',
             'pos' => 4,
             'arg' => 'callable $error_callback',
+            'static' => true,
         ),
     142 =>
         array (
-            'class' => 'static Yar_Concurrent_Client',
+            'class' => 'Yar_Concurrent_Client',
             'method' => 'loop',
             'pos' => 0,
             'arg' => 'callable $callback',
+            'static' => true,
         ),
     143 =>
         array (
-            'class' => 'static Yar_Concurrent_Client',
+            'class' => 'Yar_Concurrent_Client',
             'method' => 'loop',
             'pos' => 1,
             'arg' => 'callable $error_callback ]]',
+            'static' => true,
         ),
     144 =>
         array (
@@ -1014,6 +1158,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setIdleCallback',
             'pos' => 0,
             'arg' => 'callable $cb_func',
+            'static' => false,
         ),
     145 =>
         array (
@@ -1021,6 +1166,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setTimerCallback',
             'pos' => 0,
             'arg' => 'callable $cb_func',
+            'static' => false,
         ),
     146 =>
         array (
@@ -1028,6 +1174,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'addAuth',
             'pos' => 2,
             'arg' => 'callable $completion_cb = NULL ]',
+            'static' => false,
         ),
     147 =>
         array (
@@ -1035,6 +1182,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'connect',
             'pos' => 1,
             'arg' => 'callable $watcher_cb = NULL',
+            'static' => false,
         ),
     148 =>
         array (
@@ -1042,6 +1190,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'exists',
             'pos' => 1,
             'arg' => 'callable $watcher_cb = NULL ]',
+            'static' => false,
         ),
     149 =>
         array (
@@ -1049,6 +1198,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'get',
             'pos' => 1,
             'arg' => 'callable $watcher_cb = NULL',
+            'static' => false,
         ),
     150 =>
         array (
@@ -1056,6 +1206,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'getChildren',
             'pos' => 1,
             'arg' => 'callable $watcher_cb = NULL ]',
+            'static' => false,
         ),
     151 =>
         array (
@@ -1063,6 +1214,7 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'setWatcher',
             'pos' => 0,
             'arg' => 'callable $watcher_cb',
+            'static' => false,
         ),
     152 =>
         array (
@@ -1070,5 +1222,6 @@ define('METHOD_WITH_CALLABLE', array (
             'method' => 'get',
             'pos' => 0,
             'arg' => 'callable $watcher_cb = NULL',
+            'static' => false,
         ),
 ));

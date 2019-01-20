@@ -17,7 +17,7 @@ use PhpParser\Node\Expr\ShellExec;
 
 class Shell extends BaseVisitor
 {
-    protected $check_node_class = [
+    protected $checkNodeClass = [
         ShellExec::class
     ];
 

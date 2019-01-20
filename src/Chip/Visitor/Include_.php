@@ -19,7 +19,7 @@ use PhpParser\Node\Scalar\Encapsed;
 
 class Include_ extends BaseVisitor
 {
-    protected $check_node_class = [
+    protected $checkNodeClass = [
         Node\Expr\Include_::class
     ];
 

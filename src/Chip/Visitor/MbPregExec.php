@@ -18,7 +18,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 class MbPregExec extends BaseVisitor
 {
-    protected $check_node_class = [FuncCall::class];
+    protected $checkNodeClass = [FuncCall::class];
 
     protected $preg_functions = ['mb_ereg_replace', 'mb_eregi_replace', 'mb_regex_set_options'];
 

@@ -20,7 +20,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 class PregExec extends BaseVisitor
 {
-    protected $check_node_class = [FuncCall::class];
+    protected $checkNodeClass = [FuncCall::class];
 
     protected $preg_functions = ['preg_replace', 'preg_filter'];
 

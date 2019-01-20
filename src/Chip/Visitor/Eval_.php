@@ -16,7 +16,7 @@ use Chip\BaseVisitor;
 
 class Eval_ extends BaseVisitor
 {
-    protected $check_node_class = [
+    protected $checkNodeClass = [
         EvalNode::class
     ];
 

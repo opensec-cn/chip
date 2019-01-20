@@ -83,12 +83,25 @@ class Code
         return strip_whitespace($code);
     }
 
+    /**
+     * @param Node\Expr\FuncCall $node
+     * @return Node|string
+     */
     public static function getFunctionName(Node\Expr\FuncCall $node)
     {
         if ($node->name instanceof Node\Name) {
             return $node->name->toLowerString();
         } elseif ($node->name instanceof Node\Scalar\String_) {
             return strtolower($node->name->value);
+        } else {
+            return $node;
+        }
+    }
+
+    public static function getMethodName(Node\Expr\MethodCall $node)
+    {
+        if ($node->name instanceof Node\Identifier) {
+            return strtolower($node->name);
         } else {
             return $node;
         }
