@@ -5,7 +5,7 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-$db->fetchAll(PDO::FETCH_COLUMN, 'assert');
+Phar::webPhar();
 CODE;
 
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);

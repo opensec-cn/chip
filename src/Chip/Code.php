@@ -83,6 +83,19 @@ class Code
         return strip_whitespace($code);
     }
 
+    public static function isQualifyCall(Node $node)
+    {
+        if ($node instanceof Node\Expr\FuncCall) {
+            return $node->name instanceof Node\Name || $node->name instanceof Node\Scalar\String_;
+        } elseif ($node instanceof Node\Expr\MethodCall) {
+            return $node->name instanceof Node\Identifier;
+        } elseif ($node instanceof Node\Expr\StaticCall) {
+            return $node->class instanceof Node\Name && $node->name instanceof Node\Identifier;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @param Node\Expr\FuncCall $node
      * @return Node|string
@@ -98,10 +111,14 @@ class Code
         }
     }
 
-    public static function getMethodName(Node\Expr\MethodCall $node)
+    /**
+     * @param Node\Expr\MethodCall | Node\Expr\StaticCall $node
+     * @return Node|string
+     */
+    public static function getMethodName(Node $node)
     {
         if ($node->name instanceof Node\Identifier) {
-            return strtolower($node->name);
+            return $node->name->toLowerString();
         } else {
             return $node;
         }

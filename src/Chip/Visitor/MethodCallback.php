@@ -26,7 +26,6 @@ class MethodCallback extends BaseVisitor
         'sqlitecreateaggregate' => [1, 2],
         'sqlitecreatecollation' => [1],
         'sqlitecreatefunction' => [1],
-        'webphar' => [4],
         'createcollation' => [1],
         'fetchall' => [1]
     ];

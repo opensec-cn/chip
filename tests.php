@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-$db->fetchAll(PDO::FETCH_Caaa, 'assert');
+Phar::webPhar('a', "index.php", '404', []);
 CODE;
 
 

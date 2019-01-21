@@ -55,7 +55,7 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
     protected function isMethod(Node $node, array $required) {
         if ($node instanceof Node\Expr\FuncCall) {
             $fname = Code::getFunctionName($node);
-        } elseif ($node instanceof Node\Expr\MethodCall) {
+        } elseif ($node instanceof Node\Expr\MethodCall || $node instanceof Node\Expr\StaticCall) {
             $fname = Code::getMethodName($node);
         } else {
             return false;
