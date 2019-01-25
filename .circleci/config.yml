@@ -34,4 +34,4 @@ jobs:
         key: v1-dependencies-{{ checksum "composer.json" }}
 
     # run tests!
-    - run: phpunit tests
+    - run: php vendor/bin/phpunit tests
