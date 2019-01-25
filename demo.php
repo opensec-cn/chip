@@ -5,7 +5,7 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-echo (A)::B;
+(base64_decode("abcd"))();
 CODE;
 
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);

@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-Test\A::test();
+(base64_decode("abcd"))();
 CODE;
 
 
