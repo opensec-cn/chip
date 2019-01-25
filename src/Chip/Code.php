@@ -51,7 +51,7 @@ class Code
     static public function hasVariable(Node $node)
     {
         $hasVariable = static::traverseNode($node, function ($cur_node) {
-            if ($cur_node instanceof Node\Expr\Variable || $cur_node instanceof Node\Identifier || $cur_node instanceof Node\Expr\ConstFetch || $cur_node instanceof Node\Expr\ClassConstFetch) {
+            if ($cur_node instanceof Node\Expr\Variable || $cur_node instanceof Node\Expr\PropertyFetch || $cur_node instanceof Node\Expr\ConstFetch || $cur_node instanceof Node\Expr\ClassConstFetch) {
                 return true;
             }
 

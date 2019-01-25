@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-Phar::webPhar('a', "index.php", '404', []);
+Test\A::test();
 CODE;
 
 

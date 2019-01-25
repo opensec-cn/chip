@@ -5,7 +5,7 @@ use PhpParser\ParserFactory;
 
 $code = <<<'CODE'
 <?php
-Phar::webPhar();
+echo (A)::B;
 CODE;
 
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);

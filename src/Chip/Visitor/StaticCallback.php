@@ -21,7 +21,8 @@ class StaticCallback extends BaseVisitor
     ];
 
     protected $sensitiveMethodName = [
-        'phar::webphar' => [4]
+        'phar::webphar' => [4],
+        'closure::fromcallable' => [0]
     ];
 
     public function checkNode(Node $node)
