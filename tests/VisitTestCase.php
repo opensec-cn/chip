@@ -36,12 +36,23 @@ class VisitTestCase extends TestCase
         }
     }
 
+    /**
+     * @param string $code
+     * @return array
+     * @throws \Chip\Exception\FormatException
+     */
     protected function detectCode(string $code)
     {
         $code = '<?php' . "\n" . $code;
         return $this->chipManager->detect($code);
     }
 
+    /**
+     * @param Alarm $alarm
+     * @param AlarmLevel $level
+     * @param string $type
+     * @throws \Exception
+     */
     public function assertHasAlarm(Alarm $alarm, AlarmLevel $level, string $type)
     {
         $_types = explode('\\', $type);

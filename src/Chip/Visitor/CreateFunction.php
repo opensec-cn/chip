@@ -37,7 +37,7 @@ class CreateFunction extends BaseVisitor
     public function process(Node $node)
     {
         if (count($node->args) < 2) {
-            throw ArgumentsFormatException::create($node);
+            throw ArgumentsFormatException::create(Code::printNode($node));
         }
 
         $args = $node->args[0]->value;
