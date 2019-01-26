@@ -33,5 +33,5 @@ jobs:
         - ./vendor
         key: v1-dependencies-{{ checksum "composer.json" }}
 
-    - run: vendor/bin/phpstan src tests -l 1
+    - run: php vendor/bin/phpstan analyse src tests -l 1
     - run: php vendor/bin/phpunit tests/
