@@ -39,6 +39,8 @@ class Chip
         $this->visitors = [];
         $this->bootstrapContainer();
         $this->bootstrapParser();
+
+        array_unshift($visitors, \PhpParser\NodeVisitor\NameResolver::class);
         $this->bootstrapVisitor($visitors);
     }
 
@@ -72,7 +74,6 @@ class Chip
         } catch (\DI\DependencyException | \DI\NotFoundException $e) {
             // something wrong?
         }
-
     }
 
     /**

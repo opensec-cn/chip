@@ -2,15 +2,23 @@
 require 'vendor/autoload.php';
 use PhpParser\NodeDumper;
 use PhpParser\ParserFactory;
+use PhpParser\NodeVisitor\NameResolver;
+use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
 <?php
-(base64_decode("abcd"))();
+namespace Foo;
+
+\Foo\Test();
 CODE;
 
+$nameResolver = new NameResolver();
+$traverser = new NodeTraverser();
 $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
 try {
     $stmts = $parser->parse($code);
+    $traverser->addVisitor($nameResolver);
+    $traverser->traverse($stmts);
 
     $dumper = new NodeDumper();
     echo $dumper->dump($stmts);
