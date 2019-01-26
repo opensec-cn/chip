@@ -35,8 +35,6 @@ class Chip
 
     function __construct(array $visitors)
     {
-
-        $this->visitors = [];
         $this->bootstrapContainer();
         $this->bootstrapParser();
 
@@ -79,7 +77,7 @@ class Chip
     /**
      * 对代码进行扫描测试
      *
-     * @param $code
+     * @param string $code
      * @return $this
      * @throws Exception\FormatException
      */

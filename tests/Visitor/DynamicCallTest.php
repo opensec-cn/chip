@@ -6,7 +6,7 @@
  * Time: 1:39
  */
 
-namespace Visitor;
+namespace Chip\Tests\Visitor;
 
 
 use Chip\AlarmLevel;
