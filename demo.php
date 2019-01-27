@@ -7,7 +7,7 @@ use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
 <?php
-new class(1) extends A {};
+echo `id $c`;
 CODE;
 
 $nameResolver = new NameResolver();

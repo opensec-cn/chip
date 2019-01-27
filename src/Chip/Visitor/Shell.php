@@ -10,20 +10,21 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Message;
+use Chip\Traits\Variable;
 use PhpParser\Node;
-use Chip\Code;
 use PhpParser\Node\Expr\ShellExec;
 
 class Shell extends BaseVisitor
 {
+    use Variable;
+
     protected $checkNodeClass = [
         ShellExec::class
     ];
 
     public function process(Node $node)
     {
-        if (Code::hasVariable($node) || Code::hasFunctionCall($node)) {
+        if ($this->hasDynamicExpr($node)) {
             $this->message->critical($node, __CLASS__, '执行的命令中包含动态变量或函数，可能有远程命令执行风险');
         } else {
             $this->message->info($node, __CLASS__, '执行命令');

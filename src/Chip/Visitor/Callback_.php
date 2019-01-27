@@ -12,11 +12,15 @@ namespace Chip\Visitor;
 use Chip\BaseVisitor;
 use Chip\Code;
 use Chip\Message;
+use Chip\Traits\TypeHelper;
+use Chip\Traits\Variable;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class Callback_ extends BaseVisitor
 {
+    use Variable, TypeHelper;
+
     protected $checkNodeClass = [
         FuncCall::class
     ];
@@ -62,9 +66,9 @@ class Callback_ extends BaseVisitor
                 continue ;
             }
 
-            if (Code::hasVariable($arg->value) || Code::hasFunctionCall($arg->value)) {
+            if ($this->hasDynamicExpr($arg->value)) {
                 $this->message->danger($node, __CLASS__, "{$fname}第{$pos}个参数包含动态变量或函数，可能有远程代码执行的隐患");
-            } elseif (!($arg->value instanceof Node\Expr\Closure)) {
+            } elseif (!$this->isClosure($arg->value)) {
                 $this->message->warning($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
             }
         }

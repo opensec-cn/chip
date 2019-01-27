@@ -13,13 +13,15 @@ use Chip\BaseVisitor;
 use Chip\Code;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Exception\RegexFormatException;
-use Chip\Message;
 use Chip\Structure\Regex;
+use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class PregExec extends BaseVisitor
 {
+    use TypeHelper;
+
     protected $checkNodeClass = [FuncCall::class];
 
     protected $preg_functions = ['preg_replace', 'preg_filter'];
@@ -45,7 +47,7 @@ class PregExec extends BaseVisitor
         }
         $fname = Code::getFunctionName($node);
 
-        if (!($node->args[0]->value instanceof Node\Scalar\String_)) {
+        if (!$this->isString($node->args[0]->value)) {
             $this->message->danger($node, __CLASS__, "{$fname}第一个参数不是静态字符串，可能存在远程代码执行的隐患");
             return;
         }

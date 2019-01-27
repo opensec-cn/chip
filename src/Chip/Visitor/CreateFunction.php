@@ -12,11 +12,14 @@ namespace Chip\Visitor;
 use Chip\BaseVisitor;
 use Chip\Code;
 use Chip\Exception\ArgumentsFormatException;
+use Chip\Traits\Variable;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class CreateFunction extends BaseVisitor
 {
+    use Variable;
+
     protected $checkNodeClass = [
         FuncCall::class
     ];
@@ -42,7 +45,7 @@ class CreateFunction extends BaseVisitor
 
         $args = $node->args[0]->value;
         $code = $node->args[1]->value;
-        if (Code::hasVariable($args) || Code::hasVariable($args) || Code::hasVariable($code) || Code::hasFunctionCall($code)) {
+        if ($this->hasDynamicExpr($args) || $this->hasDynamicExpr($code)) {
             $this->message->critical($node, __class__, "create_function参数含有动态变量，可能有代码注入的隐患");
         } else {
             $this->message->warning($node, __class__, "使用create_function有代码执行的隐患，请使用闭包函数替代create_function");

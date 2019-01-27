@@ -10,12 +10,15 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
+use Chip\Traits\TypeHelper;
+use Chip\Traits\Variable;
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
 
 class DynamicStaticMethod extends BaseVisitor
 {
+    use Variable, TypeHelper;
+
     protected $checkNodeClass = [
         StaticCall::class
     ];
@@ -28,17 +31,17 @@ class DynamicStaticMethod extends BaseVisitor
         $class = $node->class;
         $name = $node->name;
 
-        if (Code::hasVariable($class) || Code::hasFunctionCall($class)) {
+        if ($this->hasDynamicExpr($class)) {
             $this->message->warning($node, __CLASS__, '以动态类形式调用静态方法，可能存在远程代码执行的隐患');
             return;
         }
 
-        if (Code::hasVariable($name) || Code::hasFunctionCall($name)) {
+        if ($this->hasVariable($name)) {
             $this->message->danger($node, __CLASS__, '动态调用方法，可能存在远程代码执行的隐患');
             return;
         }
 
-        if (!($class instanceof Node\Name) || !($name instanceof Node\Identifier)) {
+        if (!$this->isName($class) || !$this->isIdentifier($name)) {
             $this->message->warning($node, __CLASS__, '不规范的静态方法调用，可能存在远程代码执行的隐患');
             return;
         }

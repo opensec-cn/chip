@@ -12,12 +12,14 @@ namespace Chip\Visitor;
 use Chip\BaseVisitor;
 use Chip\Code;
 use Chip\Exception\ArgumentsFormatException;
-use Chip\Message;
+use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class MbPregExec extends BaseVisitor
 {
+    use TypeHelper;
+
     protected $checkNodeClass = [FuncCall::class];
 
     protected $preg_functions = ['mb_ereg_replace', 'mb_eregi_replace', 'mb_regex_set_options'];
@@ -47,7 +49,7 @@ class MbPregExec extends BaseVisitor
             return ;
         }
 
-        if (!($option instanceof Node\Scalar\String_)) {
+        if (!$this->isString($option)) {
             $this->message->danger($node, __CLASS__, "{$fname}正则模式不是静态字符串，可能存在远程代码执行的隐患");
             return;
         }

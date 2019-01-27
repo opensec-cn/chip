@@ -10,8 +10,9 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
+use Chip\Traits\TypeHelper;
+use Chip\Traits\Variable;
 use PhpParser\Node;
-use Chip\Code;
 use PhpParser\Node\Expr\BinaryOp\Concat;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Scalar\EncapsedStringPart;
@@ -19,6 +20,8 @@ use PhpParser\Node\Scalar\Encapsed;
 
 class Include_ extends BaseVisitor
 {
+    use Variable, TypeHelper;
+
     protected $checkNodeClass = [
         Node\Expr\Include_::class
     ];
@@ -32,14 +35,14 @@ class Include_ extends BaseVisitor
     {
         $last_part = $this->getRecursivePart($node->expr);
 
-        if ($last_part instanceof String_ || $last_part instanceof EncapsedStringPart) {
+        if ($this->isString($last_part)) {
             if (!$this->isSafeExtension($last_part)) {
                 $this->message->danger($node, __CLASS__, '文件包含了非PHP文件，可能有远程代码执行的隐患');
             }
             return;
         }
 
-        if (Code::hasVariable($node) || Code::hasFunctionCall($node)) {
+        if ($this->hasDynamicExpr($node->expr)) {
             $this->message->danger($node, __CLASS__, '文件包含操作存在动态变量或函数，可能有远程代码执行的隐患');
             return;
         }

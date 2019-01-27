@@ -18,7 +18,7 @@ trait TypeHelper
 {
     public function isString(Node $node)
     {
-        return $node instanceof String_;
+        return $node instanceof String_ || $node instanceof Node\Scalar\EncapsedStringPart;
     }
 
     public function isQualify(Node $node)
@@ -34,5 +34,15 @@ trait TypeHelper
     public function isIdentifier(Node $node)
     {
         return $node instanceof Identifier;
+    }
+
+    public function isClosure(Node $node)
+    {
+        return $node instanceof Node\Expr\Closure;
+    }
+
+    public function isNumber(Node $node)
+    {
+        return $node instanceof Node\Scalar\LNumber || $node instanceof Node\Scalar\DNumber;
     }
 }
