@@ -83,19 +83,6 @@ class Code
         return strip_whitespace($code);
     }
 
-    public static function isQualifyCall(Node $node)
-    {
-        if ($node instanceof Node\Expr\FuncCall) {
-            return $node->name instanceof Node\Name || $node->name instanceof Node\Scalar\String_;
-        } elseif ($node instanceof Node\Expr\MethodCall) {
-            return $node->name instanceof Node\Identifier;
-        } elseif ($node instanceof Node\Expr\StaticCall) {
-            return $node->class instanceof Node\Name && $node->name instanceof Node\Identifier;
-        } else {
-            return false;
-        }
-    }
-
     /**
      * @param Node\Expr\FuncCall $node
      * @return Node|string

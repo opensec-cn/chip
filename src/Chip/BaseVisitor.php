@@ -63,4 +63,6 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
 
         return is_string($fname) && in_array($fname, $required);
     }
+
+
 }

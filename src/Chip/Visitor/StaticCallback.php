@@ -11,11 +11,14 @@ namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
 use Chip\Code;
+use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
 
 class StaticCallback extends BaseVisitor
 {
+    use TypeHelper;
+
     protected $checkNodeClass = [
         StaticCall::class
     ];
@@ -31,16 +34,16 @@ class StaticCallback extends BaseVisitor
             return false;
         }
 
-        if (!Code::isQualifyCall($node)) {
-            return false;
-        }
-
         /**
          * @var StaticCall $node
          */
-        $class = $node->class->toLowerString();
-        $fname = $node->name->toLowerString();
-        return in_array("{$class}::{$fname}", array_keys($this->sensitiveMethodName));
+        if ($this->isName($node->class) && $this->isIdentifier($node->name)) {
+            $class = $node->class->toLowerString();
+            $fname = $node->name->toLowerString();
+            return in_array("{$class}::{$fname}", array_keys($this->sensitiveMethodName));
+        }
+
+        return false;
     }
 
     /**

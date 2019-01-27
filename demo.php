@@ -7,9 +7,7 @@ use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
 <?php
-namespace Foo;
-
-\Foo\Test();
+new class(1) extends A {};
 CODE;
 
 $nameResolver = new NameResolver();
