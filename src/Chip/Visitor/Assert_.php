@@ -10,12 +10,11 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
+use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
-use PhpParser\Node;
-use Chip\Code;
 use PhpParser\Node\Expr\FuncCall;
 
 class Assert_ extends BaseVisitor
@@ -37,7 +36,7 @@ class Assert_ extends BaseVisitor
     public function process($node)
     {
         if (empty($node->args)) {
-            throw ArgumentsFormatException::create(Code::printNode($node));
+            throw ArgumentsFormatException::create(dump_node($node));
         }
 
         $arg = $node->args[0];

@@ -10,11 +10,10 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
+use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
-use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class ShellFunction extends BaseVisitor
@@ -41,7 +40,7 @@ class ShellFunction extends BaseVisitor
     public function process($node)
     {
         if (empty($node->args)) {
-            throw ArgumentsFormatException::create(Code::printNode($node));
+            throw ArgumentsFormatException::create(dump_node($node));
         }
 
         if ($this->hasDynamicExpr($node)) {

@@ -10,7 +10,7 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
+use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Exception\NodeTypeException;
 use Chip\Exception\RegexFormatException;
@@ -41,7 +41,7 @@ class PregExec extends BaseVisitor
     public function process($node)
     {
         if (empty($node->args)) {
-            throw ArgumentsFormatException::create(Code::printNode($node));
+            throw ArgumentsFormatException::create(dump_node($node));
         }
         $fname = $this->fname;
 

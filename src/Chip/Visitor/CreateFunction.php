@@ -10,12 +10,11 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
+use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
-use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class CreateFunction extends BaseVisitor
@@ -37,7 +36,7 @@ class CreateFunction extends BaseVisitor
     public function process($node)
     {
         if (count($node->args) < 2) {
-            throw ArgumentsFormatException::create(Code::printNode($node));
+            throw ArgumentsFormatException::create(dump_node($node));
         }
 
         $args = $node->args[0]->value;
