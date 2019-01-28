@@ -48,6 +48,5 @@ class ShellFunction extends BaseVisitor
         } else {
             $this->message->info($node, __CLASS__, '执行命令');
         }
-
     }
 }

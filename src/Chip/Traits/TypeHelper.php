@@ -47,6 +47,21 @@ trait TypeHelper
         return $node instanceof Node\Scalar\LNumber || $node instanceof Node\Scalar\DNumber;
     }
 
+    public function isConstant(Node $node)
+    {
+        return $node instanceof Node\Expr\ConstFetch;
+    }
+
+    public function isVariable(Node $node)
+    {
+        return $node instanceof Node\Expr\Variable;
+    }
+
+    public function isArray(Node $node)
+    {
+        return $node instanceof Node\Expr\Array_;
+    }
+
     /**
      * @param Node\Expr\FuncCall $node
      * @return string
