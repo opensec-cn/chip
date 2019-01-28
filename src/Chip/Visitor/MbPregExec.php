@@ -10,19 +10,22 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
 use Chip\Exception\ArgumentsFormatException;
+use Chip\Exception\NodeTypeException;
+use Chip\Traits\FunctionInfo;
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class MbPregExec extends BaseVisitor
 {
-    use TypeHelper;
+    use TypeHelper, FunctionInfo;
 
     protected $checkNodeClass = [FuncCall::class];
 
     protected $preg_functions = ['mb_ereg_replace', 'mb_eregi_replace', 'mb_regex_set_options'];
+
+    private $fname = '';
 
     /**
      * @param FuncCall $node
@@ -30,6 +33,7 @@ class MbPregExec extends BaseVisitor
      */
     public function checkNode(Node $node)
     {
+        // $this->fname = $this->getFunctionName($node);
         return parent::checkNode($node) && $this->isMethod($node, $this->preg_functions);
     }
 
@@ -39,7 +43,12 @@ class MbPregExec extends BaseVisitor
      */
     public function process(Node $node)
     {
-        $fname = Code::getFunctionName($node);
+        try {
+            $fname = $this->getFunctionName($node);
+        } catch (NodeTypeException $e) {
+            return;
+        }
+
         $args_count = count($node->args);
         if (($fname == 'mb_ereg_replace' || $fname == 'mb_eregi_replace') && $args_count >= 4) {
             $option = $node->args[3]->value;

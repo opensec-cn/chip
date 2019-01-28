@@ -8,11 +8,15 @@
 
 namespace Chip;
 
+use Chip\Exception\NodeTypeException;
+use Chip\Traits\FunctionInfo;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 
 abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterface
 {
+    use FunctionInfo;
+
     /**
      * @type array $checkNodeClass
      */
@@ -53,16 +57,18 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
      * @return bool
      */
     protected function isMethod(Node $node, array $required) {
-        if ($node instanceof Node\Expr\FuncCall) {
-            $fname = Code::getFunctionName($node);
-        } elseif ($node instanceof Node\Expr\MethodCall || $node instanceof Node\Expr\StaticCall) {
-            $fname = Code::getMethodName($node);
-        } else {
+        try {
+            if ($node instanceof Node\Expr\FuncCall) {
+                $fname = $this->getFunctionName($node);
+            } elseif ($node instanceof Node\Expr\MethodCall || $node instanceof Node\Expr\StaticCall) {
+                $fname = $this->getMethodName($node);
+            } else {
+                return false;
+            }
+        } catch (NodeTypeException $e) {
             return false;
         }
 
-        return is_string($fname) && in_array($fname, $required);
+        return in_array($fname, $required);
     }
-
-
 }

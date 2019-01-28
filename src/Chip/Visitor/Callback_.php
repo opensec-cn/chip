@@ -11,7 +11,9 @@ namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
 use Chip\Code;
+use Chip\Exception\NodeTypeException;
 use Chip\Message;
+use Chip\Traits\FunctionInfo;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use PhpParser\Node;
@@ -19,7 +21,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 class Callback_ extends BaseVisitor
 {
-    use Variable, TypeHelper;
+    use Variable, TypeHelper, FunctionInfo;
 
     protected $checkNodeClass = [
         FuncCall::class
@@ -55,7 +57,11 @@ class Callback_ extends BaseVisitor
      */
     public function process(Node $node)
     {
-        $fname = Code::getFunctionName($node);
+        try {
+            $fname = $this->getFunctionName($node);
+        } catch (NodeTypeException $e) {
+            return;
+        }
 
         foreach($this->function_with_callback[$fname] as $pos) {
             if ($pos >= 0 && array_key_exists($pos, $node->args)) {

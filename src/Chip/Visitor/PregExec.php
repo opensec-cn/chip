@@ -12,15 +12,17 @@ namespace Chip\Visitor;
 use Chip\BaseVisitor;
 use Chip\Code;
 use Chip\Exception\ArgumentsFormatException;
+use Chip\Exception\NodeTypeException;
 use Chip\Exception\RegexFormatException;
 use Chip\Structure\Regex;
+use Chip\Traits\FunctionInfo;
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class PregExec extends BaseVisitor
 {
-    use TypeHelper;
+    use TypeHelper, FunctionInfo;
 
     protected $checkNodeClass = [FuncCall::class];
 
@@ -45,7 +47,12 @@ class PregExec extends BaseVisitor
         if (empty($node->args)) {
             throw ArgumentsFormatException::create(Code::printNode($node));
         }
-        $fname = Code::getFunctionName($node);
+
+        try {
+            $fname = $this->getFunctionName($node);
+        } catch (NodeTypeException $e) {
+            return;
+        }
 
         if (!$this->isString($node->args[0]->value)) {
             $this->message->danger($node, __CLASS__, "{$fname}第一个参数不是静态字符串，可能存在远程代码执行的隐患");
