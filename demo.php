@@ -7,9 +7,7 @@ use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
 <?php
-test(FILTER_CALLBACK, [
-    'options' => $e
-]);
+$f->test();
 CODE;
 
 $nameResolver = new NameResolver();

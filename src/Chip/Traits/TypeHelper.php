@@ -47,9 +47,38 @@ trait TypeHelper
         return $node instanceof Node\Scalar\LNumber || $node instanceof Node\Scalar\DNumber;
     }
 
+    public function isBitwise(Node $node)
+    {
+        return $node instanceof Node\Expr\BinaryOp\BitwiseAnd
+            || $node instanceof Node\Expr\BinaryOp\BitwiseOr
+            || $node instanceof Node\Expr\BinaryOp\BitwiseXor;
+    }
+
     public function isConstant(Node $node)
     {
-        return $node instanceof Node\Expr\ConstFetch;
+        if ($node instanceof Node\Expr\ConstFetch) {
+            return true;
+        }
+
+        if ($this->isBitwise($node)) {
+            $queue = new \SplQueue();
+            $queue->enqueue($node);
+            while (!$queue->isEmpty()) {
+                $currentNode = $queue->dequeue();
+
+                if ($this->isBitwise($currentNode)) {
+                    $queue->enqueue($currentNode->left);
+                    $queue->enqueue($currentNode->right);
+                } else {
+                    if (!$this->isConstant($currentNode)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        return false;
     }
 
     public function isVariable(Node $node)

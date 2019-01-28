@@ -117,6 +117,10 @@ class FilterVar extends BaseVisitor
             return;
         }
 
+        if ($this->isConstant($options->value) && in_array($options->value->name->toString(), $this->whitelistConstant)) {
+            return;
+        }
+
         $options = $options->value;
         if ($this->isVariable($options)) {
             $this->message->danger($node, __CLASS__, "{$this->fname}第3个参数不固定，可能存在代码执行的隐患");
