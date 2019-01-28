@@ -9,14 +9,13 @@
 namespace Chip;
 
 use Chip\Exception\NodeTypeException;
-use Chip\Traits\FunctionInfo;
+use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 
 abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterface
 {
-    use FunctionInfo;
-
+    use TypeHelper;
     /**
      * @type array $checkNodeClass
      */
@@ -44,12 +43,24 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
 
     public function enterNode(Node $node)
     {
-        if($this->checkNode($node)) {
+        if(!$this->checkNode($node)) {
+            return;
+        }
+
+        if($this->beforeProcess($node)) {
             $this->process($node);
         }
+
+        $this->afterProcess($node);
     }
 
-    abstract public function process(Node $node);
+    public function beforeProcess($node) {
+        return true;
+    }
+
+    abstract public function process($node);
+
+    public function afterProcess($node) {}
 
     /**
      * @param Node $node

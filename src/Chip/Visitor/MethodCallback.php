@@ -10,16 +10,15 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
 use Chip\Exception\NodeTypeException;
-use Chip\Traits\FunctionInfo;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
+use Chip\Traits\Walker\MethodWalker;
 use PhpParser\Node;
 
 class MethodCallback extends BaseVisitor
 {
-    use Variable, TypeHelper, FunctionInfo;
+    use Variable, TypeHelper, MethodWalker;
 
     protected $checkNodeClass = [
         Node\Expr\MethodCall::class
@@ -36,26 +35,17 @@ class MethodCallback extends BaseVisitor
         'fetchall' => [1]
     ];
 
-    /**
-     * @param Node\Expr\MethodCall $node
-     * @return bool
-     */
-    public function checkNode(Node $node)
+    protected function getWhitelistMethods()
     {
-        return parent::checkNode($node) && $this->isMethod($node, array_keys($this->sensitiveMethodName));
+        return array_keys($this->sensitiveMethodName);
     }
 
     /**
      * @param Node\Expr\MethodCall $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
-        try {
-            $fname = $this->getMethodName($node);
-        } catch (NodeTypeException $e) {
-            return;
-        }
-
+        $fname = $this->fname;
         if ($fname === 'fetchall') {
             $this->dealWithFetchAll($node);
             return;

@@ -22,7 +22,7 @@ class Shell extends BaseVisitor
         ShellExec::class
     ];
 
-    public function process(Node $node)
+    public function process($node)
     {
         if ($this->hasDynamicExpr($node)) {
             $this->message->critical($node, __CLASS__, '执行的命令中包含动态变量或函数，可能有远程命令执行风险');

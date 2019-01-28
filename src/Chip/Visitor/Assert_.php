@@ -11,33 +11,30 @@ namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
 use Chip\Exception\ArgumentsFormatException;
+use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
+use Chip\Traits\Walker\FunctionWalker;
 use PhpParser\Node;
 use Chip\Code;
 use PhpParser\Node\Expr\FuncCall;
 
 class Assert_ extends BaseVisitor
 {
-    use Variable;
+    use Variable, TypeHelper, FunctionWalker;
 
     protected $checkNodeClass = [
         FuncCall::class
     ];
 
-    /**
-     * @param FuncCall $node
-     * @return bool
-     */
-    public function checkNode(Node $node)
-    {
-        return parent::checkNode($node) && $this->isMethod($node, ['assert']);
-    }
+    protected $whitelistFunctions = [
+        'assert'
+    ];
 
     /**
      * @param \PhpParser\Node\Expr\FuncCall $node
      * @throws ArgumentsFormatException
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if (empty($node->args)) {
             throw ArgumentsFormatException::create(Code::printNode($node));

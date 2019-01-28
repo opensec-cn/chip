@@ -26,7 +26,7 @@ class DynamicStaticMethod extends BaseVisitor
     /**
      * @param StaticCall $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         $class = $node->class;
         $name = $node->name;

@@ -13,6 +13,7 @@ use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node;
+use Chip\Exception\NodeTypeException;
 
 trait TypeHelper
 {
@@ -23,7 +24,7 @@ trait TypeHelper
 
     public function isQualify(Node $node)
     {
-        return $this->isName($node) || $this->isQualify($node);
+        return $this->isName($node) || $this->isIdentifier($node);
     }
 
     public function isName(Node $node)
@@ -44,5 +45,35 @@ trait TypeHelper
     public function isNumber(Node $node)
     {
         return $node instanceof Node\Scalar\LNumber || $node instanceof Node\Scalar\DNumber;
+    }
+
+    /**
+     * @param Node\Expr\FuncCall $node
+     * @return string
+     * @throws NodeTypeException
+     */
+    public function getFunctionName(Node\Expr\FuncCall $node)
+    {
+        if ($this->isName($node->name)) {
+            return $node->name->toLowerString();
+        } elseif ($this->isString($node->name)) {
+            return strtolower($node->name->value);
+        } else {
+            throw new NodeTypeException();
+        }
+    }
+
+    /**
+     * @param Node\Expr\MethodCall | Node\Expr\StaticCall $node
+     * @return Node|string
+     * @throws NodeTypeException
+     */
+    public function getMethodName(Node $node)
+    {
+        if ($this->isIdentifier($node->name)) {
+            return $node->name->toLowerString();
+        } else {
+            throw new NodeTypeException();
+        }
     }
 }

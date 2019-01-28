@@ -34,7 +34,7 @@ class Extends_ extends BaseVisitor
     /**
      * @param Node\Stmt\Class_ $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if ($this->isName($node->extends)) {
             $className = $node->extends->toLowerString();

@@ -25,7 +25,7 @@ class DynamicCall extends BaseVisitor
     /**
      * @param Node\Expr\FuncCall $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if ($this->hasDynamicExpr($node->name)) {
             $this->message->danger($node, __CLASS__, '动态调用函数，可能存在远程代码执行的隐患');

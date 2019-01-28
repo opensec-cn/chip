@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-(base64_decode("abcd"))();
+$f();
 CODE;
 
 

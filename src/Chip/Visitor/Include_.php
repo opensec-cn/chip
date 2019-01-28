@@ -31,7 +31,7 @@ class Include_ extends BaseVisitor
     /**
      * @param Node\Expr\Include_ $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         $last_part = $this->getRecursivePart($node->expr);
 

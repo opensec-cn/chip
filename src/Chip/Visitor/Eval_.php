@@ -24,7 +24,7 @@ class Eval_ extends BaseVisitor
     /**
      * @param EvalNode $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if ($this->hasDynamicExpr($node->expr)) {
             $this->message->critical($node, __CLASS__,'eval参数包含动态变量或函数，可能有远程代码执行的隐患');

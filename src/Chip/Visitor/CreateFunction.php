@@ -12,32 +12,29 @@ namespace Chip\Visitor;
 use Chip\BaseVisitor;
 use Chip\Code;
 use Chip\Exception\ArgumentsFormatException;
+use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
+use Chip\Traits\Walker\FunctionWalker;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class CreateFunction extends BaseVisitor
 {
-    use Variable;
+    use Variable, TypeHelper, FunctionWalker;
 
     protected $checkNodeClass = [
         FuncCall::class
     ];
 
-    /**
-     * @param FuncCall $node
-     * @return bool
-     */
-    public function checkNode(Node $node)
-    {
-        return parent::checkNode($node) && $this->isMethod($node, ['create_function']);
-    }
+    protected $whitelistFunctions = [
+        'create_function'
+    ];
 
     /**
      * @param FuncCall $node
      * @throws ArgumentsFormatException
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if (count($node->args) < 2) {
             throw ArgumentsFormatException::create(Code::printNode($node));

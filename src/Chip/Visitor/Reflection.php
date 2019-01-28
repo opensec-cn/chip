@@ -10,7 +10,6 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\Node\Expr\New_;
@@ -36,7 +35,7 @@ class Reflection extends BaseVisitor
     /**
      * @param New_ $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if ($this->isName($node->class)) {
             $className = $node->class->toLowerString();

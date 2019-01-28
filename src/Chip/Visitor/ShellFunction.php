@@ -13,18 +13,19 @@ use Chip\BaseVisitor;
 use Chip\Code;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Traits\Variable;
+use Chip\Traits\Walker\FunctionWalker;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class ShellFunction extends BaseVisitor
 {
-    use Variable;
+    use Variable, FunctionWalker;
 
     protected $checkNodeClass = [
         FuncCall::class
     ];
 
-    protected $exec_functions = [
+    protected $whitelistFunctions = [
         'system',
         'shell_exec',
         'exec',
@@ -35,18 +36,9 @@ class ShellFunction extends BaseVisitor
 
     /**
      * @param FuncCall $node
-     * @return bool
-     */
-    public function checkNode(Node $node)
-    {
-        return parent::checkNode($node) && $this->isMethod($node, $this->exec_functions);
-    }
-
-    /**
-     * @param FuncCall $node
      * @throws ArgumentsFormatException
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if (empty($node->args)) {
             throw ArgumentsFormatException::create(Code::printNode($node));

@@ -15,44 +15,35 @@ use Chip\Exception\ArgumentsFormatException;
 use Chip\Exception\NodeTypeException;
 use Chip\Exception\RegexFormatException;
 use Chip\Structure\Regex;
-use Chip\Traits\FunctionInfo;
 use Chip\Traits\TypeHelper;
+use Chip\Traits\Walker\FunctionWalker;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class PregExec extends BaseVisitor
 {
-    use TypeHelper, FunctionInfo;
+    use TypeHelper, FunctionWalker;
 
-    protected $checkNodeClass = [FuncCall::class];
+    protected $checkNodeClass = [
+        FuncCall::class
+    ];
 
-    protected $preg_functions = ['preg_replace', 'preg_filter'];
-
-    /**
-     * @param FuncCall $node
-     * @return bool
-     */
-    public function checkNode(Node $node)
-    {
-        return parent::checkNode($node) && $this->isMethod($node, $this->preg_functions);
-    }
+    protected $whitelistFunctions = [
+        'preg_replace',
+        'preg_filter'
+    ];
 
     /**
      * @param FuncCall $node
      * @throws ArgumentsFormatException
      * @throws RegexFormatException
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if (empty($node->args)) {
             throw ArgumentsFormatException::create(Code::printNode($node));
         }
-
-        try {
-            $fname = $this->getFunctionName($node);
-        } catch (NodeTypeException $e) {
-            return;
-        }
+        $fname = $this->fname;
 
         if (!$this->isString($node->args[0]->value)) {
             $this->message->danger($node, __CLASS__, "{$fname}第一个参数不是静态字符串，可能存在远程代码执行的隐患");

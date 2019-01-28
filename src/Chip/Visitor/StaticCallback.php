@@ -10,7 +10,6 @@ namespace Chip\Visitor;
 
 
 use Chip\BaseVisitor;
-use Chip\Code;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use PhpParser\Node;
@@ -29,15 +28,12 @@ class StaticCallback extends BaseVisitor
         'closure::fromcallable' => [0]
     ];
 
-    public function checkNode(Node $node)
+    /**
+     * @param StaticCall $node
+     * @return bool
+     */
+    public function beforeProcess($node)
     {
-        if (!parent::checkNode($node)) {
-            return false;
-        }
-
-        /**
-         * @var StaticCall $node
-         */
         if ($this->isName($node->class) && $this->isIdentifier($node->name)) {
             $class = $node->class->toLowerString();
             $fname = $node->name->toLowerString();
@@ -50,7 +46,7 @@ class StaticCallback extends BaseVisitor
     /**
      * @param StaticCall $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         $fname = "{$node->class->toLowerString()}::{$node->name->toLowerString()}";
         foreach($this->sensitiveMethodName[$fname] as $pos) {

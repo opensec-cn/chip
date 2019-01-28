@@ -12,43 +12,32 @@ namespace Chip\Visitor;
 use Chip\BaseVisitor;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Exception\NodeTypeException;
-use Chip\Traits\FunctionInfo;
 use Chip\Traits\TypeHelper;
+use Chip\Traits\Walker\FunctionWalker;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class MbPregExec extends BaseVisitor
 {
-    use TypeHelper, FunctionInfo;
+    use TypeHelper, FunctionWalker;
 
-    protected $checkNodeClass = [FuncCall::class];
+    protected $checkNodeClass = [
+        FuncCall::class
+    ];
 
-    protected $preg_functions = ['mb_ereg_replace', 'mb_eregi_replace', 'mb_regex_set_options'];
-
-    private $fname = '';
-
-    /**
-     * @param FuncCall $node
-     * @return bool
-     */
-    public function checkNode(Node $node)
-    {
-        // $this->fname = $this->getFunctionName($node);
-        return parent::checkNode($node) && $this->isMethod($node, $this->preg_functions);
-    }
+    protected $whitelistFunctions = [
+        'mb_ereg_replace',
+        'mb_eregi_replace',
+        'mb_regex_set_options'
+    ];
 
     /**
      * @param FuncCall $node
      * @throws ArgumentsFormatException
      */
-    public function process(Node $node)
+    public function process($node)
     {
-        try {
-            $fname = $this->getFunctionName($node);
-        } catch (NodeTypeException $e) {
-            return;
-        }
-
+        $fname = $this->fname;
         $args_count = count($node->args);
         if (($fname == 'mb_ereg_replace' || $fname == 'mb_eregi_replace') && $args_count >= 4) {
             $option = $node->args[3]->value;

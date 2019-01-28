@@ -25,7 +25,7 @@ class DynamicNew extends BaseVisitor
     /**
      * @param New_ $node
      */
-    public function process(Node $node)
+    public function process($node)
     {
         if ($this->hasVariable($node->class)) {
             $this->message->warning($node, __CLASS__, '动态创建类对象，可能存在远程代码执行的隐患');

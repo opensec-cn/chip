@@ -16,5 +16,5 @@ interface VisitorInterface extends NodeVisitor
 {
     public function checkNode(Node $node);
 
-    public function process(Node $node);
+    public function process($node);
 }
