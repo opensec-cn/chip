@@ -10,12 +10,13 @@ namespace Chip\Tests\Traits;
 
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class TypeHelperTest extends TestCase
 {
     /**
-     * @var TypeHelper null
+     * @var TypeHelper $typeHelperTrait
      */
     protected $typeHelperTrait = null;
 
