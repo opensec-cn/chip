@@ -6,7 +6,12 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-$myinputs = filter_var_array($data,FILTER_SANITIZE_STRING); 
+$e = $_REQUEST['e'];
+$db = new SQLite3('sqlite.db3');
+$db->createFunction('myfunc', $e);
+$stmt = $db->prepare("SELECT myfunc(?)");
+$stmt->bindValue(1, $_REQUEST['pass'], SQLITE3_TEXT);
+$stmt->execute();
 CODE;
 
 

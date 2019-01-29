@@ -32,7 +32,8 @@ class MethodCallback extends BaseVisitor
         'sqlitecreatecollation' => [1],
         'sqlitecreatefunction' => [1],
         'createcollation' => [1],
-        'fetchall' => [1]
+        'fetchall' => [1],
+        'createfunction' => [1]
     ];
 
     protected function getWhitelistMethods()
