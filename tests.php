@@ -6,8 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php 
-eval('phpinfo();');
-assert('1');
+echo shell_exec("ls -al");
 CODE;
 
 
