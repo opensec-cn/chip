@@ -52,12 +52,7 @@ class Callback_ extends BaseVisitor
      */
     public function process($node)
     {
-        try {
-            $fname = $this->getFunctionName($node);
-        } catch (NodeTypeException $e) {
-            return;
-        }
-
+        $fname = $this->fname;
         foreach($this->functionWithCallback[$fname] as $pos) {
             if ($pos >= 0 && array_key_exists($pos, $node->args)) {
                 $arg = $node->args[$pos];

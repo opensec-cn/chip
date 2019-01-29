@@ -40,7 +40,6 @@ class CallbackTest extends VisitTestCase
             'ob_start($callback);',
             "register_shutdown_function(\$e, \$_REQUEST['pass']);",
             "register_tick_function(\$e, \$_REQUEST['pass']);",
-
         ];
 
         foreach ($cases as $code) {
