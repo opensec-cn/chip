@@ -14,6 +14,6 @@ class FormatException extends \Exception
     public static function create(string $error_code = ""): FormatException
     {
         $message = "Code '{$error_code}' format error";
-        return new self($message);
+        return new static($message);
     }
 }

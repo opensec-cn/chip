@@ -10,6 +10,7 @@ namespace Chip\Tests\Visitor;
 
 
 use Chip\AlarmLevel;
+use Chip\Exception\ArgumentsFormatException;
 use Chip\Tests\VisitTestCase;
 use Chip\Visitor\CreateFunction;
 
@@ -55,10 +56,15 @@ class CreateFunctionTest extends VisitTestCase
     }
 
     /**
-     * @expectedException \Chip\Exception\FormatException
+     * @throws \Exception
      */
     public function testException()
     {
-        $this->detectCode('create_function($code);');
+        try {
+            $this->detectCode('create_function($code);');
+            throw new \Exception;
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(ArgumentsFormatException::class, $e);
+        }
     }
 }

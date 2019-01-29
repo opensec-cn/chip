@@ -10,6 +10,7 @@ namespace Chip\Tests\Visitor;
 
 
 use Chip\AlarmLevel;
+use Chip\Exception\ArgumentsFormatException;
 use Chip\Tests\VisitTestCase;
 use Chip\Visitor\Assert_;
 
@@ -41,10 +42,15 @@ class AssertTest extends VisitTestCase
     }
 
     /**
-     * @expectedException \Chip\Exception\FormatException
+     * @throws \Exception
      */
     public function testWrongAssert()
     {
-        $this->detectCode('assert();');
+        try {
+            $this->detectCode('assert();');
+            throw new \Exception;
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(ArgumentsFormatException::class, $e);
+        }
     }
 }

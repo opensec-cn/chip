@@ -8,6 +8,7 @@
 
 namespace Chip\Tests\Traits;
 
+use Chip\Exception\NodeTypeException;
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -103,7 +104,6 @@ class TypeHelperTest extends TestCase
 
     /**
      * @throws \Exception
-     * @expectedException \Chip\Exception\NodeTypeException
      */
     public function testGetFunctionName()
     {
@@ -118,14 +118,10 @@ class TypeHelperTest extends TestCase
 
         $node = new Node\Expr\FuncCall(new Node\Scalar\String_('phpINFO'));
         $this->assertEquals('phpinfo', $this->typeHelperTrait->getFunctionName($node));
-
-        $node = new Node\Expr\FuncCall(new Node\Expr\Variable('variable'));
-        $this->typeHelperTrait->getFunctionName($node);
     }
 
     /**
      * @throws \Exception
-     * @expectedException \Chip\Exception\NodeTypeException
      */
     public function testGetMethodName()
     {
@@ -135,14 +131,38 @@ class TypeHelperTest extends TestCase
         $node = new Node\Expr\MethodCall(new Node\Expr\Variable('variable'), new Node\Identifier('TEST'));
         $this->assertEquals('test', $this->typeHelperTrait->getMethodName($node));
 
-        $node = new Node\Expr\MethodCall(new Node\Expr\Variable('variable'), new Node\Expr\Variable('test'));
-        $this->typeHelperTrait->getMethodName($node);
-
         $node = new Node\Expr\StaticCall(new Node\Name('FOO'), new Node\Identifier('BAR'));
         $this->assertEquals('bar', $this->typeHelperTrait->getMethodName($node));
+    }
 
-        $node = new Node\Expr\StaticCall(new Node\Name('FOO'), new Node\Expr\Variable('variable'));
-        $this->typeHelperTrait->getMethodName($node);
+    /**
+     * @throws \Exception
+     */
+    public function testWrongNode()
+    {
+        try {
+            $node = new Node\Expr\FuncCall(new Node\Expr\Variable('variable'));
+            $this->typeHelperTrait->getFunctionName($node);
+            throw new \Exception;
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(NodeTypeException::class, $e);
+        }
+
+        try {
+            $node = new Node\Expr\StaticCall(new Node\Name('FOO'), new Node\Expr\Variable('variable'));
+            $this->typeHelperTrait->getMethodName($node);
+            throw new \Exception;
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(NodeTypeException::class, $e);
+        }
+
+        try {
+            $node = new Node\Expr\MethodCall(new Node\Expr\Variable('variable'), new Node\Expr\Variable('test'));
+            $this->typeHelperTrait->getMethodName($node);
+            throw new \Exception;
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(NodeTypeException::class, $e);
+        }
     }
 
     /**
