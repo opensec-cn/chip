@@ -32,11 +32,11 @@ class DynamicStaticMethod extends BaseVisitor
         $name = $node->name;
 
         if ($this->hasDynamicExpr($class)) {
-            $this->message->warning($node, __CLASS__, '以动态类形式调用静态方法，可能存在远程代码执行的隐患');
+            $this->message->danger($node, __CLASS__, '以动态类形式调用静态方法，可能存在远程代码执行的隐患');
             return;
         }
 
-        if ($this->hasVariable($name)) {
+        if ($this->hasDynamicExpr($name)) {
             $this->message->danger($node, __CLASS__, '动态调用方法，可能存在远程代码执行的隐患');
             return;
         }

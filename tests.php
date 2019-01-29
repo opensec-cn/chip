@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php 
-echo shell_exec("ls -al");
+foo()::{'bar'}();
 CODE;
 
 

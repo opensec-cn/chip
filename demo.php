@@ -7,7 +7,7 @@ use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
 <?php
-$f->test();
+('foo')::{'bar'}();
 CODE;
 
 $nameResolver = new NameResolver();
