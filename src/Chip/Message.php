@@ -27,35 +27,34 @@ class Message extends \ArrayObject implements \JsonSerializable
         ];
     }
 
-    protected function putMessage($node, $level, $type, $message)
+    public function putMessage($level, $type, $message, ...$positions)
     {
-        $positions = $this->getPositions($node);
         $this[] = new Alarm($level, $type, $message, ...$positions);
     }
 
     public function info(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::INFO(), $type, $message);
+        $this->putMessage(AlarmLevel::INFO(), $type, $message, ...$this->getPositions($node));
     }
 
     public function warning(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::WARNING(), $type, $message);
+        $this->putMessage(AlarmLevel::WARNING(), $type, $message, ...$this->getPositions($node));
     }
 
     public function danger(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::DANGER(), $type, $message);
+        $this->putMessage(AlarmLevel::DANGER(), $type, $message, ...$this->getPositions($node));
     }
 
     public function critical(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::CRITICAL(), $type, $message);
+        $this->putMessage(AlarmLevel::CRITICAL(), $type, $message, ...$this->getPositions($node));
     }
 
     public function safe(Node $node, string $type, string $message)
     {
-        $this->putMessage($node, AlarmLevel::SAFE(), $type, $message);
+        $this->putMessage(AlarmLevel::SAFE(), $type, $message, ...$this->getPositions($node));
     }
 
     public function jsonSerialize()

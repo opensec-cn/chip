@@ -33,10 +33,16 @@ class Chip
      */
     protected $traverser;
 
+    /**
+     * @var Message $message
+     */
+    protected $message;
+
     function __construct(array $visitors)
     {
         $this->bootstrapContainer();
         $this->bootstrapParser();
+        $this->bootstrapMessage();
 
         array_unshift($visitors, \PhpParser\NodeVisitor\NameResolver::class);
         $this->bootstrapVisitor($visitors);
@@ -57,6 +63,15 @@ class Chip
     protected function bootstrapContainer()
     {
         $this->container = new Container();
+    }
+
+    protected function bootstrapMessage()
+    {
+        try {
+            $this->message = $this->container->get(Message::class);
+        } catch (\DI\DependencyException | \DI\NotFoundException $e) {
+            // something wrong?
+        }
     }
 
     /**
@@ -83,8 +98,19 @@ class Chip
      */
     public function feed($code)
     {
-        $stmts = $this->parser->parse($code);
-        $this->traverser->traverse($stmts);
+        try {
+            $stmts = $this->parser->parse($code);
+            $this->traverser->traverse($stmts);
+        } catch (\PhpParser\Error $e) {
+            $this->message->putMessage(
+                AlarmLevel::WARNING(),
+                'InvalidPhpFile',
+                'PHP脚本格式错误，可能是Webshell',
+                $e->getStartLine(),
+                $e->getEndLine(),
+                0, 0
+                );
+        }
 
         return $this;
     }
@@ -96,11 +122,6 @@ class Chip
      */
     public function alarms()
     {
-        try {
-            $message = $this->container->get('Chip\Message');
-            return $message;
-        } catch (\DI\DependencyException | \DI\NotFoundException $e) {
-            return [];
-        }
+        return $this->message->getArrayCopy();
     }
 }
