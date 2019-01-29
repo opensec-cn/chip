@@ -36,7 +36,7 @@ class Extends_ extends BaseVisitor
      */
     public function process($node)
     {
-        if ($this->isName($node->extends)) {
+        if ($node->extends instanceof Node && $this->isName($node->extends)) {
             $className = $node->extends->toLowerString();
 
             if (in_array($className, array_map('strtolower', $this->dangerClassName))) {
