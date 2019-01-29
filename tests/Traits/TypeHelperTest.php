@@ -88,17 +88,17 @@ class TypeHelperTest extends TestCase
         $this->assertTrue($this->typeHelperTrait->isConstant($c1));
 
         $b1 = new Node\Expr\BinaryOp\BitwiseOr($c1, $c2);
-        $this->assertTrue($this->typeHelperTrait->isConstant($b1));
+        $this->assertTrue($this->typeHelperTrait->isMixConstant($b1));
 
         $b2 = new Node\Expr\BinaryOp\BitwiseAnd($b1, $c3);
-        $this->assertTrue($this->typeHelperTrait->isConstant($b2));
+        $this->assertTrue($this->typeHelperTrait->isMixConstant($b2));
 
         $b3 = new Node\Expr\BinaryOp\BitwiseOr($c3, $c4);
         $b4 = new Node\Expr\BinaryOp\BitwiseAnd($b1, $b3);
-        $this->assertTrue($this->typeHelperTrait->isConstant($b4));
+        $this->assertTrue($this->typeHelperTrait->isMixConstant($b4));
 
         $b5 = new Node\Expr\BinaryOp\BitwiseOr($c4, new Node\Expr\Variable('variable'));
-        $this->assertFalse($this->typeHelperTrait->isConstant($b5));
+        $this->assertFalse($this->typeHelperTrait->isMixConstant($b5));
     }
 
     /**

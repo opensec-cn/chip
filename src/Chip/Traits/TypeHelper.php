@@ -56,10 +56,11 @@ trait TypeHelper
 
     public function isConstant(Node $node)
     {
-        if ($node instanceof Node\Expr\ConstFetch) {
-            return true;
-        }
+        return $node instanceof Node\Expr\ConstFetch;
+    }
 
+    public function isMixConstant(Node $node)
+    {
         if ($this->isBitwise($node)) {
             $queue = new \SplQueue();
             $queue->enqueue($node);

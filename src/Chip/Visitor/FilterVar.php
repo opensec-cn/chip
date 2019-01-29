@@ -89,16 +89,12 @@ class FilterVar extends BaseVisitor
      */
     public function process($node)
     {
-        if (count($node->args) < 3) {
-            return;
-        }
-
-        if ($this->fname === 'filter_var') {
+        if ($this->fname === 'filter_var' && count($node->args) >= 3) {
             $filter = $node->args[1];
             $options = $node->args[2];
 
             $this->filterVar($node, $filter, $options);
-        } else {
+        } elseif ($this->fname === 'filter_var_array' && count($node->args) >= 2) {
             $options = $node->args[1];
 
             $this->filterVarArray($node, $options);
@@ -113,11 +109,7 @@ class FilterVar extends BaseVisitor
      */
     protected function filterVar($node, $filter, $options)
     {
-        if ($this->isConstant($filter->value) && in_array($filter->value->name->toString(), $this->whitelistConstant)) {
-            return;
-        }
-
-        if ($this->isConstant($options->value) && in_array($options->value->name->toString(), $this->whitelistConstant)) {
+        if ($this->isSafeFilter($filter->value) || $this->isSafeOptions($options->value)) {
             return;
         }
 
@@ -139,7 +131,7 @@ class FilterVar extends BaseVisitor
             }
             return;
         } elseif ($this->hasDynamicExpr($options)) {
-            $this->message->warning($node, __CLASS__, "{$this->fname}第3个参数畸形，可能存在命令执行漏洞");
+            $this->message->danger($node, __CLASS__, "{$this->fname}第3个参数畸形，可能存在命令执行漏洞");
             return;
         }
     }
@@ -150,12 +142,17 @@ class FilterVar extends BaseVisitor
      */
     protected function filterVarArray($node, $options)
     {
+        $options = $options->value;
+        if ($this->isSafeOptions($options)) {
+            return;
+        }
+
         if ($this->isVariable($options)) {
             $this->message->danger($node, __CLASS__, "{$this->fname}第2个参数不固定，可能存在代码执行的隐患");
             return;
         } elseif ($this->isArray($options)) {
             foreach ($options->items as $item) {
-                if ($this->isConstant($item->value)) {
+                if ($this->isSafeFilter($item->value)) {
                     continue;
                 }
 
@@ -176,7 +173,7 @@ class FilterVar extends BaseVisitor
                     }
 
                     if ($subFilter && $subOptions) {
-                        if ($this->isConstant($subFilter) && in_array($subFilter->value->name->toString(), $this->whitelistConstant)) {
+                        if ($this->isSafeFilter($subFilter)) {
                             continue;
                         }
 
@@ -192,8 +189,26 @@ class FilterVar extends BaseVisitor
             }
             return;
         } elseif ($this->hasDynamicExpr($options)) {
-            $this->message->warning($node, __CLASS__, "{$this->fname}第2个参数畸形，可能存在命令执行漏洞");
+            $this->message->danger($node, __CLASS__, "{$this->fname}第2个参数畸形，可能存在命令执行漏洞");
             return;
         }
+    }
+
+    protected function isSafeOptions($node)
+    {
+        if ($this->isConstant($node) && in_array($node->name->toString(), $this->whitelistConstant)) {
+            return true;
+        }
+
+        if ($this->isMixConstant($node)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function isSafeFilter($node)
+    {
+        return $this->isConstant($node) && in_array($node->name->toString(), $this->whitelistConstant);
     }
 }

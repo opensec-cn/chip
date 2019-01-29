@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php
-$f();
+$myinputs = filter_var_array($data,FILTER_SANITIZE_STRING); 
 CODE;
 
 
