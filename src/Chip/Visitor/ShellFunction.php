@@ -43,7 +43,8 @@ class ShellFunction extends BaseVisitor
             throw ArgumentsFormatException::create(dump_node($node));
         }
 
-        if ($this->hasDynamicExpr($node)) {
+        $arg = $node->args[0]->value;
+        if ($this->hasDynamicExpr($arg)) {
             $this->message->critical($node, __CLASS__, '执行的命令中包含动态变量或函数，可能有远程命令执行风险');
         } else {
             $this->message->info($node, __CLASS__, '执行命令');
