@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php 
-mb_ereg_replace('.*', $_REQUEST['pass'], '', 'e');
+$s->fetchAll(7, 0);
 CODE;
 
 

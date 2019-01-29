@@ -27,7 +27,7 @@ class MethodCallback extends BaseVisitor
     protected $sensitiveMethodName = [
         'uasort' => [0],
         'uksort' => [0],
-        'set_local_infile_handler' => [1],
+        'set_local_infile_handler' => [0],
         'sqlitecreateaggregate' => [1, 2],
         'sqlitecreatecollation' => [1],
         'sqlitecreatefunction' => [1],
