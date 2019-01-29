@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php 
-foo()::{'bar'}();
+mb_ereg_replace('.*', $_REQUEST['pass'], '', 'e');
 CODE;
 
 
