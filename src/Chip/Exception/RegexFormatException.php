@@ -11,8 +11,9 @@ namespace Chip\Exception;
 
 /**
  * Class RegexFormatException
+ *
  * @package Chip\Exception
- * @method static RegexFormatException create($error_code)
+ * @method  static RegexFormatException create($error_code)
  */
 class RegexFormatException extends FormatException
 {

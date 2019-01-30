@@ -17,7 +17,7 @@ trait FunctionWalker
     protected $fname = '';
 
     /**
-     * @param Node\Expr\FuncCall $node
+     * @param  Node\Expr\FuncCall $node
      * @return bool
      */
     public function beforeProcess($node)

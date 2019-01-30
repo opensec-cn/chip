@@ -11,8 +11,9 @@ namespace Chip\Exception;
 
 /**
  * Class ArgumentsFormatException
+ *
  * @package Chip\Exception
- * @method static ArgumentsFormatException create($error_code)
+ * @method  static ArgumentsFormatException create($error_code)
  */
 class ArgumentsFormatException extends FormatException
 {

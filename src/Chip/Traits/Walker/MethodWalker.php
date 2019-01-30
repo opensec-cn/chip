@@ -14,16 +14,17 @@ use PhpParser\Node;
 
 /**
  * Trait MethodWalker
- * @package Chip\Traits\Walker
+ *
+ * @package       Chip\Traits\Walker
  * @property-read $whitelistMethods
- * @method getMethodName($node)
+ * @method        getMethodName($node)
  */
 trait MethodWalker
 {
     protected $fname = '';
 
     /**
-     * @param Node\Expr\MethodCall $node
+     * @param  Node\Expr\MethodCall $node
      * @return bool
      */
     public function beforeProcess($node)

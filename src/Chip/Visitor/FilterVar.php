@@ -84,7 +84,7 @@ class FilterVar extends BaseVisitor
     ];
 
     /**
-     * @param FuncCall $node
+     * @param  FuncCall $node
      * @throws ArgumentsFormatException
      */
     public function process($node)
@@ -102,9 +102,9 @@ class FilterVar extends BaseVisitor
     }
 
     /**
-     * @param FuncCall $node
-     * @param Arg $filter
-     * @param Arg $options
+     * @param  FuncCall $node
+     * @param  Arg      $filter
+     * @param  Arg      $options
      * @throws ArgumentsFormatException
      */
     protected function filterVar($node, $filter, $options)
@@ -138,7 +138,7 @@ class FilterVar extends BaseVisitor
 
     /**
      * @param FuncCall $node
-     * @param Arg $options
+     * @param Arg      $options
      */
     protected function filterVarArray($node, $options)
     {

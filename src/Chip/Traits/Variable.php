@@ -47,26 +47,30 @@ trait Variable
 
     public function hasVariable(Node $node)
     {
-        $hasVariable = $this->traverseNode($node, function ($cur_node) {
-            if ($cur_node instanceof Node\Expr\Variable || $cur_node instanceof Node\Expr\PropertyFetch || $cur_node instanceof Node\Expr\ConstFetch || $cur_node instanceof Node\Expr\ClassConstFetch) {
-                return true;
-            }
+        $hasVariable = $this->traverseNode(
+            $node, function ($cur_node) {
+                if ($cur_node instanceof Node\Expr\Variable || $cur_node instanceof Node\Expr\PropertyFetch || $cur_node instanceof Node\Expr\ConstFetch || $cur_node instanceof Node\Expr\ClassConstFetch) {
+                    return true;
+                }
 
-            return null;
-        });
+                return null;
+            }
+        );
 
         return boolval($hasVariable);
     }
 
     public function hasFunctionCall(Node $node)
     {
-        $hasFunctionCall = $this->traverseNode($node, function ($cur_node) {
-            if ($cur_node instanceof Node\Expr\MethodCall || $cur_node instanceof Node\Expr\FuncCall || $cur_node instanceof Node\Expr\New_ || $cur_node instanceof Node\Expr\StaticCall) {
-                return true;
-            }
+        $hasFunctionCall = $this->traverseNode(
+            $node, function ($cur_node) {
+                if ($cur_node instanceof Node\Expr\MethodCall || $cur_node instanceof Node\Expr\FuncCall || $cur_node instanceof Node\Expr\New_ || $cur_node instanceof Node\Expr\StaticCall) {
+                    return true;
+                }
 
-            return null;
-        });
+                return null;
+            }
+        );
 
         return boolval($hasFunctionCall);
     }

@@ -1,5 +1,6 @@
 <?php
-define('FUNCTION_WITH_CALLABLE', array (
+define(
+    'FUNCTION_WITH_CALLABLE', array (
     0 =>
         array (
             'function' => 'apcu_entry',
@@ -750,4 +751,5 @@ define('FUNCTION_WITH_CALLABLE', array (
             'pos' => 1,
             'arg' => 'callable $handler',
         ),
-));
+    )
+);

@@ -13,12 +13,13 @@ use MyCLabs\Enum\Enum;
 
 /**
  * Class AlarmLevel
+ *
  * @package Chip
- * @method static AlarmLevel SAFE()
- * @method static AlarmLevel INFO()
- * @method static AlarmLevel WARNING()
- * @method static AlarmLevel DANGER()
- * @method static AlarmLevel CRITICAL()
+ * @method  static AlarmLevel SAFE()
+ * @method  static AlarmLevel INFO()
+ * @method  static AlarmLevel WARNING()
+ * @method  static AlarmLevel DANGER()
+ * @method  static AlarmLevel CRITICAL()
  */
 class AlarmLevel extends Enum
 {

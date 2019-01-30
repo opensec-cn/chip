@@ -31,15 +31,17 @@ class Callback_ extends BaseVisitor
     function __construct(Message $message)
     {
         parent::__construct($message);
-        $this->functionWithCallback = array_reduce(FUNCTION_WITH_CALLABLE, function ($carry, $item) {
-            if (array_key_exists($item['function'], $carry)) {
-                $carry[$item['function']][] = $item['pos'];
-            } else {
-                $carry[$item['function']] = [$item['pos']];
-            }
+        $this->functionWithCallback = array_reduce(
+            FUNCTION_WITH_CALLABLE, function ($carry, $item) {
+                if (array_key_exists($item['function'], $carry)) {
+                    $carry[$item['function']][] = $item['pos'];
+                } else {
+                    $carry[$item['function']] = [$item['pos']];
+                }
 
-            return $carry;
-        }, []);
+                return $carry;
+            }, []
+        );
     }
 
     function getWhitelistFunctions()

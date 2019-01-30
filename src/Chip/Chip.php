@@ -50,11 +50,13 @@ class Chip
 
     protected function bootstrapParser()
     {
-        $lexer = new \PhpParser\Lexer(array(
+        $lexer = new \PhpParser\Lexer(
+            array(
             'usedAttributes' => array(
                 'startLine', 'endLine', 'startFilePos', 'endFilePos'
             )
-        ));
+            )
+        );
 
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, $lexer);
         $this->traverser = new NodeTraverser();
@@ -92,7 +94,7 @@ class Chip
     /**
      * 对代码进行扫描测试
      *
-     * @param string $code
+     * @param  string $code
      * @return $this
      * @throws Exception\FormatException
      */
@@ -109,7 +111,7 @@ class Chip
                 $e->getStartLine(),
                 $e->getEndLine(),
                 0, 0
-                );
+            );
         }
 
         return $this;

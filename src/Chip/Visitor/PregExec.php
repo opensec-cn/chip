@@ -34,7 +34,7 @@ class PregExec extends BaseVisitor
     ];
 
     /**
-     * @param FuncCall $node
+     * @param  FuncCall $node
      * @throws ArgumentsFormatException
      * @throws RegexFormatException
      */

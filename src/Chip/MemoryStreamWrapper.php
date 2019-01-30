@@ -21,7 +21,7 @@ class MemoryStreamWrapper
     {
         $this->_position = 0;
         $this->_content = substr($path, strlen(self::WRAPPER_NAME) + 3);
-        return TRUE;
+        return true;
     }
 
     public function stream_read($count)

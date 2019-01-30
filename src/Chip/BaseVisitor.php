@@ -54,20 +54,24 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
         $this->afterProcess($node);
     }
 
-    public function beforeProcess($node) {
+    public function beforeProcess($node)
+    {
         return true;
     }
 
     abstract public function process($node);
 
-    public function afterProcess($node) {}
+    public function afterProcess($node)
+    {
+    }
 
     /**
-     * @param Node $node
-     * @param array $required
+     * @param  Node  $node
+     * @param  array $required
      * @return bool
      */
-    protected function isMethod(Node $node, array $required) {
+    protected function isMethod(Node $node, array $required)
+    {
         try {
             if ($node instanceof Node\Expr\FuncCall) {
                 $fname = $this->getFunctionName($node);

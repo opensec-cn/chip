@@ -29,7 +29,7 @@ class StaticCallback extends BaseVisitor
     ];
 
     /**
-     * @param StaticCall $node
+     * @param  StaticCall $node
      * @return bool
      */
     public function beforeProcess($node)

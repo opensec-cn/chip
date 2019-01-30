@@ -34,7 +34,7 @@ class ShellFunction extends BaseVisitor
     ];
 
     /**
-     * @param FuncCall $node
+     * @param  FuncCall $node
      * @throws ArgumentsFormatException
      */
     public function process($node)

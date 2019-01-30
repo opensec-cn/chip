@@ -1,5 +1,6 @@
 <?php
-define('METHOD_WITH_CALLABLE', array (
+define(
+    'METHOD_WITH_CALLABLE', array (
     0 =>
         array (
             'class' => 'ArrayIterator',
@@ -1224,4 +1225,5 @@ define('METHOD_WITH_CALLABLE', array (
             'arg' => 'callable $watcher_cb = NULL',
             'static' => false,
         ),
-));
+    )
+);

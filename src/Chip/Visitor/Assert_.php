@@ -30,7 +30,7 @@ class Assert_ extends BaseVisitor
     ];
 
     /**
-     * @param \PhpParser\Node\Expr\FuncCall $node
+     * @param  \PhpParser\Node\Expr\FuncCall $node
      * @throws ArgumentsFormatException
      */
     public function process($node)

@@ -93,7 +93,7 @@ trait TypeHelper
     }
 
     /**
-     * @param Node\Expr\FuncCall $node
+     * @param  Node\Expr\FuncCall $node
      * @return string
      * @throws NodeTypeException
      */
@@ -102,6 +102,9 @@ trait TypeHelper
         if ($this->isName($node->name)) {
             return $node->name->toLowerString();
         } elseif ($this->isString($node->name)) {
+            /**
+             * @var \PhpParser\Node\Scalar\String_ $node->name
+             */
             return strtolower($node->name->value);
         } else {
             throw new NodeTypeException();
@@ -109,7 +112,7 @@ trait TypeHelper
     }
 
     /**
-     * @param Node\Expr\MethodCall | Node\Expr\StaticCall $node
+     * @param  Node\Expr\MethodCall | Node\Expr\StaticCall $node
      * @return Node|string
      * @throws NodeTypeException
      */

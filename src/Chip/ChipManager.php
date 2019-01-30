@@ -25,7 +25,7 @@ class ChipManager
     }
 
     /**
-     * @param string $code
+     * @param  string $code
      * @return array
      * @throws FormatException
      */

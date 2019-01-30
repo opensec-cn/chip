@@ -49,7 +49,7 @@ class Include_ extends BaseVisitor
     }
 
     /**
-     * @param String_|EncapsedStringPart $node
+     * @param  String_|EncapsedStringPart $node
      * @return bool
      */
     protected function isSafeExtension($node)

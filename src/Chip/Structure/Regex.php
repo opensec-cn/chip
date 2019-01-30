@@ -37,7 +37,7 @@ class Regex
     }
 
     /**
-     * @param string $data
+     * @param  string $data
      * @return Regex
      * @throws RegexFormatException
      */
