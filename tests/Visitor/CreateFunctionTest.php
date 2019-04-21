@@ -37,7 +37,9 @@ class CreateFunctionTest extends VisitTestCase
             ["create_function(test(), 'return true;');", AlarmLevel::CRITICAL()],
             ["create_function('', test());", AlarmLevel::CRITICAL()],
             ["create_function('', \"return \$arg;\");", AlarmLevel::CRITICAL()],
-            ["create_function('\$arg', 'return \$arg + ' . \$_GET['n'] . ';');", AlarmLevel::CRITICAL()]
+            ["create_function('\$arg', 'return \$arg + ' . \$_GET['n'] . ';');", AlarmLevel::CRITICAL()],
+            ["create_function(...\$_POST);", AlarmLevel::CRITICAL()],
+            ["create_function('', ...\$_POST);", AlarmLevel::CRITICAL()]
         ];
 
         foreach ($cases as [$code, $level]) {
@@ -53,18 +55,5 @@ class CreateFunctionTest extends VisitTestCase
     public function testSafeCreateFunction()
     {
         $this->assertCount(0, $this->detectCode('\user\create_function($args, $code);'));
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function testException()
-    {
-        try {
-            $this->detectCode('create_function($code);');
-            throw new \Exception;
-        } catch (\Exception $e) {
-            $this->assertInstanceOf(ArgumentsFormatException::class, $e);
-        }
     }
 }

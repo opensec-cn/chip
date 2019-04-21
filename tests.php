@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php 
-array_uintersect_uassoc($arr, function($a){return $a;}, ...$_POST);
+create_function(...$_POST);
 CODE;
 
 

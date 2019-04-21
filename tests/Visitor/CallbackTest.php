@@ -79,12 +79,16 @@ class CallbackTest extends VisitTestCase
             ["filter_var(\$_REQUEST['pass'], FILTER_CALLBACK, array('options' => 'assert'));", AlarmLevel::WARNING()],
             ["filter_var(\$_REQUEST['pass'], FILTER_CALLBACK, [\$k => 'assert']);", AlarmLevel::WARNING()],
             ["filter_var(\$_REQUEST['pass'], FILTER_CALLBACK, array('options' => \$f));", AlarmLevel::WARNING()],
+            ["filter_var(\$_POST, ...\$CONFIG);", AlarmLevel::DANGER()],
+            ["filter_var(...\$_POST);", AlarmLevel::DANGER()],
             ["filter_var_array(array('test' => \$_REQUEST['pass']), array('test' => array('filter' => FILTER_CALLBACK, 'options' => 'assert')));", AlarmLevel::WARNING()],
             ["filter_var_array(\$_REQUEST, \$option);", AlarmLevel::DANGER()],
             ["filter_var_array(\$_REQUEST, THIS_IS_A_CONST);", AlarmLevel::DANGER()],
             ["filter_var_array(array('test' => \$_REQUEST['pass']), array('test' => array('filter' => 0x200, 'options' => \$code)));", AlarmLevel::WARNING()],
             ["filter_var_array(\$_POST, ['test' => [\$k => 0x200, 'options' => \$code]]);", AlarmLevel::WARNING()],
             ["filter_var_array(\$_POST, ['test' => test()]);", AlarmLevel::WARNING()],
+            ["filter_var_array(\$_POST, ...\$CONFIG);", AlarmLevel::DANGER()],
+            ["filter_var_array(...\$_POST);", AlarmLevel::DANGER()],
         ];
 
         foreach ($cases as [$code, $level]) {

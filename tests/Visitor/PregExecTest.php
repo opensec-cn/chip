@@ -62,6 +62,7 @@ class PregExecTest extends VisitTestCase
             'mb_regex_set_options("ies");',
             'mb_regex_set_options($options);',
             'mb_regex_set_options(base64_decode($_GET["options"]));',
+            'mb_ereg_replace(...$_POST);',
         ];
 
         foreach ($cases as $code) {

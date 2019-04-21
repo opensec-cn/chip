@@ -98,6 +98,8 @@ class FilterVar extends BaseVisitor
             $options = $node->args[1];
 
             $this->filterVarArray($node, $options);
+        } elseif ($this->hasUnpackBefore($node->args)) {
+            $this->message->danger($node, __CLASS__, "{$this->fname}中参数不明确，可能存在代码执行漏洞");
         }
     }
 

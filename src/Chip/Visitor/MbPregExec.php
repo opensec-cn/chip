@@ -13,13 +13,14 @@ use Chip\BaseVisitor;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Exception\NodeTypeException;
 use Chip\Traits\TypeHelper;
+use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class MbPregExec extends BaseVisitor
 {
-    use TypeHelper, FunctionWalker;
+    use Variable, TypeHelper, FunctionWalker;
 
     protected $checkNodeClass = [
         FuncCall::class
@@ -43,8 +44,11 @@ class MbPregExec extends BaseVisitor
             $option = $node->args[3]->value;
         } elseif ($fname == 'mb_regex_set_options' && $args_count >= 1) {
             $option = $node->args[0]->value;
+        } elseif ($this->hasUnpackBefore($node->args)){
+            $this->message->danger($node, __CLASS__, "{$fname}正则模式中使用变长参数，可能存在远程代码执行的隐患");
+            return;
         } else {
-            return ;
+            return;
         }
 
         if (!$this->isString($option)) {

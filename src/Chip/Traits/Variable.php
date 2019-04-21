@@ -79,4 +79,16 @@ trait Variable
     {
         return $this->hasVariable($node) || $this->hasFunctionCall($node);
     }
+
+    public function hasUnpackBefore($args, $before=INF)
+    {
+        $before = min($before, count($args) - 1);
+        for ($i = 0; $i <= $before; $i++) {
+            $arg = $args[$i];
+            if ($arg->unpack) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -81,15 +81,4 @@ class Callback_ extends BaseVisitor
             }
         }
     }
-
-    private function hasUnpackBefore($args, $pos)
-    {
-        for ($i = 0; $i <= $pos; $i++) {
-            $arg = $args[$i];
-            if ($arg->unpack) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

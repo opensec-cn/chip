@@ -40,17 +40,4 @@ class AssertTest extends VisitTestCase
             $this->assertHasAlarm($alarms[0], $level, Assert_::class);
         }
     }
-
-    /**
-     * @throws \Exception
-     */
-    public function testWrongAssert()
-    {
-        try {
-            $this->detectCode('assert();');
-            throw new \Exception;
-        } catch (\Exception $e) {
-            $this->assertInstanceOf(ArgumentsFormatException::class, $e);
-        }
-    }
 }
