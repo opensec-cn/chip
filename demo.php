@@ -6,8 +6,9 @@ use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
-<?php
-('foo')::{'bar'}();
+<script language="php">
+echo 123;
+</script>
 CODE;
 
 $nameResolver = new NameResolver();
