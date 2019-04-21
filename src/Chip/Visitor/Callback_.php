@@ -56,19 +56,40 @@ class Callback_ extends BaseVisitor
     {
         $fname = $this->fname;
         foreach($this->functionWithCallback[$fname] as $pos) {
-            if ($pos >= 0 && array_key_exists($pos, $node->args)) {
-                $arg = $node->args[$pos];
-            } elseif ($pos < 0 && array_key_exists(count($node->args) + $pos, $node->args)) {
-                $arg = $node->args[ count($node->args) + $pos ];
-            } else {
-                continue ;
+            $pos = $pos >= 0 ? $pos : count($node->args) + $pos;
+            foreach ($node->args as $key => $arg) {
+                if ($arg->unpack && $key <= $pos) {
+                    $this->message->danger($node, __CLASS__, "{$fname}第{$key}个参数包含不确定数量的参数，可能执行动态回调函数，存在远程代码执行的隐患");
+                    continue 2;
+                }
             }
 
-            if ($this->hasDynamicExpr($arg->value)) {
-                $this->message->danger($node, __CLASS__, "{$fname}第{$pos}个参数包含动态变量或函数，可能有远程代码执行的隐患");
-            } elseif (!$this->isClosure($arg->value)) {
-                $this->message->warning($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
+            if (array_key_exists($pos, $node->args)) {
+                $arg = $node->args[$pos];
+            } else {
+                continue;
+            }
+
+            if ($this->isClosure($arg->value)) {
+                continue;
+            } else {
+                if ($this->hasDynamicExpr($arg->value)) {
+                    $this->message->danger($node, __CLASS__, "{$fname}第{$pos}个参数包含动态变量或函数，可能有远程代码执行的隐患");
+                } else {
+                    $this->message->warning($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
+                }
             }
         }
+    }
+
+    private function hasUnpackBefore($args, $pos)
+    {
+        for ($i = 0; $i <= $pos; $i++) {
+            $arg = $args[$i];
+            if ($arg->unpack) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -40,6 +40,9 @@ class CallbackTest extends VisitTestCase
             'ob_start($callback);',
             "register_shutdown_function(\$e, \$_REQUEST['pass']);",
             "register_tick_function(\$e, \$_REQUEST['pass']);",
+            'usort(...$_POST);',
+            'array_uintersect_uassoc($arr, function($a){return $a;}, ...$_POST);',
+            'usort($arr, ...$_POST);',
         ];
 
         foreach ($cases as $code) {
@@ -47,6 +50,18 @@ class CallbackTest extends VisitTestCase
             $this->assertCount(1, $alarms);
             $this->assertHasAlarm($alarms[0], AlarmLevel::DANGER(), Callback_::class);
         }
+
+        $this->assertCount(2, $this->detectCode('array_uintersect_uassoc(...$_POST, function($a){return $a;});'));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testNoCallback()
+    {
+        $this->assertEmpty($this->detectCode('array_udiff_uassoc([],function(){},function(){});'));
+        $this->assertEmpty($this->detectCode('usort($a, function(){});'));
+        $this->assertEmpty($this->detectCode('array_walk($arr, function($a){return $a;}, ...$_POST);'));
     }
 
     /**

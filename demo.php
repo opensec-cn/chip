@@ -6,9 +6,8 @@ use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
-<script language="php">
-echo 123;
-</script>
+<?php 
+usort($a, function(){});
 CODE;
 
 $nameResolver = new NameResolver();

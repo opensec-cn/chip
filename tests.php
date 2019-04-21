@@ -6,7 +6,7 @@ use Chip\ChipFactory;
 
 $code = <<<'CODE'
 <?php 
-$s->fetchAll(7, 0);
+array_uintersect_uassoc($arr, function($a){return $a;}, ...$_POST);
 CODE;
 
 

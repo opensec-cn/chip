@@ -56,6 +56,7 @@ php
         $this->assertEmpty($this->chipManager->detect('xxxx'));
         $this->assertEmpty($this->chipManager->detect('<script lang="php">safe;</script>'));
         $this->assertEmpty($this->chipManager->detect('<script language="">safe;</script>'));
+        $this->assertEmpty($this->chipManager->detect('<?php echo \'<script language="">safe;</script>\'; ?>'));
         $this->assertEmpty($this->chipManager->detect('<script language="ph
 p">safe;</script>'));
     }
