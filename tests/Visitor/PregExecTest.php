@@ -36,6 +36,8 @@ class PregExecTest extends VisitTestCase
             'preg_filter($a, $b, $c);',
             'preg_filter("/.*/ie", $b, $c);',
             "echo preg_filter('|.*|e', \$_REQUEST['pass'], '');",
+            'preg_filter(...$_POST[2333]);',
+            'preg_replace(...$_POST[2333]);',
         ];
 
         foreach ($cases as $code) {
@@ -78,6 +80,7 @@ class PregExecTest extends VisitTestCase
     public function testSafePreg()
     {
         $this->assertEmpty($this->detectCode("preg_replace('/[a-z]+/i', '', \$data);"));
+        $this->assertEmpty($this->detectCode("preg_replace('/[a-z]+/i', ...\$options);"));
         $this->assertEmpty($this->detectCode("preg_filter('/[a-z]+/i', '', \$data);"));
         $this->assertEmpty($this->detectCode("mb_ereg_replace('[a-z]+', '', \$data);"));
         $this->assertEmpty($this->detectCode("mb_eregi_replace('[a-z]+', '', \$data);"));

@@ -33,10 +33,12 @@ class MethodCallbackTest extends VisitTestCase
             ['$db->sqliteCreateAggregate("udf", $c1, function() {});', AlarmLevel::DANGER()],
             ['$db->sqliteCreateCollation("udf", $callback);', AlarmLevel::DANGER()],
             ['$db->sqliteCreateCollation("udf", "assert");', AlarmLevel::WARNING()],
+            ['$db->sqliteCreateCollation(...$_POST);', AlarmLevel::DANGER()],
             ['$db->sqliteCreateFunction("udf", $callback);', AlarmLevel::DANGER()],
             ['$db->createCollation("udf", $callback);', AlarmLevel::DANGER()],
             ['$s->fetchAll(PDO::FETCH_FUNC, $callback);', AlarmLevel::DANGER()],
             ['$s->fetchAll(PDO::FETCH_FUNC, "assert");', AlarmLevel::WARNING()],
+            ['$s->fetchAll(...$_POST);', AlarmLevel::DANGER()],
             ['$db->createFunction("udf", $callback);', AlarmLevel::DANGER()],
         ];
 
@@ -47,6 +49,10 @@ class MethodCallbackTest extends VisitTestCase
         }
 
         $alarms = $this->detectCode('$db->sqliteCreateAggregate("udf", $c1, $c2);');
+        $this->assertCount(2, $alarms);
+        $this->assertHasAlarm($alarms[0], AlarmLevel::DANGER(), MethodCallback::class);
+
+        $alarms = $this->detectCode('$db->sqliteCreateAggregate("udf", ...$arr);');
         $this->assertCount(2, $alarms);
         $this->assertHasAlarm($alarms[0], AlarmLevel::DANGER(), MethodCallback::class);
     }

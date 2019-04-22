@@ -40,7 +40,7 @@ class ShellFunction extends BaseVisitor
     public function process($node)
     {
         if (empty($node->args)) {
-            throw ArgumentsFormatException::create(dump_node($node));
+            return;
         }
 
         $arg = $node->args[0]->value;

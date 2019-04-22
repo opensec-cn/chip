@@ -41,7 +41,7 @@ class PregExec extends BaseVisitor
     public function process($node)
     {
         if (empty($node->args)) {
-            throw ArgumentsFormatException::create(dump_node($node));
+            return;
         }
         $fname = $this->fname;
 

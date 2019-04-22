@@ -28,8 +28,11 @@ class StaticCallbackTest extends VisitTestCase
             ['$phar = Phar::webPhar($a, $b, $c, $d, $e);', AlarmLevel::DANGER()],
             ['$phar = Phar::webPhar($a, $b, $c, $d, foo());', AlarmLevel::DANGER()],
             ['$phar = Phar::webPhar($a, $b, $c, $d, "assert");', AlarmLevel::WARNING()],
+            ['$phar = Phar::webPhar(...$a);', AlarmLevel::DANGER()],
+            ['$phar = Phar::webPhar(\'first\', ...$a);', AlarmLevel::DANGER()],
             ['$f = Closure::fromCallable($_REQUEST["f"]);', AlarmLevel::DANGER()],
             ['$f = Closure::fromCallable(\'assert\');', AlarmLevel::WARNING()],
+            ['$f = Closure::fromCallable(...$_POST);', AlarmLevel::DANGER()],
         ];
 
         foreach ($cases as [$code, $level]) {
