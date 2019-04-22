@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+    echo 'Warning: Chip should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+}
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+
+try {
+    $application = new Application('Chip', '1.0.0');
+    $application->addCommands([
+        new \Chip\Console\Check()
+    ]);
+    $application->run();
+} catch (\Exception $e) {
+
+}
+

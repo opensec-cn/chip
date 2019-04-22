@@ -63,6 +63,11 @@ class Alarm implements \JsonSerializable
         return $this->type;
     }
 
+    public function lineRange()
+    {
+        return [$this->startLine, $this->endLine];
+    }
+
     public function __toString()
     {
         return "{$this->type}:{$this->level->getKey()}:{$this->message}";
