@@ -91,6 +91,21 @@ trait TypeHelper
         return $node instanceof Node\Expr\Array_;
     }
 
+    public function isSafeCallback(Node\Arg $arg)
+    {
+        if (!$this->isString($arg->value)) {
+            return false;
+        }
+
+        $function = strtolower($arg->value->value);
+        if (preg_match('/^\\\\?[a-z0-9_]+$/is', $function) &&
+            !in_array(ltrim($function, '\\'), DANGER_FUNCTION, true)) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * @param  Node\Expr\FuncCall $node
      * @return string

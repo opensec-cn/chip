@@ -9,12 +9,10 @@
 namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
-use Chip\Exception\NodeTypeException;
 use Chip\Message;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
-use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class Callback_ extends BaseVisitor
@@ -77,7 +75,8 @@ class Callback_ extends BaseVisitor
                 if ($this->hasDynamicExpr($arg->value)) {
                     $this->message->danger($node, __CLASS__, "{$fname}第{$pos}个参数包含动态变量或函数，可能有远程代码执行的隐患");
                 } else {
-                    $this->message->warning($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
+                    $level = $this->isSafeCallback($arg) ? 'info' : 'warning';
+                    $this->message->$level($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
                 }
             }
         }

@@ -12,8 +12,10 @@ use Chip\Alarm;
 use Chip\AlarmLevel;
 use Chip\ChipFactory;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
@@ -22,6 +24,8 @@ class Check extends Command
     protected static $defaultName = 'check';
 
     protected $chip = null;
+
+    protected $level = ['info', 'warning', 'danger', 'critical'];
 
     public function __construct(?string $name = null)
     {
@@ -33,6 +37,21 @@ class Check extends Command
     {
         $this->setDescription('Check a file or directory.')->setHelp('This command allows you to detect potential security threat in a file or directory.');
         $this->addArgument("file", InputArgument::REQUIRED, "filename or directory path");
+        $this->addOption(
+            "level",
+            '-l',
+            InputOption::VALUE_OPTIONAL,
+            'Display message above this level, choice is [' . implode(', ', $this->level) . ']',
+            'warning'
+        );
+    }
+
+    protected function interact(InputInterface $input, OutputInterface $output)
+    {
+        $level = $input->getOption('level');
+        if (!in_array($level, $this->level, true)) {
+            throw new RuntimeException('level must be one of [' . implode(', ', $this->level) . ' ]');
+        }
     }
 
     /**
@@ -51,14 +70,17 @@ class Check extends Command
         } elseif (is_file($file)) {
             $finder->files()->in(realpath(dirname($file)))->name(basename($file));
         } else {
-            throw new \RuntimeException("file ${file} doesn't exists");
+            throw new RuntimeException("file ${file} doesn't exists");
         }
 
+        $level = strtoupper($input->getOption('level'));
         foreach ($finder as $fileobj) {
             $content = $fileobj->getContents();
             foreach ($this->checkCode($content) as $alarm) {
-                $output->writeln("==========");
-                $this->showAlarm($output, $fileobj->getPathname(), $content, $alarm);
+                if ($alarm->getLevel()->getValue() >= AlarmLevel::$level()->getValue()) {
+                    $output->writeln("==========");
+                    $this->showAlarm($output, $fileobj->getPathname(), $content, $alarm);
+                }
             }
         }
     }

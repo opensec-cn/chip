@@ -11,7 +11,6 @@ namespace Chip\Tests\Traits;
 use Chip\Exception\NodeTypeException;
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class TypeHelperTest extends TestCase
@@ -236,5 +235,41 @@ class TypeHelperTest extends TestCase
 
         $node = new Node\Expr\Variable('1000');
         $this->assertFalse($this->typeHelperTrait->isNumber($node));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testIsSafeCallback()
+    {
+        $value = new Node\Scalar\String_("assert");
+        $node = new Node\Arg($value);
+
+        $this->assertFalse($this->typeHelperTrait->isSafeCallback($node));
+
+        $value = new Node\Scalar\String_('\assert');
+        $node = new Node\Arg($value);
+
+        $this->assertFalse($this->typeHelperTrait->isSafeCallback($node));
+
+        $value = new Node\Scalar\String_('\sheLL_ExeC');
+        $node = new Node\Arg($value);
+
+        $this->assertFalse($this->typeHelperTrait->isSafeCallback($node));
+
+        $value = new Node\Scalar\String_('Directory::read');
+        $node = new Node\Arg($value);
+
+        $this->assertFalse($this->typeHelperTrait->isSafeCallback($node));
+
+        $value = new Node\Scalar\String_("strtolower");
+        $node = new Node\Arg($value);
+
+        $this->assertTrue($this->typeHelperTrait->isSafeCallback($node));
+
+        $value = new Node\Scalar\String_('\strtolower');
+        $node = new Node\Arg($value);
+
+        $this->assertTrue($this->typeHelperTrait->isSafeCallback($node));
     }
 }

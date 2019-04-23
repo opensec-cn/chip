@@ -52,6 +52,12 @@ class CallbackTest extends VisitTestCase
         }
 
         $this->assertCount(2, $this->detectCode('array_uintersect_uassoc(...$_POST, function($a){return $a;});'));
+
+        $this->assertHasAlarm($this->detectCode('usort([], "strtolower");')[0], AlarmLevel::INFO(), Callback_::class);
+        $this->assertHasAlarm($this->detectCode('usort([], "\\\\strtolower");')[0], AlarmLevel::INFO(), Callback_::class);
+        $this->assertHasAlarm($this->detectCode('usort([], "assert");')[0], AlarmLevel::WARNING(), Callback_::class);
+        $this->assertHasAlarm($this->detectCode('usort([], "\\\\system");')[0], AlarmLevel::WARNING(), Callback_::class);
+        $this->assertHasAlarm($this->detectCode('usort([], "user_defined_function");')[0], AlarmLevel::INFO(), Callback_::class);
     }
 
     /**
