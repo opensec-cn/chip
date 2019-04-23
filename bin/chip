@@ -2,6 +2,7 @@
 <?php
 if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
     echo 'Warning: Chip should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+    exit;
 }
 
 require __DIR__ . '/../vendor/autoload.php';
