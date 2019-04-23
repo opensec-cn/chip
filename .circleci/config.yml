@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/repo
     docker:
       - image: circleci/php:7.2-browsers
     steps:
@@ -9,8 +8,6 @@ jobs:
       - restore_cache:
           keys:
             - dependencies-cache-{{ checksum "composer.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - dependencies-cache-
       - run: composer global require bamarni/composer-bin-plugin
       - run: composer bin phpstan require phpstan/phpstan "^0.11.5"
       - run: composer bin phpcs require squizlabs/php_codesniffer "^3.4"
@@ -19,6 +16,7 @@ jobs:
       - save_cache:
           paths:
             - ./vendor
+            - ./vendor-bin
           key: dependencies-cache-{{ checksum "composer.json" }}
   test:
     docker:
