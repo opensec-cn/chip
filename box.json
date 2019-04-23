@@ -1,0 +1,15 @@
+{
+  "main": "bin/chip",
+  "banner": [
+    "This file is part of the Chip project.",
+    "",
+    "(c) phith0n <root@leavesongs.com>",
+    "https://github.com/phith0n/chip",
+    "",
+    "This source file is subject to the MIT license that is bundled",
+    "with this source code in the file LICENSE."
+  ],
+  "dump-autoload": true,
+  "exclude-dev-files": true,
+  "compression": "GZ"
+}
