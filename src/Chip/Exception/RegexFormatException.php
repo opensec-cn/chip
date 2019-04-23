@@ -8,7 +8,6 @@
 
 namespace Chip\Exception;
 
-
 /**
  * Class RegexFormatException
  *

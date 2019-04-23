@@ -8,7 +8,6 @@
 
 namespace Chip\Tests\Visitor;
 
-
 use Chip\AlarmLevel;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Tests\VisitTestCase;
@@ -39,7 +38,7 @@ class CreateFunctionTest extends VisitTestCase
             ["create_function('', \"return \$arg;\");", AlarmLevel::CRITICAL()],
             ["create_function('\$arg', 'return \$arg + ' . \$_GET['n'] . ';');", AlarmLevel::CRITICAL()],
             ["create_function(...\$_POST);", AlarmLevel::CRITICAL()],
-            ["create_function('', ...\$_POST);", AlarmLevel::CRITICAL()]
+            ["create_function('', ...\$_POST);", AlarmLevel::CRITICAL()],
         ];
 
         foreach ($cases as [$code, $level]) {

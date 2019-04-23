@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
@@ -28,7 +27,7 @@ class Extends_ extends BaseVisitor
         'ReflectionFunction',
         'ReflectionFunctionAbstract',
         'ReflectionMethod',
-        'ReflectionGenerator'
+        'ReflectionGenerator',
     ];
 
     /**

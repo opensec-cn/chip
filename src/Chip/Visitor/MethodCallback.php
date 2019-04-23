@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use Chip\Exception\NodeTypeException;
 use Chip\Traits\TypeHelper;
@@ -25,15 +24,15 @@ class MethodCallback extends BaseVisitor
     ];
 
     protected $sensitiveMethodName = [
-        'uasort' => [0],
-        'uksort' => [0],
+        'uasort'                   => [0],
+        'uksort'                   => [0],
         'set_local_infile_handler' => [0],
-        'sqlitecreateaggregate' => [1, 2],
-        'sqlitecreatecollation' => [1],
-        'sqlitecreatefunction' => [1],
-        'createcollation' => [1],
-        'fetchall' => [1],
-        'createfunction' => [1]
+        'sqlitecreateaggregate'    => [1, 2],
+        'sqlitecreatecollation'    => [1],
+        'sqlitecreatefunction'     => [1],
+        'createcollation'          => [1],
+        'fetchall'                 => [1],
+        'createfunction'           => [1],
     ];
 
     protected function getWhitelistMethods()
@@ -52,7 +51,7 @@ class MethodCallback extends BaseVisitor
             return;
         }
 
-        foreach($this->sensitiveMethodName[$fname] as $pos) {
+        foreach ($this->sensitiveMethodName[$fname] as $pos) {
             $pos = $pos >= 0 ? $pos : count($node->args) + $pos;
             foreach ($node->args as $key => $arg) {
                 if ($arg->unpack && $key <= $pos) {

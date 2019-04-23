@@ -8,7 +8,6 @@
 
 namespace Chip\Exception;
 
-
 class NodeTypeException extends \Exception
 {
 

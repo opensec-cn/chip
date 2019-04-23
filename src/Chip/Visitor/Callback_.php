@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use Chip\Exception\NodeTypeException;
 use Chip\Message;

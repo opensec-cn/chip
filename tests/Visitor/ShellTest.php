@@ -8,7 +8,6 @@
 
 namespace Chip\Tests\Visitor;
 
-
 use Chip\AlarmLevel;
 use Chip\Tests\VisitTestCase;
 use Chip\Visitor\Shell;

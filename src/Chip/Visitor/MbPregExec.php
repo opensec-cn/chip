@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Exception\NodeTypeException;
@@ -29,7 +28,7 @@ class MbPregExec extends BaseVisitor
     protected $whitelistFunctions = [
         'mb_ereg_replace',
         'mb_eregi_replace',
-        'mb_regex_set_options'
+        'mb_regex_set_options',
     ];
 
     /**
@@ -44,7 +43,7 @@ class MbPregExec extends BaseVisitor
             $option = $node->args[3]->value;
         } elseif ($fname == 'mb_regex_set_options' && $args_count >= 1) {
             $option = $node->args[0]->value;
-        } elseif ($this->hasUnpackBefore($node->args)){
+        } elseif ($this->hasUnpackBefore($node->args)) {
             $this->message->danger($node, __CLASS__, "{$fname}正则模式中使用变长参数，可能存在远程代码执行的隐患");
             return;
         } else {

@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;
@@ -30,7 +29,7 @@ class ShellFunction extends BaseVisitor
         'exec',
         'passthru',
         'popen',
-        'proc_open'
+        'proc_open',
     ];
 
     /**

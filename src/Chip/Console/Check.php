@@ -8,8 +8,8 @@
 
 namespace Chip\Console;
 
-
-use Chip\{Alarm, AlarmLevel};
+use Chip\Alarm;
+use Chip\AlarmLevel;
 use Chip\ChipFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,7 +23,7 @@ class Check extends Command
 
     protected $chip = null;
 
-    function __construct(?string $name = null)
+    public function __construct(?string $name = null)
     {
         parent::__construct($name);
         $this->chip = (new ChipFactory)->create();

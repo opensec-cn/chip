@@ -8,7 +8,6 @@
 
 namespace Chip\Tests\Visitor;
 
-
 use Chip\AlarmLevel;
 use Chip\Tests\VisitTestCase;
 use Chip\Visitor\DynamicCall;
@@ -51,7 +50,7 @@ class DynamicCallTest extends VisitTestCase
             '\A\B\C();',
             'A\B();',
             'test(...$_GET);',
-            '$a;b();'
+            '$a;b();',
         ];
 
         foreach ($cases as $code) {

@@ -8,7 +8,7 @@
 
 namespace Chip;
 
-
+// phpcs:disable PSR1.Methods.CamelCapsMethodName
 class MemoryStreamWrapper
 {
     const WRAPPER_NAME = 'string';
@@ -41,3 +41,4 @@ class MemoryStreamWrapper
         return $this->_position >= strlen($this->_content);
     }
 }
+// phpcs:enable

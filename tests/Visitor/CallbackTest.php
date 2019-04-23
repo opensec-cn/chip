@@ -17,7 +17,7 @@ class CallbackTest extends VisitTestCase
 {
     protected $visitors = [
         Callback_::class,
-        FilterVar::class
+        FilterVar::class,
     ];
 
     /**
@@ -119,7 +119,7 @@ class CallbackTest extends VisitTestCase
                            )]);",
             "filter_var_array(\$_REQUEST, ['test' => FILTER_SANITIZE_ENCODED]);",
             "filter_var_array(\$_REQUEST, array('test' => array('filter' => 0x200)));",
-            '$myinputs = filter_var_array($data,FILTER_SANITIZE_STRING); '
+            '$myinputs = filter_var_array($data,FILTER_SANITIZE_STRING); ',
         ];
 
         foreach ($cases as $code) {

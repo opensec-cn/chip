@@ -8,7 +8,6 @@
 
 namespace Chip;
 
-
 use Symfony\Component\Finder\Finder;
 
 class ChipFactory

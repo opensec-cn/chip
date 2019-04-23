@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
@@ -24,8 +23,8 @@ class StaticCallback extends BaseVisitor
     ];
 
     protected $sensitiveMethodName = [
-        'phar::webphar' => [4],
-        'closure::fromcallable' => [0]
+        'phar::webphar'         => [4],
+        'closure::fromcallable' => [0],
     ];
 
     /**
@@ -49,7 +48,7 @@ class StaticCallback extends BaseVisitor
     public function process($node)
     {
         $fname = "{$node->class->toLowerString()}::{$node->name->toLowerString()}";
-        foreach($this->sensitiveMethodName[$fname] as $pos) {
+        foreach ($this->sensitiveMethodName[$fname] as $pos) {
             $pos = $pos >= 0 ? $pos : count($node->args) + $pos;
             foreach ($node->args as $key => $arg) {
                 if ($arg->unpack && $key <= $pos) {

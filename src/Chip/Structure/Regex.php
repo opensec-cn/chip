@@ -8,7 +8,6 @@
 
 namespace Chip\Structure;
 
-
 use Chip\Exception\RegexFormatException;
 
 class Regex
@@ -29,7 +28,7 @@ class Regex
      */
     public $flags;
 
-    function __construct($regex, $delimiter, $flags)
+    public function __construct($regex, $delimiter, $flags)
     {
         $this->regex = $regex;
         $this->delimiter = $delimiter;
@@ -41,7 +40,7 @@ class Regex
      * @return Regex
      * @throws RegexFormatException
      */
-    static public function create($data)
+    public static function create($data)
     {
         if (empty($data)) {
             throw new RegexFormatException('Regex string is empty');

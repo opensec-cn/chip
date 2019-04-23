@@ -8,7 +8,6 @@
 
 namespace Chip\Tests\Visitor;
 
-
 use Chip\AlarmLevel;
 use Chip\Exception\ArgumentsFormatException;
 use Chip\Tests\VisitTestCase;

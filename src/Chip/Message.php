@@ -12,7 +12,7 @@ use PhpParser\Node;
 
 class Message extends \ArrayObject implements \JsonSerializable
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct([]);
     }
@@ -23,7 +23,7 @@ class Message extends \ArrayObject implements \JsonSerializable
             $node->getStartLine(),
             $node->getEndLine(),
             $node->getStartFilePos(),
-            $node->getEndFilePos()
+            $node->getEndFilePos(),
         ];
     }
 

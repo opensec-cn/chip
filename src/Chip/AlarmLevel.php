@@ -8,7 +8,6 @@
 
 namespace Chip;
 
-
 use MyCLabs\Enum\Enum;
 
 /**

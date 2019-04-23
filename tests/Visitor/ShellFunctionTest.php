@@ -8,7 +8,6 @@
 
 namespace Chip\Tests\Visitor;
 
-
 use Chip\AlarmLevel;
 use Chip\Tests\VisitTestCase;
 use Chip\Visitor\ShellFunction;
@@ -36,7 +35,7 @@ class ShellFunctionTest extends VisitTestCase
             ['shell_exec(\'echo \' . $command);', AlarmLevel::CRITICAL()],
             ['echo shell_exec(base64_decode($_REQUEST["cmd"]));', AlarmLevel::CRITICAL()],
             ['echo shell_exec("ls -al");', AlarmLevel::INFO()],
-            ['echo shell_exec(...$this);', AlarmLevel::CRITICAL()]
+            ['echo shell_exec(...$this);', AlarmLevel::CRITICAL()],
         ];
 
         foreach ($cases as [$code, $level]) {

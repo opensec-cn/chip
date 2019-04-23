@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;

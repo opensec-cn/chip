@@ -8,7 +8,6 @@
 
 namespace Chip\Tests\Visitor;
 
-
 use Chip\AlarmLevel;
 use Chip\Tests\VisitTestCase;
 use Chip\Visitor\Include_;
@@ -34,7 +33,7 @@ class IncludeTest extends VisitTestCase
             'include THE_FILENAME; ',
             'InCLUde_ONCE $filename;',
             'require$name;',
-            'include"$name";'
+            'include"$name";',
         ];
 
         foreach ($cases as $code) {
@@ -59,7 +58,7 @@ class IncludeTest extends VisitTestCase
             'include "$name.php";',
             'include __DIR__ . "$name.php";',
             'include "$prefix/" . BASE_DIR . "sub_{$name}" . \'.php\';',
-            'include get_filename() . \'.php\';'
+            'include get_filename() . \'.php\';',
         ];
 
         foreach ($cases as $code) {
@@ -76,7 +75,7 @@ class IncludeTest extends VisitTestCase
         $cases = [
             'include "abc";',
             'include "1.gif";',
-            "include __DIR__ . '/index.html';"
+            "include __DIR__ . '/index.html';",
         ];
 
         foreach ($cases as $code) {
@@ -95,7 +94,7 @@ class IncludeTest extends VisitTestCase
             "include \$name . '.' . \$ext;",
             'include "filename.$ext";',
             'include "1" . EXT; ',
-            'include __DIR__ . "/{$this->name}.{$this->ext}";'
+            'include __DIR__ . "/{$this->name}.{$this->ext}";',
         ];
 
         foreach ($cases as $code) {
@@ -113,7 +112,7 @@ class IncludeTest extends VisitTestCase
         $cases = [
             "include base64_decode(\$_GET['s']); ",
             'include $a.$b.$c.$d.$e.$f."$d".\'1\'.$x.$y.$z;',
-            'include((((($a).$b).$c).$d).$f.(\'/\'.((($x).$y).$z)));'
+            'include((((($a).$b).$c).$d).$f.(\'/\'.((($x).$y).$z)));',
         ];
 
         foreach ($cases as $code) {

@@ -8,7 +8,6 @@
 
 namespace Chip\Traits\Walker;
 
-
 use Chip\Exception\NodeTypeException;
 use PhpParser\Node;
 

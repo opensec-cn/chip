@@ -8,7 +8,6 @@
 
 namespace Chip\Tests\Visitor;
 
-
 use Chip\AlarmLevel;
 use Chip\Tests\VisitTestCase;
 use Chip\Visitor\DynamicNew;
@@ -26,7 +25,7 @@ class DynamicNewTest extends VisitTestCase
     {
         $cases = [
             'new $class();',
-            'new $class;'
+            'new $class;',
         ];
 
         foreach ($cases as $code) {

@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;
@@ -28,7 +27,7 @@ class FilterVar extends BaseVisitor
 
     protected $whitelistFunctions = [
         'filter_var',
-        'filter_var_array'
+        'filter_var_array',
     ];
 
     protected $whitelistConstant = [
@@ -80,7 +79,7 @@ class FilterVar extends BaseVisitor
         "FILTER_FLAG_NO_RES_RANGE",
         "FILTER_FLAG_NO_PRIV_RANGE",
         "FILTER_FLAG_HOSTNAME",
-        "FILTER_FLAG_EMAIL_UNICODE"
+        "FILTER_FLAG_EMAIL_UNICODE",
     ];
 
     /**

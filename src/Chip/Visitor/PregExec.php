@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use function Chip\dump_node;
 use Chip\Exception\ArgumentsFormatException;
@@ -30,7 +29,7 @@ class PregExec extends BaseVisitor
 
     protected $whitelistFunctions = [
         'preg_replace',
-        'preg_filter'
+        'preg_filter',
     ];
 
     /**

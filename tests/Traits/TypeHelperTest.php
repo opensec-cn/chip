@@ -36,7 +36,7 @@ class TypeHelperTest extends TestCase
     public function testIsArray()
     {
         $node = new Node\Expr\Array_([], [
-            'kind' => Node\Expr\Array_::KIND_SHORT
+            'kind' => Node\Expr\Array_::KIND_SHORT,
         ]);
         $this->assertTrue($this->typeHelperTrait->isArray($node));
     }
@@ -47,7 +47,7 @@ class TypeHelperTest extends TestCase
     public function testIsString()
     {
         $node = new Node\Scalar\String_('tests', [
-            'kind' => Node\Scalar\String_::KIND_SINGLE_QUOTED
+            'kind' => Node\Scalar\String_::KIND_SINGLE_QUOTED,
         ]);
         $this->assertTrue($this->typeHelperTrait->isString($node));
 

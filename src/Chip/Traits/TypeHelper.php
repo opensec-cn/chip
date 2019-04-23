@@ -8,7 +8,6 @@
 
 namespace Chip\Traits;
 
-
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\Scalar\String_;

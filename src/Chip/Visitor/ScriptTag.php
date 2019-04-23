@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\InlineHTML;

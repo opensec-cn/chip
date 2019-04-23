@@ -8,7 +8,6 @@
 
 namespace Chip\Exception;
 
-
 class FormatException extends \Exception
 {
     public static function create(string $error_code = ""): FormatException

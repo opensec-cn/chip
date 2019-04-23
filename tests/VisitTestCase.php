@@ -8,7 +8,6 @@
 
 namespace Chip\Tests;
 
-
 use Chip\Alarm;
 use Chip\AlarmLevel;
 use Chip\ChipManager;
@@ -26,7 +25,7 @@ class VisitTestCase extends TestCase
      */
     protected $visitors = [];
 
-    function __construct(?string $name = null, array $data = [], string $dataName = '')
+    public function __construct(?string $name = null, array $data = [], string $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
         $this->chipManager = new ChipManager();

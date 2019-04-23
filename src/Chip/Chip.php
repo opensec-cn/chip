@@ -8,11 +8,9 @@
 
 namespace Chip;
 
-
 use DI\Container;
 use \PhpParser\ParserFactory;
 use \PhpParser\NodeTraverser;
-
 
 stream_wrapper_register(MemoryStreamWrapper::WRAPPER_NAME, MemoryStreamWrapper::class);
 
@@ -38,7 +36,7 @@ class Chip
      */
     protected $message;
 
-    function __construct(array $visitors)
+    public function __construct(array $visitors)
     {
         $this->bootstrapContainer();
         $this->bootstrapParser();
@@ -51,11 +49,14 @@ class Chip
     protected function bootstrapParser()
     {
         $lexer = new \PhpParser\Lexer(
-            array(
-            'usedAttributes' => array(
-                'startLine', 'endLine', 'startFilePos', 'endFilePos'
-            )
-            )
+            [
+            'usedAttributes' => [
+                'startLine',
+                'endLine',
+                'startFilePos',
+                'endFilePos',
+                ],
+            ]
         );
 
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, $lexer);
@@ -110,7 +111,8 @@ class Chip
                 'PHP脚本格式错误，可能是Webshell',
                 $e->getStartLine(),
                 $e->getEndLine(),
-                0, 0
+                0,
+                0
             );
         }
 

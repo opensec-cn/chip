@@ -8,12 +8,11 @@
 
 namespace Chip\Traits;
 
-
 use PhpParser\Node;
 
 trait Variable
 {
-    protected function traverseNode(Node $node, Callable $callback)
+    protected function traverseNode(Node $node, callable $callback)
     {
         $queue = new \SplQueue();
         $visites = [];
@@ -48,7 +47,8 @@ trait Variable
     public function hasVariable(Node $node)
     {
         $hasVariable = $this->traverseNode(
-            $node, function ($cur_node) {
+            $node,
+            function ($cur_node) {
                 if ($cur_node instanceof Node\Expr\Variable || $cur_node instanceof Node\Expr\PropertyFetch || $cur_node instanceof Node\Expr\ConstFetch || $cur_node instanceof Node\Expr\ClassConstFetch) {
                     return true;
                 }
@@ -63,7 +63,8 @@ trait Variable
     public function hasFunctionCall(Node $node)
     {
         $hasFunctionCall = $this->traverseNode(
-            $node, function ($cur_node) {
+            $node,
+            function ($cur_node) {
                 if ($cur_node instanceof Node\Expr\MethodCall || $cur_node instanceof Node\Expr\FuncCall || $cur_node instanceof Node\Expr\New_ || $cur_node instanceof Node\Expr\StaticCall) {
                     return true;
                 }
@@ -80,7 +81,7 @@ trait Variable
         return $this->hasVariable($node) || $this->hasFunctionCall($node);
     }
 
-    public function hasUnpackBefore($args, $before=INF)
+    public function hasUnpackBefore($args, $before = INF)
     {
         $before = min($before, count($args) - 1);
         for ($i = 0; $i <= $before; $i++) {

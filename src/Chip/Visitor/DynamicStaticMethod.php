@@ -8,7 +8,6 @@
 
 namespace Chip\Visitor;
 
-
 use Chip\BaseVisitor;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;

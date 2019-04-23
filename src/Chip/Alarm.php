@@ -8,7 +8,6 @@
 
 namespace Chip;
 
-
 class Alarm implements \JsonSerializable
 {
     /**
@@ -35,7 +34,7 @@ class Alarm implements \JsonSerializable
 
     protected $endPos;
 
-    function __construct(AlarmLevel $level, string $type, string $message, $startLine, $endLine, $startPos, $endPos)
+    public function __construct(AlarmLevel $level, string $type, string $message, $startLine, $endLine, $startPos, $endPos)
     {
         $this->level = $level;
         $this->message = $message;
@@ -76,9 +75,9 @@ class Alarm implements \JsonSerializable
     public function __debugInfo()
     {
         return [
-            'type' => $this->type,
-            'level' => $this->level->getKey(),
-            'message' => $this->message
+            'type'    => $this->type,
+            'level'   => $this->level->getKey(),
+            'message' => $this->message,
         ];
     }
 

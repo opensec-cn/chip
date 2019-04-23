@@ -8,7 +8,6 @@
 
 namespace Chip;
 
-
 use Chip\Exception\FormatException;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -19,7 +18,7 @@ class ChipManager
 
     public function addVisitor(string $visitor)
     {
-        if(!in_array($visitor, $this->visitor_classes)) {
+        if (!in_array($visitor, $this->visitor_classes)) {
             $this->visitor_classes[] = $visitor;
         }
     }

@@ -8,7 +8,6 @@
 
 namespace Chip;
 
-
 use PhpParser\Node;
 use PhpParser\NodeVisitor;
 
