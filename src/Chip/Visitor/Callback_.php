@@ -28,11 +28,12 @@ class Callback_ extends BaseVisitor
 
     protected $functionWithCallback = [];
 
-    function __construct(Message $message)
+    public function __construct(Message $message)
     {
         parent::__construct($message);
         $this->functionWithCallback = array_reduce(
-            FUNCTION_WITH_CALLABLE, function ($carry, $item) {
+            FUNCTION_WITH_CALLABLE,
+            function ($carry, $item) {
                 if (array_key_exists($item['function'], $carry)) {
                     $carry[$item['function']][] = $item['pos'];
                 } else {
@@ -40,11 +41,12 @@ class Callback_ extends BaseVisitor
                 }
 
                 return $carry;
-            }, []
+            },
+            []
         );
     }
 
-    function getWhitelistFunctions()
+    protected function getWhitelistFunctions()
     {
         return array_keys($this->functionWithCallback);
     }
@@ -55,8 +57,8 @@ class Callback_ extends BaseVisitor
     public function process($node)
     {
         $fname = $this->fname;
-        foreach($this->functionWithCallback[$fname] as $pos) {
-            $pos = $pos >= 0 ? $pos : count($node->args) + $pos;
+        foreach ($this->functionWithCallback[$fname] as $pos) {
+            $pos = $pos >= 0 ? $pos : (count($node->args) + $pos);
             foreach ($node->args as $key => $arg) {
                 if ($arg->unpack && $key <= $pos) {
                     $this->message->danger($node, __CLASS__, "{$fname}第{$key}个参数包含不确定数量的参数，可能执行动态回调函数，存在远程代码执行的隐患");

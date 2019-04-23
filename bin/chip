@@ -14,7 +14,4 @@ try {
         new \Chip\Console\Check()
     ]);
     $application->run();
-} catch (\Exception $e) {
-
-}
-
+} catch (\Exception $e) {}

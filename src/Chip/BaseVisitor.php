@@ -26,7 +26,7 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
      */
     protected $message;
 
-    function __construct(Message $message)
+    public function __construct(Message $message)
     {
         $this->message = $message;
     }
@@ -43,11 +43,11 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
 
     public function enterNode(Node $node)
     {
-        if(!$this->checkNode($node)) {
+        if (!$this->checkNode($node)) {
             return;
         }
 
-        if($this->beforeProcess($node)) {
+        if ($this->beforeProcess($node)) {
             $this->process($node);
         }
 
