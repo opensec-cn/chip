@@ -2,3 +2,4 @@
 /.idea/
 /.vscode/
 /vendor-bin/
+*.phar
