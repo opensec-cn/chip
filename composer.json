@@ -1,6 +1,14 @@
 {
     "name": "phith0n/chip",
     "description": "a simple tool to detect potential security threat in php code",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "phith0n",
+            "email": "root@leavesongs.com"
+        }
+    ],
     "type": "library",
     "homepage": "https://github.com/phith0n/chip",
     "keywords": [
@@ -32,12 +40,6 @@
             "Chip\\Tests\\": "tests/"
         }
     },
-    "authors": [
-        {
-            "name": "phith0n",
-            "email": "root@leavesongs.com"
-        }
-    ],
     "require-dev": {
         "phpunit/phpunit": "^7.0.0"
     }
