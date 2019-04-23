@@ -23,6 +23,10 @@ jobs:
       - image: circleci/php:7.2-browsers
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "composer.json" }}
+
       - run: php vendor/bin/phpcs
       - run: php vendor/bin/phpstan analyse src tests -l 1
       - run: php vendor/bin/phpunit tests/
