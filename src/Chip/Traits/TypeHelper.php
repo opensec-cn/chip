@@ -58,6 +58,11 @@ trait TypeHelper
         return $node instanceof Node\Expr\ConstFetch;
     }
 
+    public function isFunctionEnter(Node $node)
+    {
+        return $node instanceof Node\Stmt\Function_ || $node instanceof Node\Stmt\ClassMethod;
+    }
+
     public function isMixConstant(Node $node)
     {
         if ($this->isBitwise($node)) {

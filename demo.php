@@ -7,7 +7,11 @@ use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
 <?php 
-usort($a, function(){});
+class S {
+  function test(){
+    echo 123;
+  }
+}
 CODE;
 
 $nameResolver = new NameResolver();

@@ -10,6 +10,7 @@ namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
 use Chip\Message;
+use Chip\Tracer\CallStack;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
@@ -25,9 +26,9 @@ class Callback_ extends BaseVisitor
 
     protected $functionWithCallback = [];
 
-    public function __construct(Message $message)
+    public function __construct(Message $message, CallStack $stack)
     {
-        parent::__construct($message);
+        parent::__construct($message, $stack);
         $this->functionWithCallback = array_reduce(
             FUNCTION_WITH_CALLABLE,
             function ($carry, $item) {

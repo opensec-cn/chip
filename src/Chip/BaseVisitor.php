@@ -9,6 +9,7 @@
 namespace Chip;
 
 use Chip\Exception\NodeTypeException;
+use Chip\Tracer\CallStack;
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
@@ -26,9 +27,15 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
      */
     protected $message;
 
-    public function __construct(Message $message)
+    /**
+     * @var CallStack $stack
+     */
+    protected $stack;
+
+    public function __construct(Message $message, CallStack $stack)
     {
         $this->message = $message;
+        $this->stack = $stack;
     }
 
     public function checkNode(Node $node)
@@ -63,27 +70,5 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
 
     public function afterProcess($node)
     {
-    }
-
-    /**
-     * @param  Node  $node
-     * @param  array $required
-     * @return bool
-     */
-    protected function isMethod(Node $node, array $required)
-    {
-        try {
-            if ($node instanceof Node\Expr\FuncCall) {
-                $fname = $this->getFunctionName($node);
-            } elseif ($node instanceof Node\Expr\MethodCall || $node instanceof Node\Expr\StaticCall) {
-                $fname = $this->getMethodName($node);
-            } else {
-                return false;
-            }
-        } catch (NodeTypeException $e) {
-            return false;
-        }
-
-        return in_array($fname, $required);
     }
 }

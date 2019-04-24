@@ -80,6 +80,7 @@ class Check extends Command
                 if ($alarm->getLevel()->getValue() >= AlarmLevel::$level()->getValue()) {
                     $output->writeln("==========");
                     $this->showAlarm($output, $fileobj->getPathname(), $content, $alarm);
+                    $output->writeln('');
                 }
             }
         }

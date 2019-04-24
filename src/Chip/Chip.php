@@ -83,6 +83,7 @@ class Chip
     protected function bootstrapVisitor(array $visitors)
     {
         try {
+            $this->traverser->addVisitor($this->container->get(CallstackVisitor::class));
             foreach ($visitors as $visitor_name) {
                 $class = $this->container->get($visitor_name);
                 $this->traverser->addVisitor($class);
