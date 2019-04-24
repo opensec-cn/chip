@@ -8,7 +8,6 @@
 
 namespace Chip;
 
-
 use Chip\Traits\TypeHelper;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
