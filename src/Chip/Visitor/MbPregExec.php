@@ -31,7 +31,7 @@ class MbPregExec extends BaseVisitor
         'mb_eregi_replace',
         'mberegi_replace',
         'mb_regex_set_options',
-        'mbregex_set_options'
+        'mbregex_set_options',
     ];
 
     /**
