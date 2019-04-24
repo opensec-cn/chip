@@ -27,8 +27,11 @@ class MbPregExec extends BaseVisitor
 
     protected $whitelistFunctions = [
         'mb_ereg_replace',
+        'mbereg_replace',
         'mb_eregi_replace',
+        'mberegi_replace',
         'mb_regex_set_options',
+        'mbregex_set_options'
     ];
 
     /**
@@ -39,9 +42,10 @@ class MbPregExec extends BaseVisitor
     {
         $fname = $this->fname;
         $args_count = count($node->args);
-        if (($fname == 'mb_ereg_replace' || $fname == 'mb_eregi_replace') && $args_count >= 4) {
+        if (in_array($fname, ['mb_ereg_replace', 'mbereg_replace', 'mb_eregi_replace', 'mberegi_replace'], true)
+            && $args_count >= 4) {
             $option = $node->args[3]->value;
-        } elseif ($fname == 'mb_regex_set_options' && $args_count >= 1) {
+        } elseif (in_array($fname, ['mb_regex_set_options', 'mbregex_set_options'], true) && $args_count >= 1) {
             $option = $node->args[0]->value;
         } elseif ($this->hasUnpackBefore($node->args)) {
             $this->message->danger($node, __CLASS__, "{$fname}正则模式中使用变长参数，可能存在远程代码执行的隐患");
