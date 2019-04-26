@@ -1,3 +1,5 @@
 parameters:
+  excludes_analyse:
+    - %currentWorkingDirectory%/tests/cases
   ignoreErrors:
     - '#Property Chip\\Tests\\Traits\\TypeHelperTest::\$typeHelperTrait has invalid type Chip\\Traits\\TypeHelper#'
