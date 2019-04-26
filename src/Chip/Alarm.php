@@ -8,6 +8,8 @@
 
 namespace Chip;
 
+use PhpParser\Node;
+
 class Alarm implements \JsonSerializable
 {
     /**
@@ -26,25 +28,36 @@ class Alarm implements \JsonSerializable
      */
     protected $message;
 
-    protected $startLine;
+    /**
+     * @var Node $node
+     */
+    protected $node;
 
-    protected $endLine;
+    /**
+     * @var Node $function
+     */
+    protected $function;
 
-    protected $startPos;
-
-    protected $endPos;
-
-    public function __construct(AlarmLevel $level, string $type, string $message, $startLine, $endLine, $startPos, $endPos)
+    public function __construct(AlarmLevel $level, string $type, string $message, Node $node = null, Node $function = null)
     {
         $this->level = $level;
         $this->message = $message;
-        $this->startLine = $startLine;
-        $this->endLine = $endLine;
-        $this->startPos = $startPos;
-        $this->endPos = $endPos;
+
+        $this->node = $node;
+        $this->function = $function;
 
         $type = explode('\\', $type);
         $this->type = end($type);
+    }
+
+    protected function getPositions(Node $node)
+    {
+        return [
+            $node->getStartLine(),
+            $node->getEndLine(),
+            $node->getStartFilePos(),
+            $node->getEndFilePos(),
+        ];
     }
 
     public function getLevel()
@@ -62,9 +75,19 @@ class Alarm implements \JsonSerializable
         return $this->type;
     }
 
+    public function getNode()
+    {
+        return $this->node;
+    }
+
+    public function getFunction()
+    {
+        return $this->function;
+    }
+
     public function lineRange()
     {
-        return [$this->startLine, $this->endLine];
+        return [$this->node->getStartLine(), $this->node->getEndLine()];
     }
 
     public function __toString()

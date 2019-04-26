@@ -109,11 +109,7 @@ class Chip
             $this->message->putMessage(
                 AlarmLevel::WARNING(),
                 'InvalidPhpFile',
-                'PHP脚本格式错误，可能是Webshell',
-                $e->getStartLine(),
-                $e->getEndLine(),
-                0,
-                0
+                'PHP脚本格式错误，可能是Webshell'
             );
         }
 

@@ -78,9 +78,8 @@ class Check extends Command
             $content = $fileobj->getContents();
             foreach ($this->checkCode($content) as $alarm) {
                 if ($alarm->getLevel()->getValue() >= AlarmLevel::$level()->getValue()) {
-                    $output->writeln("==========");
+                    $output->writeln("\n==========");
                     $this->showAlarm($output, $fileobj->getPathname(), $content, $alarm);
-                    $output->writeln('');
                 }
             }
         }
@@ -105,15 +104,35 @@ class Check extends Command
 
         $level = $alarm->getLevel()->getKey();
         $message = $alarm->getMessage();
-        list($startLine, $endLine) = $alarm->lineRange();
+        $output->writeln("<bg={$color};fg=white>\n{$level}:{$filename}\n{$message}</>", OutputInterface::VERBOSITY_QUIET);
+        $output->writeln('');
 
-        $arr = array_slice(explode("\n", $code), $startLine - 1, $endLine - $startLine + 1);
-        $arr = array_map(function ($key, $line) use ($startLine) {
-            $startKey = $startLine + $key;
-            return "  {$startKey}:{$line}";
+        $node = $alarm->getNode();
+        $function = $alarm->getFunction();
+
+        if (!$node) {
+            return $output->writeln($code);
+        }
+
+        list($nodeStartLine, $nodeEndLine) = [$node->getStartLine(), $node->getEndLine()];
+
+        if ($function) {
+            list($functionStartLine, $functionEndLine) = [$function->getStartLine(), $function->getEndLine()];
+            $arr = array_slice(explode("\n", $code), $functionStartLine - 1, $functionEndLine - $functionStartLine + 1);
+            $start = $functionStartLine;
+        } else {
+            $arr = array_slice(explode("\n", $code), $nodeStartLine - 1, $nodeEndLine - $nodeStartLine + 1);
+            $start = $nodeStartLine;
+        }
+
+        return array_map(function ($key, $line) use ($output, $start, $nodeStartLine, $nodeEndLine) {
+            $startKey = $start + $key;
+
+            if ($nodeStartLine <= $startKey && $startKey <= $nodeEndLine) {
+                $output->writeln("<fg=red;options=bold>{$startKey}:{$line}</>");
+            } else {
+                $output->writeln("{$startKey}:{$line}");
+            }
         }, array_keys($arr), $arr);
-        $code = implode("\n", $arr);
-
-        $output->writeln("<bg={$color};fg=white>\n{$level}:{$filename}\n{$code}\n{$message}</>", OutputInterface::VERBOSITY_QUIET);
     }
 }

@@ -19,10 +19,10 @@ function strip_whitespace(string $code)
     return trim(substr($code, 5));
 }
 
-function dump_node(Node $node)
+function dump_node(Node $node, $minify = true)
 {
     $prettyPrinter = new PrettyPrinter();
 
     $code = $prettyPrinter->prettyPrint([$node]);
-    return strip_whitespace($code);
+    return $minify ? strip_whitespace($code) : $code;
 }
