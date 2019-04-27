@@ -118,12 +118,12 @@ class Check extends Command
 
         if ($function) {
             list($functionStartLine, $functionEndLine) = [$function->getStartLine(), $function->getEndLine()];
-            $arr = array_slice(explode("\n", $code), $functionStartLine - 1, $functionEndLine - $functionStartLine + 1);
-            $start = $functionStartLine;
         } else {
-            $arr = array_slice(explode("\n", $code), $nodeStartLine - 1, $nodeEndLine - $nodeStartLine + 1);
-            $start = $nodeStartLine;
+            list($functionStartLine, $functionEndLine) = [max($nodeStartLine - 5, 1), $nodeEndLine + 5];
         }
+
+        $arr = array_slice(explode("\n", $code), $functionStartLine - 1, $functionEndLine - $functionStartLine + 1);
+        $start = $functionStartLine;
 
         return array_map(function ($key, $line) use ($output, $start, $nodeStartLine, $nodeEndLine) {
             $startKey = $start + $key;
