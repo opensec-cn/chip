@@ -108,4 +108,43 @@ class Alarm implements \JsonSerializable
     {
         return $this->__debugInfo();
     }
+
+    public function formatOutput(string $code)
+    {
+        $code = explode("\n", $code);
+        $vulnerability = [
+            'level'     => $this->getLevel()->getKey(),
+            'message'   => $this->getMessage(),
+            'code'      => $code,
+            'highlight' => [],
+        ];
+
+        $node = $this->getNode();
+        $function = $this->getFunction();
+
+        if (!$node) {
+            return $vulnerability;
+        }
+
+        list($nodeStartLine, $nodeEndLine) = [$node->getStartLine(), $node->getEndLine()];
+
+        if ($function) {
+            list($functionStartLine, $functionEndLine) = [$function->getStartLine(), $function->getEndLine()];
+        } else {
+            list($functionStartLine, $functionEndLine) = [max($nodeStartLine - 5, 1), $nodeEndLine + 5];
+        }
+
+        $code = array_slice($code, $functionStartLine - 1, $functionEndLine - $functionStartLine + 1);
+        $start = $functionStartLine;
+
+        array_map(function ($key) use ($start, $nodeStartLine, $nodeEndLine, &$vulnerability) {
+            $startKey = $start + $key;
+
+            if ($nodeStartLine <= $startKey && $startKey <= $nodeEndLine) {
+                $vulnerability['highlight'][] = $startKey;
+            }
+        }, array_keys($code));
+
+        return $vulnerability;
+    }
 }

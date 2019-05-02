@@ -25,7 +25,8 @@
         "myclabs/php-enum": "^1.6",
         "symfony/finder": "^4.2",
         "php-di/php-di": "^6.0",
-        "symfony/console": "^4.2"
+        "symfony/console": "^4.2",
+        "twig/twig": "^2.0"
     },
     "autoload": {
         "psr-4": {"Chip\\": "src/Chip"},

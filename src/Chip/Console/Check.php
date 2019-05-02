@@ -11,6 +11,7 @@ namespace Chip\Console;
 use Chip\Alarm;
 use Chip\AlarmLevel;
 use Chip\ChipFactory;
+use Chip\Report\ConsoleReport;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -62,6 +63,7 @@ class Check extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $report = new ConsoleReport($output);
         $file = $input->getArgument("file");
         $finder = new Finder();
 
@@ -79,7 +81,7 @@ class Check extends Command
             foreach ($this->checkCode($content) as $alarm) {
                 if ($alarm->getLevel()->getValue() >= AlarmLevel::$level()->getValue()) {
                     $output->writeln("\n==========");
-                    $this->showAlarm($output, $fileobj->getPathname(), $content, $alarm);
+                    $report->feed($fileobj->getPathname(), $content, $alarm);
                 }
             }
         }
@@ -96,43 +98,5 @@ class Check extends Command
         foreach ($alarms as $alarm) {
             yield $alarm;
         }
-    }
-
-    protected function showAlarm(OutputInterface $output, string $filename, string $code, Alarm $alarm)
-    {
-        $color = 'red';
-
-        $level = $alarm->getLevel()->getKey();
-        $message = $alarm->getMessage();
-        $output->writeln("<bg={$color};fg=white>\n{$level}:{$filename}\n{$message}</>", OutputInterface::VERBOSITY_QUIET);
-        $output->writeln('');
-
-        $node = $alarm->getNode();
-        $function = $alarm->getFunction();
-
-        if (!$node) {
-            return $output->writeln($code);
-        }
-
-        list($nodeStartLine, $nodeEndLine) = [$node->getStartLine(), $node->getEndLine()];
-
-        if ($function) {
-            list($functionStartLine, $functionEndLine) = [$function->getStartLine(), $function->getEndLine()];
-        } else {
-            list($functionStartLine, $functionEndLine) = [max($nodeStartLine - 5, 1), $nodeEndLine + 5];
-        }
-
-        $arr = array_slice(explode("\n", $code), $functionStartLine - 1, $functionEndLine - $functionStartLine + 1);
-        $start = $functionStartLine;
-
-        return array_map(function ($key, $line) use ($output, $start, $nodeStartLine, $nodeEndLine) {
-            $startKey = $start + $key;
-
-            if ($nodeStartLine <= $startKey && $startKey <= $nodeEndLine) {
-                $output->writeln("<fg=red;options=bold>{$startKey}:{$line}</>");
-            } else {
-                $output->writeln("{$startKey}:{$line}");
-            }
-        }, array_keys($arr), $arr);
     }
 }
