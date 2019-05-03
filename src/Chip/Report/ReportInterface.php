@@ -25,4 +25,10 @@ interface ReportInterface
      * @return mixed
      */
     public function render();
+
+    /**
+     * add a context variable to context
+     * @return mixed
+     */
+    public function assign($key, $value);
 }

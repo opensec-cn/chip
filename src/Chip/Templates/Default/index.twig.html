@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"
+        integrity="sha256-8uHMIn1ru0GS5KO+zf7Zccf8Uw12IA5DrdEcmMuWLFM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datatables.net-bs@1.10.19/css/dataTables.bootstrap.min.css"
+        integrity="sha256-PbaYLBab86/uCEz3diunGMEYvjah3uDFIiID+jAtIfw=" crossorigin="anonymous">
+  <style>
+    .target:before {
+      content: "";
+      display: block;
+      height: 50px;
+      margin: -20px 0 0;
+    }
+
+    @media only screen and (min-width: 1900px) {
+      .container {
+        width: 1800px;
+      }
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 60px;
+      width: 100%;
+      height: 180px;
+      background-color: #f5f5f5;
+    }
+    pre {
+      white-space:pre-wrap;
+      word-wrap:break-word;
+    }
+    .highlight {
+      color: red;
+    }
+    .label-critical {
+      background-color: #990055;
+    }
+  </style>
+  <title>Chip 扫描报告</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span
+          class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+          class="icon-bar"></span></button>
+      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#files">文件总览</a></li>
+        <li><a href="#vulnerabilities">漏洞详细</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="jumbotron" style="margin-top: 70px">
+    <h1>Chip 扫描报告</h1>
+    <pre>{{ commandLine }}</pre>
+    <p class="lead">{{ startTime }} ~ {{ endTime }}<br>
+      扫描PHP文件{{ filesCount }}个，发现{{ vulnCount }}处隐患。
+    </p>
+  </div>
+  <h2 id="files" class="target">扫描文件总览</h2>
+  <div class="table-responsive">
+    <table id="table-overview" class="table table-striped dataTable" role="grid">
+      <thead>
+      <tr>
+        <th>文件名</th>
+        <th>总数</th>
+        <th>严重</th>
+        <th>高危</th>
+        <th>警告</th>
+        <th>信息</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for filename, data in statistics %}
+      <tr>
+        <td>{{ filename }}</td>
+        <td>{{ data.critical + data.danger + data.warning + data.info }}</td>
+        <td>{{ data.critical }}</td>
+        <td>{{ data.danger }}</td>
+        <td>{{ data.warning }}</td>
+        <td>{{ data.info }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <h2 id="vulnerabilities" class="target">扫描漏洞总览</h2>
+  {% for filename, vuls in vulTable %}
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">{{ filename }}</h3></div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>等级</th>
+            <th>函数</th>
+            <th>说明</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for vul in vuls %}
+          <tr class="success">
+            <td title="Level" width="10%"><span class="label label-{{ vul.level }}">{{ vul.level }}</span></td>
+            <td title="Function" width="20%">{{ vul.function | default("-") }}</td>
+            <td title="Description">{{ vul.message }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <h5>代码</h5>
+              <pre>{{ formatCode(vul) }}</pre>
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<footer class="footer">
+  <div class="container"><p class="text-muted">
+    This report was generated with Chip.<br>
+    Template is designed by <a href="https://github.com/honze-net/nmap-bootstrap-xsl">Nmap Bootstrap XSL</a>.<br>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/js/jquery.dataTables.min.js"
+        integrity="sha256-3aHVku6TxTRUkkiibvwTz5k8wc7xuEr1QqTB+Oo5Q7I=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/datatables.net-bs@1.10.19/js/dataTables.bootstrap.min.js"
+        integrity="sha256-X/58s5WblGMAw9SpDtqnV8dLRNCawsyGwNqnZD0Je/s=" crossorigin="anonymous"></script>
+<script>
+    window.onload = function () {
+        $('#table-overview').DataTable();
+        $('#table-services').DataTable();
+    };
+</script>
+</body>
+</html>

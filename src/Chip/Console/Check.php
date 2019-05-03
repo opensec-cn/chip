@@ -12,6 +12,7 @@ use Chip\Alarm;
 use Chip\AlarmLevel;
 use Chip\ChipFactory;
 use Chip\Report\ConsoleReport;
+use Chip\Report\HTMLReport;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -45,6 +46,19 @@ class Check extends Command
             'Display message above this level, choice is [' . implode(', ', $this->level) . ']',
             'warning'
         );
+        $this->addOption(
+            'report',
+            '-r',
+            InputOption::VALUE_OPTIONAL,
+            'Output data format, choice is [console, html]',
+            'console'
+        );
+        $this->addOption(
+            'output',
+            '-o',
+            InputOption::VALUE_OPTIONAL,
+            'Write the report to the specified file path'
+        );
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)
@@ -52,6 +66,16 @@ class Check extends Command
         $level = $input->getOption('level');
         if (!in_array($level, $this->level, true)) {
             throw new RuntimeException('level must be one of [' . implode(', ', $this->level) . ' ]');
+        }
+
+        $report = $input->getOption('report');
+        if (!in_array($report, ['console', 'html'])) {
+            throw new \RuntimeException('report must be one of [console, html]');
+        }
+
+        $outputPath = $input->getOption('output');
+        if ($report == 'html' && empty($outputPath)) {
+            throw new \RuntimeException('Ouput path cannot be empty');
         }
     }
 
@@ -63,7 +87,18 @@ class Check extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $report = new ConsoleReport($output);
+        switch ($input->getOption('report')) {
+            case 'html':
+                $report = new HTMLReport($input->getOption('output'));
+                break;
+            case 'console':
+            default:
+                $report = new ConsoleReport($output);
+                break;
+        }
+        $report->assign('commandLine', 'chip.phar ' . strval($input));
+        $report->assign('startTime', date('Y-m-d H:i:s'));
+
         $file = $input->getArgument("file");
         $finder = new Finder();
 
@@ -76,15 +111,20 @@ class Check extends Command
         }
 
         $level = strtoupper($input->getOption('level'));
+        $filesCount = 0;
         foreach ($finder as $fileobj) {
+            $filesCount++;
             $content = $fileobj->getContents();
             foreach ($this->checkCode($content) as $alarm) {
                 if ($alarm->getLevel()->getValue() >= AlarmLevel::$level()->getValue()) {
-                    $output->writeln("\n==========");
                     $report->feed($fileobj->getPathname(), $content, $alarm);
                 }
             }
         }
+
+        $report->assign('filesCount', $filesCount);
+        $report->assign('endTime', date('Y-m-d H:i:s'));
+        $report->render();
     }
 
     /**

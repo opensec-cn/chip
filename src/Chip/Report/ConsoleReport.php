@@ -18,6 +18,11 @@ class ConsoleReport implements ReportInterface
      */
     protected $output;
 
+    /**
+     * @var $context
+     */
+    protected $context = [];
+
     public function __construct(OutputInterface $output)
     {
         $this->output = $output;
@@ -28,15 +33,18 @@ class ConsoleReport implements ReportInterface
         $ctx = $alarm->formatOutput($code);
         $level = $ctx['level'];
         $message = $ctx['message'];
-        $highlight = $ctx['highlight'];
-        $lines = $ctx['code'];
+        $lines = $ctx['lines'];
 
-        $this->output->writeln("<bg=red;fg=white>\n{$level}:{$filename}\n{$message}</>", OutputInterface::VERBOSITY_QUIET);
-        $this->output->writeln('');
+        $this->output->writeln([
+            "",
+            "==========",
+            "<bg=red;fg=white>\n{$level}:{$filename}\n{$message}</>",
+            "",
+        ]);
 
-        foreach ($lines as $number => $line) {
-            $number++;
-            if (in_array($number, $highlight)) {
+        foreach ($lines as $line) {
+            list($number, $line, $highlight) = $line;
+            if ($highlight) {
                 $this->output->writeln("<fg=red;options=bold>{$number}:{$line}</>");
             } else {
                 $this->output->writeln("{$number}:{$line}");
@@ -47,5 +55,10 @@ class ConsoleReport implements ReportInterface
     public function render()
     {
         // do nothing
+    }
+
+    public function assign($key, $value)
+    {
+        $this->context[$key] = $value;
     }
 }

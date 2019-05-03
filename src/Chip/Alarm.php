@@ -34,7 +34,7 @@ class Alarm implements \JsonSerializable
     protected $node;
 
     /**
-     * @var Node $function
+     * @var Node\Stmt\Function_|Node\Stmt\ClassMethod $function
      */
     protected $function;
 
@@ -113,37 +113,38 @@ class Alarm implements \JsonSerializable
     {
         $code = explode("\n", $code);
         $vulnerability = [
-            'level'     => $this->getLevel()->getKey(),
-            'message'   => $this->getMessage(),
-            'code'      => $code,
-            'highlight' => [],
+            'level'    => strtolower($this->getLevel()->getKey()),
+            'message'  => $this->getMessage(),
+            'lines'    => [],
+            'function' => '',
         ];
 
         $node = $this->getNode();
         $function = $this->getFunction();
 
         if (!$node) {
-            return $vulnerability;
-        }
-
-        list($nodeStartLine, $nodeEndLine) = [$node->getStartLine(), $node->getEndLine()];
-
-        if ($function) {
-            list($functionStartLine, $functionEndLine) = [$function->getStartLine(), $function->getEndLine()];
+            list($nodeStartLine, $nodeEndLine) = [1, count($code)];
+            list($functionStartLine, $functionEndLine) = [$nodeStartLine, $nodeEndLine];
         } else {
-            list($functionStartLine, $functionEndLine) = [max($nodeStartLine - 5, 1), $nodeEndLine + 5];
+            list($nodeStartLine, $nodeEndLine) = [$node->getStartLine(), $node->getEndLine()];
+
+            if ($function) {
+                list($functionStartLine, $functionEndLine) = [$function->getStartLine(), $function->getEndLine()];
+                $vulnerability['function'] = strval($function->name);
+            } else {
+                list($functionStartLine, $functionEndLine) = [max($nodeStartLine - 5, 1), $nodeEndLine + 5];
+            }
         }
 
         $code = array_slice($code, $functionStartLine - 1, $functionEndLine - $functionStartLine + 1);
         $start = $functionStartLine;
 
-        array_map(function ($key) use ($start, $nodeStartLine, $nodeEndLine, &$vulnerability) {
+        array_map(function ($key, $line) use ($start, $nodeStartLine, $nodeEndLine, &$vulnerability) {
             $startKey = $start + $key;
 
-            if ($nodeStartLine <= $startKey && $startKey <= $nodeEndLine) {
-                $vulnerability['highlight'][] = $startKey;
-            }
-        }, array_keys($code));
+            $highlight = $nodeStartLine <= $startKey && $startKey <= $nodeEndLine;
+            $vulnerability['lines'][] = [$startKey, $line, $highlight];
+        }, array_keys($code), $code);
 
         return $vulnerability;
     }

@@ -7,11 +7,7 @@ use PhpParser\NodeTraverser;
 
 $code = <<<'CODE'
 <?php 
-class S {
-  function test(){
-    echo 123;
-  }
-}
+$a = function() {};
 CODE;
 
 $nameResolver = new NameResolver();
