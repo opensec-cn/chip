@@ -39,6 +39,9 @@
     .label-critical {
       background-color: #990055;
     }
+    .jumbotron {
+      margin-top: 70px;
+    }
   </style>
   <title>Chip 扫描报告</title>
 </head>
@@ -62,7 +65,7 @@
   </div>
 </nav>
 <div class="container">
-  <div class="jumbotron" style="margin-top: 70px">
+  <div class="jumbotron">
     <h1>Chip 扫描报告</h1>
     <pre>{{ commandLine }}</pre>
     <p class="lead">{{ startTime }} ~ {{ endTime }}<br>
@@ -150,7 +153,6 @@
 <script>
     window.onload = function () {
         $('#table-overview').DataTable();
-        $('#table-services').DataTable();
     };
 </script>
 </body>
