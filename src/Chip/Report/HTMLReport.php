@@ -108,7 +108,7 @@ class HTMLReport implements ReportInterface
     {
         $sw = [
             'critical' => 'danger',
-            'danger' => ''
+            'danger'   => '',
         ];
     }
 }
