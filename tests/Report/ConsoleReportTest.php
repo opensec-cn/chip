@@ -41,6 +41,8 @@ class ConsoleReportTest extends TestCase
     {
         parent::tearDown();
 
+        // We should add assert count to phpunit
+        // referer: https://github.com/mockery/mockery/issues/376
         if ($container = \Mockery::getContainer()) {
             $this->addToAssertionCount($container->mockery_getExpectationCount());
         }
