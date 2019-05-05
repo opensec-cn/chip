@@ -5,6 +5,9 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
+            <exclude>
+                <directory suffix=".php">src/Chip/Schema</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
