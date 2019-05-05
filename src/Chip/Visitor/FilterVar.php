@@ -9,8 +9,6 @@
 namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
-use function Chip\dump_node;
-use Chip\Exception\ArgumentsFormatException;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
@@ -84,7 +82,6 @@ class FilterVar extends BaseVisitor
 
     /**
      * @param  FuncCall $node
-     * @throws ArgumentsFormatException
      */
     public function process($node)
     {
@@ -106,7 +103,6 @@ class FilterVar extends BaseVisitor
      * @param  FuncCall $node
      * @param  Arg      $filter
      * @param  Arg      $options
-     * @throws ArgumentsFormatException
      */
     protected function filterVar($node, $filter, $options)
     {

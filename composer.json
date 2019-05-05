@@ -31,7 +31,6 @@
     "autoload": {
         "psr-4": {"Chip\\": "src/Chip"},
         "files": [
-            "src/Chip/functions.php",
             "src/Chip/Schema/FunctionWithCallable.php",
             "src/Chip/Schema/DangerFunction.php"
         ]
@@ -43,6 +42,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0.0",
-        "mockery/mockery": "^1.2"
+        "mockery/mockery": "^1.2",
+        "mikey179/vfsStream": "^1.6"
     }
 }

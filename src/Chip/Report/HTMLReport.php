@@ -103,12 +103,4 @@ class HTMLReport implements ReportInterface
 
         return implode("\n", $lines);
     }
-
-    public function formatLevel($level)
-    {
-        $sw = [
-            'critical' => 'danger',
-            'danger'   => '',
-        ];
-    }
 }

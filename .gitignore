@@ -4,3 +4,4 @@
 /vendor-bin/
 *.phar
 /build/
+/website/

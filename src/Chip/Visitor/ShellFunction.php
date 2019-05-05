@@ -9,8 +9,6 @@
 namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
-use function Chip\dump_node;
-use Chip\Exception\ArgumentsFormatException;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
 use PhpParser\Node\Expr\FuncCall;
@@ -34,7 +32,6 @@ class ShellFunction extends BaseVisitor
 
     /**
      * @param  FuncCall $node
-     * @throws ArgumentsFormatException
      */
     public function process($node)
     {

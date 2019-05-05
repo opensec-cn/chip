@@ -9,8 +9,6 @@
 namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
-use function Chip\dump_node;
-use Chip\Exception\ArgumentsFormatException;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
@@ -30,7 +28,6 @@ class Assert_ extends BaseVisitor
 
     /**
      * @param  \PhpParser\Node\Expr\FuncCall $node
-     * @throws ArgumentsFormatException
      */
     public function process($node)
     {

@@ -9,14 +9,10 @@
 namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
-use function Chip\dump_node;
-use Chip\Exception\ArgumentsFormatException;
-use Chip\Exception\NodeTypeException;
 use Chip\Exception\RegexFormatException;
 use Chip\Structure\Regex;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Walker\FunctionWalker;
-use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class PregExec extends BaseVisitor
@@ -34,7 +30,6 @@ class PregExec extends BaseVisitor
 
     /**
      * @param  FuncCall $node
-     * @throws ArgumentsFormatException
      * @throws RegexFormatException
      */
     public function process($node)

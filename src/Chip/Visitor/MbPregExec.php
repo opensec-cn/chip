@@ -9,12 +9,9 @@
 namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
-use Chip\Exception\ArgumentsFormatException;
-use Chip\Exception\NodeTypeException;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
 use Chip\Traits\Walker\FunctionWalker;
-use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 
 class MbPregExec extends BaseVisitor
@@ -36,7 +33,6 @@ class MbPregExec extends BaseVisitor
 
     /**
      * @param  FuncCall $node
-     * @throws ArgumentsFormatException
      */
     public function process($node)
     {

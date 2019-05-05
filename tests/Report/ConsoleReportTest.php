@@ -33,7 +33,13 @@ class ConsoleReportTest extends TestCase
 
         $report = new ConsoleReport($output);
         $report->feed('filename', 'code', $alarm);
+        $report->assign('test', 'value');
 
+        $output->shouldHaveReceived('writeln')->with(\Mockery::type('array'))->times(1);
+        $output->shouldHaveReceived('writeln')->with(\Mockery::type('string'))->times(5);
+        $output->shouldHaveReceived('writeln')->withArgs(function ($data) {
+            return is_string($data) && strpos($data, '<fg=red;options=bold>') === 0;
+        })->times(2);
         $output->shouldHaveReceived('writeln')->withAnyArgs()->times(6);
     }
 
