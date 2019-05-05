@@ -12,8 +12,6 @@ use DI\Container;
 use \PhpParser\ParserFactory;
 use \PhpParser\NodeTraverser;
 
-stream_wrapper_register(MemoryStreamWrapper::WRAPPER_NAME, MemoryStreamWrapper::class);
-
 class Chip
 {
     /**
