@@ -96,6 +96,20 @@ trait TypeHelper
         return $node instanceof Node\Expr\Array_;
     }
 
+    public function isPureArray(Node $node)
+    {
+        if (!$node instanceof Node\Expr\Array_) {
+            return false;
+        }
+
+        foreach ($node->items as $item) {
+            if (!$item->value instanceof String_) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public function isSafeCallback(Node\Arg $arg)
     {
         if (!$this->isString($arg->value)) {

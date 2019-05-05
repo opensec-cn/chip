@@ -12,3 +12,7 @@
 - Add some sensitive functions 
 - Remove a duplicate function `BaseVisitor::isMethod`
 - humanize console output
+
+## TODO
+
+- [x] Ignore safe array replace argument in preg_replace

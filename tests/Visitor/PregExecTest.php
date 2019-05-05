@@ -30,6 +30,8 @@ class PregExecTest extends VisitTestCase
             '\Preg_RepLace($a, $b, $c);',
             'preg_replace("/abc{$p}/i", $b, $c);',
             'preg_replace("/.*/ie", $b, $c);',
+            'preg_replace(["/.*/ie", \'/\w+/is\'], $b, $c);',
+            'preg_FilTer(["/.*/is", $regex], $b, $c);',
             'preg_replace("#.*#e", $b, $c);',
             'preg_replace(base64_decode($_GET[2333]), $b, $c);',
             'preg_filter($a, $b, $c);',
@@ -82,6 +84,7 @@ class PregExecTest extends VisitTestCase
     public function testSafePreg()
     {
         $this->assertEmpty($this->detectCode("preg_replace('/[a-z]+/i', '', \$data);"));
+        $this->assertEmpty($this->detectCode("preg_replace(['/[a-z]+/i', '/test/is'], '', \$data);"));
         $this->assertEmpty($this->detectCode("preg_replace('/[a-z]+/i', ...\$options);"));
         $this->assertEmpty($this->detectCode("preg_filter('/[a-z]+/i', '', \$data);"));
         $this->assertEmpty($this->detectCode("mb_ereg_replace('[a-z]+', '', \$data);"));

@@ -43,7 +43,7 @@ class Regex
     public static function create($data)
     {
         if (empty($data)) {
-            throw new RegexFormatException('Regex string is empty');
+            return new self('', '', '');
         }
 
         $delimiter = $data[0];

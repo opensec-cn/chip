@@ -39,14 +39,33 @@ class PregExec extends BaseVisitor
         }
         $fname = $this->fname;
 
-        if (!$this->isString($node->args[0]->value)) {
+        $arg = $node->args[0]->value;
+        if ($this->isString($arg)) {
+            if ($this->isDangerRegex($arg->value)) {
+                $this->message->danger($node, __CLASS__, "{$fname}中正则表达式包含e模式，可能存在远程代码执行的隐患");
+                return;
+            }
+        } elseif ($this->isPureArray($arg)) {
+            foreach ($arg->items as $item) {
+                if ($this->isDangerRegex($item->value->value)) {
+                    $this->message->danger($node, __CLASS__, "{$fname}中正则表达式包含e模式，可能存在远程代码执行的隐患");
+                    return;
+                }
+            }
+        } else {
             $this->message->danger($node, __CLASS__, "{$fname}第一个参数不是静态字符串，可能存在远程代码执行的隐患");
             return;
         }
-        $regex = Regex::create($node->args[0]->value->value);
-        if (strpos($regex->flags, 'e') !== false) {
-            $this->message->danger($node, __CLASS__, "{$fname}中正则表达式包含e模式，可能存在远程代码执行的隐患");
-            return;
-        }
+    }
+
+    /**
+     * @param $data
+     * @return bool
+     * @throws RegexFormatException
+     */
+    protected function isDangerRegex($data)
+    {
+        $regex = Regex::create($data);
+        return strpos($regex->flags, 'e') !== false;
     }
 }

@@ -272,4 +272,22 @@ class TypeHelperTest extends TestCase
 
         $this->assertTrue($this->typeHelperTrait->isSafeCallback($node));
     }
+
+    public function testIsPureArray()
+    {
+        $data = new Node\Expr\Array_([
+            new Node\Expr\ArrayItem(new Node\Scalar\String_('data1')),
+            new Node\Expr\ArrayItem(new Node\Scalar\String_('data3')),
+            new Node\Expr\ArrayItem(new Node\Scalar\String_('data5')),
+            new Node\Expr\ArrayItem(new Node\Scalar\String_('data8')),
+        ]);
+        $this->assertTrue($this->typeHelperTrait->isPureArray($data));
+
+        $data = new Node\Expr\Array_([
+            new Node\Expr\ArrayItem(new Node\Scalar\String_('data1')),
+            new Node\Expr\ArrayItem(new Node\Expr\Variable('var')),
+            new Node\Expr\ArrayItem(new Node\Scalar\String_('data8')),
+        ]);
+        $this->assertFalse($this->typeHelperTrait->isPureArray($data));
+    }
 }
