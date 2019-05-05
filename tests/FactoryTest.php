@@ -8,7 +8,6 @@
 
 namespace Chip\Tests;
 
-
 use Chip\ChipFactory;
 use Chip\ChipManager;
 use org\bovigo\vfs\vfsStream;

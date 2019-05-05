@@ -8,7 +8,6 @@
 
 namespace Chip\Tests;
 
-
 use Chip\Alarm;
 use Chip\AlarmLevel;
 use Chip\Visitor\Assert_;

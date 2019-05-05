@@ -8,7 +8,6 @@
 
 namespace Chip\Tests;
 
-
 use PhpParser\Node;
 use PhpParser\ParserFactory;
 
