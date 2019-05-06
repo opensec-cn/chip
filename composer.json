@@ -41,6 +41,7 @@
         }
     },
     "require-dev": {
+        "ext-simplexml": "*",
         "phpunit/phpunit": "^7.0.0",
         "mockery/mockery": "^1.2",
         "mikey179/vfsStream": "^1.6"
