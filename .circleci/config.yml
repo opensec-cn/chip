@@ -59,7 +59,7 @@ workflows:
           requires:
             - test
           filters:
-            tags:
-              only: /.*/
             branches:
-              ignore: /.*/
+              only: master
+            tags:
+              only: /v.*/
