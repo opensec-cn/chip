@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: composer global require bamarni/composer-bin-plugin
-      - run: composer bin phpstan require phpstan/phpstan "^0.11.5"
+      - run: composer bin phpstan require phpstan/phpstan "^0.11.15"
       - run: composer bin phpcs require squizlabs/php_codesniffer "^3.4"
       - run: composer install -n --prefer-dist
 
@@ -40,7 +40,7 @@ jobs:
       - image: circleci/php:7.2
     steps:
       - checkout
-      - run: composer global require humbug/box "^3.7"
+      - run: composer global require humbug/box "^3.8"
       - run: composer install -n --prefer-dist --no-dev
       - run: ~/.composer/vendor/bin/box compile -c box.json
 
