@@ -1,7 +1,7 @@
 {
     "name": "phith0n/chip",
     "description": "a simple tool to detect potential security threat in php code",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "license": "MIT",
     "authors": [
         {
