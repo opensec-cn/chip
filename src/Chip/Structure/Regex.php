@@ -47,6 +47,10 @@ class Regex
         }
 
         $delimiter = $data[0];
+        if ($delimiter == "(") {
+            $delimiter = ")";
+        }
+
         $j = strlen($data) - 1;
 
         while (0 < $j) {

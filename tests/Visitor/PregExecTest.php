@@ -30,6 +30,7 @@ class PregExecTest extends VisitTestCase
             '\Preg_RepLace($a, $b, $c);',
             'preg_replace("/abc{$p}/i", $b, $c);',
             'preg_replace("/.*/ie", $b, $c);',
+            'preg_replace("(.*)e", $b, $c);',
             'preg_replace(["/.*/ie", \'/\w+/is\'], $b, $c);',
             'preg_FilTer(["/.*/is", $regex], $b, $c);',
             'preg_replace("#.*#e", $b, $c);',

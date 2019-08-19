@@ -8,9 +8,9 @@
 
 namespace Chip\Console;
 
-use Chip\Alarm;
 use Chip\AlarmLevel;
 use Chip\ChipFactory;
+use Chip\Exception\FormatException;
 use Chip\Report\ConsoleReport;
 use Chip\Report\HTMLReport;
 use Symfony\Component\Console\Command\Command;
@@ -70,12 +70,12 @@ class Check extends Command
 
         $report = $input->getOption('report');
         if (!in_array($report, ['console', 'html'])) {
-            throw new \RuntimeException('report must be one of [console, html]');
+            throw new RuntimeException('report must be one of [console, html]');
         }
 
         $outputPath = $input->getOption('output');
         if ($report == 'html' && empty($outputPath)) {
-            throw new \RuntimeException('Ouput path cannot be empty');
+            throw new RuntimeException('Ouput path cannot be empty');
         }
     }
 
@@ -83,7 +83,6 @@ class Check extends Command
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|void|null
-     * @throws \Chip\Exception\FormatException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -101,7 +100,6 @@ class Check extends Command
 
         $file = $input->getArgument("file");
         $finder = new Finder();
-
         if (is_dir($file)) {
             $finder->files()->in($file)->name("*.php");
         } elseif (is_file($file)) {
@@ -130,13 +128,17 @@ class Check extends Command
     /**
      * @param string $code
      * @return \Generator
-     * @throws \Chip\Exception\FormatException
      */
     protected function checkCode(string $code)
     {
-        $alarms = $this->chip->detect($code);
-        foreach ($alarms as $alarm) {
-            yield $alarm;
+        try {
+            $alarms = $this->chip->detect($code);
+            foreach ($alarms as $alarm) {
+                yield $alarm;
+            }
+        } catch (FormatException $ex) {
+            // TODO: log exceptions
+            return;
         }
     }
 }
