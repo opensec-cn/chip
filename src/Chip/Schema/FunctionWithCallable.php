@@ -333,11 +333,6 @@ define(
             'arg' => 'callable $event_handler',
         ],
         [
-            'function' => 'is_callable',
-            'pos' => '2',
-            'arg' => 'string &$callable_name ]]',
-        ],
-        [
             'function' => 'iterator_apply',
             'pos' => '1',
             'arg' => 'callable $function',
