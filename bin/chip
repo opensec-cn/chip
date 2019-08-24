@@ -10,7 +10,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use Symfony\Component\Console\Application;
 
 try {
-    $application = new Application('Chip', '1.2.1');
+    $application = new Application('Chip', '1.3.0');
     $application->addCommands([
         new \Chip\Console\Check()
     ]);
