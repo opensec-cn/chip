@@ -39,7 +39,7 @@ class Reflection extends BaseVisitor
         if ($this->isName($node->class)) {
             $className = $node->class->toLowerString();
             if (in_array($className, array_map('strtolower', $this->reflectionClassName))) {
-                $this->message->warning($node, __CLASS__, 'PHP反射类被创建，可能导致远程代码执行漏洞');
+                $this->storage->warning($node, __CLASS__, 'PHP反射类被创建，可能导致远程代码执行漏洞');
                 return;
             }
         }

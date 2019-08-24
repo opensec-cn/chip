@@ -27,12 +27,12 @@ class DynamicMethod extends BaseVisitor
     public function process($node)
     {
         if ($this->hasDynamicExpr($node->name)) {
-            $this->message->danger($node, __CLASS__, '动态调用方法，可能存在远程代码执行的隐患');
+            $this->storage->danger($node, __CLASS__, '动态调用方法，可能存在远程代码执行的隐患');
             return;
         }
 
         if (!$this->isIdentifier($node->name)) {
-            $this->message->warning($node, __CLASS__, '不规则的方法调用，可能存在安全风险');
+            $this->storage->warning($node, __CLASS__, '不规则的方法调用，可能存在安全风险');
             return;
         }
     }

@@ -11,7 +11,7 @@ namespace Chip;
 use Chip\Tracer\CallStack;
 use PhpParser\Node;
 
-class Pipeline implements \JsonSerializable
+class Storage extends \ArrayObject implements \JsonSerializable
 {
     /**
      * @var CallStack $callStack

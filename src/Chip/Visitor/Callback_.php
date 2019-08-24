@@ -9,7 +9,7 @@
 namespace Chip\Visitor;
 
 use Chip\BaseVisitor;
-use Chip\Message;
+use Chip\Storage;
 use Chip\Tracer\CallStack;
 use Chip\Traits\TypeHelper;
 use Chip\Traits\Variable;
@@ -26,9 +26,9 @@ class Callback_ extends BaseVisitor
 
     protected $functionWithCallback = [];
 
-    public function __construct(Message $message, CallStack $stack)
+    public function __construct(Storage $storage, CallStack $stack)
     {
-        parent::__construct($message, $stack);
+        parent::__construct($storage, $stack);
         $this->functionWithCallback = array_reduce(
             FUNCTION_WITH_CALLABLE,
             function ($carry, $item) {
@@ -59,7 +59,7 @@ class Callback_ extends BaseVisitor
             $pos = $pos >= 0 ? $pos : (count($node->args) + $pos);
             foreach ($node->args as $key => $arg) {
                 if ($arg->unpack && $key <= $pos) {
-                    $this->message->danger($node, __CLASS__, "{$fname}第{$key}个参数包含不确定数量的参数，可能执行动态回调函数，存在远程代码执行的隐患");
+                    $this->storage->danger($node, __CLASS__, "{$fname}第{$key}个参数包含不确定数量的参数，可能执行动态回调函数，存在远程代码执行的隐患");
                     continue 2;
                 }
             }
@@ -74,10 +74,10 @@ class Callback_ extends BaseVisitor
                 continue;
             } else {
                 if ($this->hasDynamicExpr($arg->value)) {
-                    $this->message->danger($node, __CLASS__, "{$fname}第{$pos}个参数包含动态变量或函数，可能有远程代码执行的隐患");
+                    $this->storage->danger($node, __CLASS__, "{$fname}第{$pos}个参数包含动态变量或函数，可能有远程代码执行的隐患");
                 } else {
                     $level = $this->isSafeCallback($arg) ? 'info' : 'warning';
-                    $this->message->$level($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
+                    $this->storage->$level($node, __CLASS__, "{$fname}第{$pos}个参数，请使用闭包函数");
                 }
             }
         }

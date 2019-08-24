@@ -15,18 +15,18 @@ class Alarm implements \JsonSerializable
     /**
      * @var string $type
      */
-    protected $type;
+    public $type;
 
     /**
      * @type AlarmLevel $level
      * enum
      */
-    protected $level;
+    public $level;
 
     /**
      * @type string $message
      */
-    protected $message;
+    public $message;
 
     /**
      * @var Node $node
@@ -48,16 +48,6 @@ class Alarm implements \JsonSerializable
 
         $type = explode('\\', $type);
         $this->type = end($type);
-    }
-
-    protected function getPositions(Node $node)
-    {
-        return [
-            $node->getStartLine(),
-            $node->getEndLine(),
-            $node->getStartFilePos(),
-            $node->getEndFilePos(),
-        ];
     }
 
     public function getLevel()
@@ -85,9 +75,24 @@ class Alarm implements \JsonSerializable
         return $this->function;
     }
 
-    public function lineRange()
+    public function getStartFilePos()
     {
-        return [$this->node->getStartLine(), $this->node->getEndLine()];
+        return $this->node->getStartFilePos();
+    }
+
+    public function getEndFilePos()
+    {
+        return $this->node->getEndFilePos();
+    }
+
+    public function getStartLine()
+    {
+        return $this->node->getStartLine();
+    }
+
+    public function getEndLine()
+    {
+        return $this->node->getEndLine();
     }
 
     public function __toString()

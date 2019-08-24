@@ -44,19 +44,19 @@ class MbPregExec extends BaseVisitor
         } elseif (in_array($fname, ['mb_regex_set_options', 'mbregex_set_options'], true) && $args_count >= 1) {
             $option = $node->args[0]->value;
         } elseif ($this->hasUnpackBefore($node->args)) {
-            $this->message->danger($node, __CLASS__, "{$fname}正则模式中使用变长参数，可能存在远程代码执行的隐患");
+            $this->storage->danger($node, __CLASS__, "{$fname}正则模式中使用变长参数，可能存在远程代码执行的隐患");
             return;
         } else {
             return;
         }
 
         if (!$this->isString($option)) {
-            $this->message->danger($node, __CLASS__, "{$fname}正则模式不是静态字符串，可能存在远程代码执行的隐患");
+            $this->storage->danger($node, __CLASS__, "{$fname}正则模式不是静态字符串，可能存在远程代码执行的隐患");
             return;
         }
 
         if (strpos($option->value, 'e') !== false) {
-            $this->message->danger($node, __CLASS__, "{$fname}使用正则模式“e”，可能存在远程代码执行的隐患");
+            $this->storage->danger($node, __CLASS__, "{$fname}使用正则模式“e”，可能存在远程代码执行的隐患");
             return;
         }
     }

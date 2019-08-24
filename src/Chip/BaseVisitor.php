@@ -23,18 +23,18 @@ abstract class BaseVisitor extends NodeVisitorAbstract implements VisitorInterfa
     protected $checkNodeClass = [];
 
     /**
-     * @var Message $message
+     * @var Storage $storage
      */
-    protected $message;
+    protected $storage;
 
     /**
      * @var CallStack $stack
      */
     protected $stack;
 
-    public function __construct(Message $message, CallStack $stack)
+    public function __construct(Storage $storage, CallStack $stack)
     {
-        $this->message = $message;
+        $this->storage = $storage;
         $this->stack = $stack;
     }
 

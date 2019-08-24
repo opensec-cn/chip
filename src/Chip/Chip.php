@@ -30,9 +30,9 @@ class Chip
     protected $traverser;
 
     /**
-     * @var Message $message
+     * @var Storage $storage
      */
-    protected $message;
+    protected $storage;
 
     public function __construct(array $visitors)
     {
@@ -69,7 +69,7 @@ class Chip
     protected function bootstrapMessage()
     {
         try {
-            $this->message = $this->container->get(Message::class);
+            $this->storage = $this->container->get(Storage::class);
         } catch (\DI\DependencyException | \DI\NotFoundException $e) {
             // something wrong?
         }
@@ -96,7 +96,6 @@ class Chip
      *
      * @param  string $code
      * @return $this
-     * @throws Exception\FormatException
      */
     public function feed($code)
     {
@@ -104,7 +103,7 @@ class Chip
             $stmts = $this->parser->parse($code);
             $this->traverser->traverse($stmts);
         } catch (\PhpParser\Error $e) {
-            $this->message->putMessage(
+            $this->storage->putMessage(
                 AlarmLevel::WARNING(),
                 'InvalidPhpFile',
                 'PHP脚本格式错误，可能是Webshell'
@@ -117,10 +116,10 @@ class Chip
     /**
      * 获取所有告警结果
      *
-     * @return array
+     * @return Alarm[]
      */
     public function alarms()
     {
-        return $this->message->getArrayCopy();
+        return $this->storage->getArrayCopy();
     }
 }

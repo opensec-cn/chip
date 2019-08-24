@@ -36,13 +36,13 @@ class Include_ extends BaseVisitor
 
         if ($this->isString($last_part)) {
             if (!$this->isSafeExtension($last_part)) {
-                $this->message->danger($node, __CLASS__, '文件包含了非PHP文件，可能有远程代码执行的隐患');
+                $this->storage->danger($node, __CLASS__, '文件包含了非PHP文件，可能有远程代码执行的隐患');
             }
             return;
         }
 
         if ($this->hasDynamicExpr($node->expr)) {
-            $this->message->danger($node, __CLASS__, '文件包含操作存在动态变量或函数，可能有远程代码执行的隐患');
+            $this->storage->danger($node, __CLASS__, '文件包含操作存在动态变量或函数，可能有远程代码执行的隐患');
             return;
         }
     }

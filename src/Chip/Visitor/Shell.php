@@ -24,9 +24,9 @@ class Shell extends BaseVisitor
     public function process($node)
     {
         if ($this->hasDynamicExpr($node)) {
-            $this->message->critical($node, __CLASS__, '执行的命令中包含动态变量或函数，可能有远程命令执行风险');
+            $this->storage->critical($node, __CLASS__, '执行的命令中包含动态变量或函数，可能有远程命令执行风险');
         } else {
-            $this->message->info($node, __CLASS__, '执行命令');
+            $this->storage->info($node, __CLASS__, '执行命令');
         }
     }
 }

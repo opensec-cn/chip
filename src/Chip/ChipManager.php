@@ -25,8 +25,7 @@ class ChipManager
 
     /**
      * @param  string $code
-     * @return array
-     * @throws FormatException
+     * @return Alarm[]
      */
     public function detect(string $code)
     {

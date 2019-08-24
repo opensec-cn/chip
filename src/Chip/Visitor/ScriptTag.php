@@ -24,7 +24,7 @@ class ScriptTag extends BaseVisitor
     public function process($node)
     {
         if (stripos($node->value, '<script') !== false && $this->findUnsupportPHPTag($node->value)) {
-            $this->message->warning($node, __CLASS__, '使用不支持的PHP标签，可能存在安全问题');
+            $this->storage->warning($node, __CLASS__, '使用不支持的PHP标签，可能存在安全问题');
         }
     }
 

@@ -95,7 +95,7 @@ class FilterVar extends BaseVisitor
 
             $this->filterVarArray($node, $options);
         } elseif ($this->hasUnpackBefore($node->args)) {
-            $this->message->danger($node, __CLASS__, "{$this->fname}中参数不明确，可能存在代码执行漏洞");
+            $this->storage->danger($node, __CLASS__, "{$this->fname}中参数不明确，可能存在代码执行漏洞");
         }
     }
 
@@ -112,23 +112,23 @@ class FilterVar extends BaseVisitor
 
         $options = $options->value;
         if ($this->isVariable($options)) {
-            $this->message->danger($node, __CLASS__, "{$this->fname}第3个参数不固定，可能存在代码执行的隐患");
+            $this->storage->danger($node, __CLASS__, "{$this->fname}第3个参数不固定，可能存在代码执行的隐患");
             return;
         } elseif ($this->isArray($options)) {
             foreach ($options->items as $item) {
                 if (!$this->isString($item->key)) {
-                    $this->message->warning($node, __CLASS__, "{$this->fname}第3个参数畸形, 可能存在命令执行漏洞");
+                    $this->storage->warning($node, __CLASS__, "{$this->fname}第3个参数畸形, 可能存在命令执行漏洞");
                     break;
                 }
 
                 if (strtolower($item->key->value) === 'options' && !$this->isClosure($item->value)) {
-                    $this->message->warning($node, __CLASS__, "{$this->fname}中，回调函数请使用闭包函数表达");
+                    $this->storage->warning($node, __CLASS__, "{$this->fname}中，回调函数请使用闭包函数表达");
                     break;
                 }
             }
             return;
         } elseif ($this->hasDynamicExpr($options)) {
-            $this->message->danger($node, __CLASS__, "{$this->fname}第3个参数畸形，可能存在命令执行漏洞");
+            $this->storage->danger($node, __CLASS__, "{$this->fname}第3个参数畸形，可能存在命令执行漏洞");
             return;
         }
     }
@@ -145,7 +145,7 @@ class FilterVar extends BaseVisitor
         }
 
         if ($this->isVariable($options)) {
-            $this->message->danger($node, __CLASS__, "{$this->fname}第2个参数不固定，可能存在代码执行的隐患");
+            $this->storage->danger($node, __CLASS__, "{$this->fname}第2个参数不固定，可能存在代码执行的隐患");
             return;
         } elseif ($this->isArray($options)) {
             foreach ($options->items as $item) {
@@ -158,7 +158,7 @@ class FilterVar extends BaseVisitor
                     $subOptions = null;
                     foreach ($item->value->items as $subItem) {
                         if (!$this->isString($subItem->key)) {
-                            $this->message->warning($node, __CLASS__, "{$this->fname}第2个参数畸形, 可能存在命令执行漏洞");
+                            $this->storage->warning($node, __CLASS__, "{$this->fname}第2个参数畸形, 可能存在命令执行漏洞");
                             break 2;
                         }
 
@@ -175,18 +175,18 @@ class FilterVar extends BaseVisitor
                         }
 
                         if (!$this->isClosure($subOptions)) {
-                            $this->message->warning($node, __CLASS__, "{$this->fname}中，回调函数请使用闭包函数表达");
+                            $this->storage->warning($node, __CLASS__, "{$this->fname}中，回调函数请使用闭包函数表达");
                             break;
                         }
                     }
                 } else {
-                    $this->message->warning($node, __CLASS__, "{$this->fname}第2个参数畸形，可能存在命令执行漏洞");
+                    $this->storage->warning($node, __CLASS__, "{$this->fname}第2个参数畸形，可能存在命令执行漏洞");
                     break;
                 }
             }
             return;
         } elseif ($this->hasDynamicExpr($options)) {
-            $this->message->danger($node, __CLASS__, "{$this->fname}第2个参数畸形，可能存在命令执行漏洞");
+            $this->storage->danger($node, __CLASS__, "{$this->fname}第2个参数畸形，可能存在命令执行漏洞");
             return;
         }
     }

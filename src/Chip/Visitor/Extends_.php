@@ -39,7 +39,7 @@ class Extends_ extends BaseVisitor
             $className = $node->extends->toLowerString();
 
             if (in_array($className, array_map('strtolower', $this->dangerClassName))) {
-                $this->message->danger($node, __CLASS__, '代码继承了不安全的类');
+                $this->storage->danger($node, __CLASS__, '代码继承了不安全的类');
                 return;
             }
         }

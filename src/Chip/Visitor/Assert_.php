@@ -37,9 +37,9 @@ class Assert_ extends BaseVisitor
 
         $arg = $node->args[0];
         if ($this->hasDynamicExpr($arg->value)) {
-            $this->message->critical($node, __CLASS__, 'assert第一个参数包含动态变量或函数，可能有远程代码执行的隐患');
+            $this->storage->critical($node, __CLASS__, 'assert第一个参数包含动态变量或函数，可能有远程代码执行的隐患');
         } else {
-            $this->message->warning($node, __CLASS__, '请勿在生产环境下使用assert，可能导致任意代码执行漏洞');
+            $this->storage->warning($node, __CLASS__, '请勿在生产环境下使用assert，可能导致任意代码执行漏洞');
         }
     }
 }

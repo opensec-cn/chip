@@ -4,15 +4,9 @@ require 'vendor/autoload.php';
 use Chip\Exception\FormatException;
 use Chip\ChipFactory;
 
-$code = <<<'CODE'
-<?php 
-create_function(...$_POST);
-CODE;
-
-
 try {
     $chipManager = (new ChipFactory)->create();
-    $alarm = $chipManager->detect($code);
+    $alarm = $chipManager->detect('<?php usort($a, $b);');
 
     print_r($alarm);
 } catch (FormatException $e) {
