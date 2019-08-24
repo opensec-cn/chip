@@ -2,6 +2,8 @@
 
 ## 工具介绍
 
+![](screenshot/1.png)
+
 用一些简单的问题来介绍Chip工具。
 
 ### 这个工具是做什么的？
@@ -52,9 +54,48 @@ $f($arg);
 - Web框架的库文件（不要扫描`/vendor/`中的文件），原因是有的库使用了很多黑魔法，可能涉及到大量动态特性
 - 业务中的确使用了很多动态特性的代码
 
-## 一个未完工的截图
+## 安装与使用
 
-![](screenshot/1.png)
+### 命令行下使用
+
+直接下载[PHAR](https://github.com/phith0n/chip/releases)包，使用命令行调用：
+
+```
+php chip.phar tests/cases/
+```
+
+生成html报告：
+
+```
+php chip.phar tests/cases/ -r html -o report.html
+```
+
+### 使用API调用
+
+使用composer安装：
+
+```
+composer require phith0n/chip "dev-master"
+```
+
+使用：
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Chip\Exception\FormatException;
+use Chip\ChipFactory;
+
+try {
+    $chipManager = (new ChipFactory)->create();
+    $alarm = $chipManager->detect('<?php usort($a, $b);');
+
+    print_r($alarm);
+} catch (FormatException $e) {
+    echo $e->getMessage();
+}
+```
 
 ## 应该参考的项目
 
