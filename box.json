@@ -9,7 +9,27 @@
     "This source file is subject to the MIT license that is bundled",
     "with this source code in the file LICENSE."
   ],
+  "directories": [
+    "src/"
+  ],
+  "finder": [
+    {
+      "notName": "/LICENSE|.*\\.md|.*\\.dist|Makefile|composer\\.json|composer\\.lock|CHANGELOG|.*\\.rst/",
+      "exclude": [
+        "doc",
+        "test",
+        "test_old",
+        "tests",
+        "Tests",
+        "docs",
+        "documentation",
+        "vendor-bin",
+        "CHANGELOG"
+      ],
+      "in": "vendor/"
+    }
+  ],
   "dump-autoload": true,
-  "exclude-dev-files": true,
+  "exclude-dev-files": false,
   "compression": "GZ"
 }
