@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Chip\Tests;
-
 
 use Chip\Alarm;
 use Chip\AlarmLevel;
