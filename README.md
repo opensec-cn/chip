@@ -61,13 +61,13 @@ $f($arg);
 直接下载[PHAR](https://github.com/phith0n/chip/releases)包，使用命令行调用：
 
 ```
-php chip.phar tests/cases/
+php chip.phar check tests/cases/
 ```
 
 生成html报告：
 
 ```
-php chip.phar tests/cases/ -r html -o report.html
+php chip.phar check tests/cases/ -r html -o report.html
 ```
 
 ### 使用API调用
