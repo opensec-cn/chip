@@ -88,7 +88,7 @@
       <tbody>
       {% for filename, data in statistics %}
       <tr>
-        <td>{{ filename }}</td>
+        <td><a href="#{{ filename }}">{{ filename }}</a></td>
         <td>{{ data.critical + data.danger + data.warning + data.info }}</td>
         <td>{{ data.critical }}</td>
         <td>{{ data.danger }}</td>
@@ -101,7 +101,7 @@
   </div>
   <h2 id="vulnerabilities" class="target">扫描漏洞总览</h2>
   {% for filename, vuls in vulTable %}
-  <div class="panel panel-default">
+  <div  id="{{ filename }}" class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ filename }}</h3></div>
     <div class="panel-body">
       <div class="table-responsive">
